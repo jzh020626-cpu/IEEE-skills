@@ -1,5 +1,7 @@
 # IEEE Transactions Skills
 
+[中文版说明](README.zh-CN.md)
+
 IEEE Transactions Skills is a Codex skill suite for robotics, automation,
 control, communications, industrial informatics, and networked intelligent
 systems research. It targets IEEE Transactions-style manuscripts rather than
