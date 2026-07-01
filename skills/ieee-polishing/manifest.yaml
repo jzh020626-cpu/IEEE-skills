@@ -1,0 +1,63 @@
+name: ieee-polishing
+version: 1.0.0
+description: >
+  Declarative manifest for IEEE Transactions static/dynamic guidance. SKILL.md uses this to load only the fragments needed for the request.
+
+always_load:
+  - ../_ieee_shared/core/reader-workflow.md
+  - ../_ieee_shared/core/paper-type-taxonomy.md
+  - ../_ieee_shared/core/ethics.md
+  - ../_ieee_shared/core/terminology-ledger.md
+  - ../_ieee_shared/core/ieee-transactions-contract.md
+
+axes:
+  paper_type:
+    detect: |
+      Decide whether the request is algorithmic/theoretical, robotics/automation system, communication/networked control, industrial informatics, or survey/tutorial. Default to algorithmic when unclear.
+    values:
+      algorithmic: static/fragments/paper_type/algorithmic.md
+      methods: static/fragments/paper_type/methods.md
+      research: static/fragments/paper_type/research.md
+      review: static/fragments/paper_type/review.md
+    default: research
+    multi: false
+
+  section:
+    detect: |
+      Identify requested section(s): abstract, intro, related-work, method, experiments/results, discussion, conclusion, title, or note-to-practitioners.
+    values:
+      abstract: static/fragments/section/abstract.md
+      intro: static/fragments/section/intro.md
+      related-work: static/fragments/section/related-work.md
+      method: static/fragments/section/method.md
+      experiments: static/fragments/section/experiments.md
+      results: static/fragments/section/results.md
+      discussion: static/fragments/section/discussion.md
+      conclusion: static/fragments/section/conclusion.md
+      title: static/fragments/section/title.md
+    multi: true
+
+  language:
+    detect: |
+      Use zh-to-en for Chinese or mixed Chinese-English drafts; otherwise use en.
+    values:
+      en: static/fragments/language/en.md
+      zh-to-en: static/fragments/language/zh-to-en.md
+    default: en
+    multi: false
+
+  venue:
+    detect: |
+      Use the named venue when present. Map T-ASE to tase, TII to tii, TAC/TCST to tac-tcst, otherwise generic.
+    values:
+      generic: static/fragments/journal/generic.md
+      tase: static/fragments/journal/tase.md
+      tii: static/fragments/journal/tii.md
+      tac-tcst: static/fragments/journal/tac-tcst.md
+    default: generic
+    multi: false
+
+references:
+  on_demand:
+    - condition: target venue rules, Note to Practitioners, numbered citations, double-column constraints, or reproducibility package
+      path: ../_ieee_shared/core/ieee-transactions-contract.md

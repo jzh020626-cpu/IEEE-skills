@@ -1,0 +1,29 @@
+{
+  "skill_name": "ieee-citation",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "把这段文字自动分段并给出T-ASE/T-RO/RA-L优先引用，导出Zotero RDF格式：Communication-constrained mobile robots require freshness-aware coordination to reduce stale execution risk. Multi-robot coordination experiments reveal failure modes under delayed wireless communication.",
+      "expected_output": "Segments the text, uses IEEE-first robotics/automation scopes, maps each segment to citation candidates, exports references.rdf, and does not broaden outside IEEE unless requested.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "只看TAC和TCST，把下面控制论文相关段落按长度分段，给我文本和引用对应关系：networked control systems with delayed measurements require stability guarantees under packet loss and bounded latency.",
+      "expected_output": "Restricts scope to TAC/TCST/control IEEE venues and produces a segment-reference correspondence table with IEEE [n] insertion hints.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Find TII references for: industrial edge intelligence improves fault detection reliability under communication constraints. Export RIS for EndNote.",
+      "expected_output": "Restricts to TII/industrial IEEE-first sources, treats the claim as a segment, and exports RIS without fabricating missing metadata.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "给我一个IEEE Transactions引用导出，用户要自己选择下载 ENW、RIS 还是 Zotero RDF，并且先按年份筛选再勾选参考文献。",
+      "expected_output": "Produces an IEEE-first citation workflow with selectable ENW/RIS/Zotero RDF exports and clear warnings for metadata-only candidates.",
+      "files": []
+    }
+  ]
+}

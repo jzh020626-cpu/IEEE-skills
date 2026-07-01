@@ -1,0 +1,4 @@
+interface:
+  display_name: "IEEE Submission Audit"
+  short_description: "Strict IEEE Transactions pre-submission audit"
+  default_prompt: "Audit this manuscript for strict IEEE Transactions readiness."

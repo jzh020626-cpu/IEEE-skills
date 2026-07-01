@@ -1,0 +1,4 @@
+interface:
+  display_name: "IEEE Transactions Data"
+  short_description: "Draft bilingual-aware IEEE Transactions data statements"
+  default_prompt: "Help me turn my Chinese or English data notes into a IEEE Transactions-style Reproducibility Package statement, repository plan, and reproducibility metadata checklist."

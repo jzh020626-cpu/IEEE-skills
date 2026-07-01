@@ -1,0 +1,4 @@
+interface:
+  display_name: "IEEE Transactions Writing"
+  short_description: "Draft IEEE Transactions-style manuscript sections"
+  default_prompt: "Help me turn my claims, results, figures, or Chinese notes into a IEEE Transactions-style manuscript section with a clear argument and claim-evidence map."
