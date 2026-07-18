@@ -14,5 +14,5 @@ description: >-
 ## Resources
 
 - If `manifest.yaml` exists, load only the fragments needed for the requested section, paper type, language, or venue.
-- Read `../_ieee_shared/core/ieee-transactions-contract.md` for shared IEEE Transactions constraints when producing manuscript-facing output.
+- Read `../ieee-shared/core/ieee-transactions-contract.md` for shared IEEE Transactions constraints when producing manuscript-facing output.
 - Keep outputs source-grounded: do not invent citations, metrics, theorem guarantees, hardware details, or experimental results.

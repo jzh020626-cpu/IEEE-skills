@@ -1,13 +1,10 @@
 name: ieee-downloader
-version: 1.0.0
+version: 2.0.0
 description: >
   Configure a user's legitimate library resource entry, reuse their logged-in
   Chrome institutional session, and download open-access or institution-
   authorized academic full text/PDFs with clear status reporting for missing
   PDF or missing library permission.
-
-always_load:
-  - SKILL.md
 
 references:
   on_demand:
@@ -15,9 +12,19 @@ references:
       path: README.md
     - condition: configuring known school presets, resource URL inference, or health checks
       path: scripts/configure_school.py
-    - condition: batch DOI/title/topic downloads through Web of Science or open-access sources
+    - condition: configuring publisher API credentials without exposing secret values
+      path: scripts/configure_credentials.py
+    - condition: batch DOI/title downloads, SI confirmation, route planning, validation, and manifest creation
       path: scripts/batch_download.mjs
-    - condition: browser-authenticated PDF fetching and PDF sigieee checks
+    - condition: browser-authenticated PDF fetching and PDF signature checks
       path: scripts/browser_pdf_downloader.mjs
     - condition: canonical download statuses and manifest status semantics
       path: scripts/lib/status-codes.mjs
+    - condition: publisher/API/OA/CNKI/institutional route precedence
+      path: scripts/lib/routing.mjs
+    - condition: provider capabilities and credential requirements
+      path: scripts/lib/provider-registry.mjs
+    - condition: output manifest schema and per-item provenance
+      path: scripts/lib/manifest.mjs
+    - condition: source research behind the modular provider design
+      path: docs/ieee-downloader-reference-research-2026-07-15.md

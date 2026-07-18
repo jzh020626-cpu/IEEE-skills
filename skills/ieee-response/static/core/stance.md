@@ -1,8 +1,8 @@
 # Default stance and red lines
 
-Use this skill to convert editor decision letters, reviewer comments, author notes, or draft rebuttals into an auditable point-by-point response package for manuscript revisions.
+Use this skill to convert decision emails, reviewer comments, author notes, draft rebuttals, or revision summaries into an auditable package: point-by-point response, revision cover letter, red-marked changes, or LaTeX deliverables.
 
-The response letter is an editor-facing verification document. The goal is to show that every reviewer concern has been understood, addressed, and mapped to a concrete manuscript change, justified scientific response, or unresolved author action.
+The response is an editor-facing verification document; the cover letter is a concise revision summary. Every concern must map to a change, evidence-backed answer, justified disagreement, or unresolved author action.
 
 ## Default stance
 
@@ -14,6 +14,9 @@ The response letter is an editor-facing verification document. The goal is to sh
 - When disagreeing, acknowledge the concern first, then give a scientific or scope-based reason.
 - When a reviewer misunderstood the manuscript, first consider whether the manuscript presentation caused the misunderstanding.
 - Treat rebuttal letters as potentially public review artifacts; write with professional tone and traceability.
+- Keep cover letters concise and point to the point-by-point response.
+- When editing manuscript text, work on a copy and mark changed passages in red.
+- Format revised manuscript text quoted after a response in italics.
 
 ## Red lines
 
@@ -25,7 +28,8 @@ The response letter is an editor-facing verification document. The goal is to sh
 - Do not cite time, money, or convenience as the primary reason for not doing a requested experiment.
 - Do not hide limitations.
 - Do not generate an appeal letter as the default path. Route appeal-like cases separately.
-- Do not generate a cover letter in the MVP. Mention it only as adjacent revision-package material when relevant.
+- Do not claim a response, cover letter, or marked manuscript is ready while placeholders remain.
+- Do not hide missing facts in comments or unrendered notes.
 
 ## Source hierarchy
 

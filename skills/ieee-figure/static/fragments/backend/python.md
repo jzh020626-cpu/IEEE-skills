@@ -30,7 +30,7 @@ Use `text.usetex = True` only when LaTeX is installed and math-rich labels are r
 
 ## Going deeper
 
-- `references/api.md` — Python PALETTE, helper function sigieees, validation rules.
+- `references/api.md` — Python PALETTE, helper function signatures, validation rules.
 - `references/common-patterns.md` — hero panels, legend-only axes, sensor/screenshot panels, asymmetric layouts.
 - `references/chart-types.md` — radar, 3D sphere, fill_between, scatter patterns.
 - `references/tutorials.md` — end-to-end walkthroughs for bars, trends, heatmaps.

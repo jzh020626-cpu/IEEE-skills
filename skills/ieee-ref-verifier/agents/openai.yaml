@@ -1,0 +1,4 @@
+interface:
+  display_name: "IEEE Reference Verifier"
+  short_description: "Cross-check engineering references field by field"
+  default_prompt: "Use $ieee-ref-verifier to verify this reference list against authoritative metadata and return corrected IEEE entries."

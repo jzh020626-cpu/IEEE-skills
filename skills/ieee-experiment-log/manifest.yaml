@@ -1,0 +1,27 @@
+name: ieee-experiment-log
+version: 1.0.0
+description: >
+  Declarative routing for reproducible IEEE engineering experiment logs.
+
+always_load:
+  - SKILL.md
+
+templates:
+  on_demand:
+    - condition: create a standard run record
+      path: templates/run-log.md
+    - condition: record a failure, anomaly, protocol deviation, or exclusion
+      path: templates/anomaly-log.md
+    - condition: track hardware, firmware, instrument, or calibration state
+      path: templates/equipment-tracking.md
+    - condition: initialize or update an experiment-series index
+      path: templates/experiment-index.md
+
+references:
+  on_demand:
+    - condition: control-system simulation, convergence, stability, disturbance, or initial-condition sweep
+      path: references/example-control-simulation.md
+    - condition: robotics or automation hardware trial, safety event, ROS bag, calibration, or real-time run
+      path: references/example-robotics-hardware.md
+    - condition: communications or networking experiment, topology/channel sweep, packet trace, latency, or throughput
+      path: references/example-communications-sweep.md

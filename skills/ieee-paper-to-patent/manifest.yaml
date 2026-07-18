@@ -27,13 +27,17 @@ axes:
   task_mode:
     detect: >
       Use full-draft for a complete application package, claim-set for claims
-      only, disclosure-analysis for patentability-oriented technical
-      extraction, and paper-patent-audit for comparison with an existing
-      patent.
+      only, disclosure-analysis for patentability-oriented extraction,
+      technical-disclosure for patent-point mining, prior-art search, or an
+      attorney-facing Chinese technical disclosure, disclosure-iteration when
+      continuing an existing disclosure, and paper-patent-audit for comparison
+      with an existing patent.
     values:
       full-draft: static/fragments/task/full-draft.md
       claim-set: static/fragments/task/claim-set.md
       disclosure-analysis: static/fragments/task/disclosure-analysis.md
+      technical-disclosure: static/fragments/task/technical-disclosure.md
+      disclosure-iteration: static/fragments/task/disclosure-iteration.md
       paper-patent-audit: static/fragments/task/paper-patent-audit.md
     default: full-draft
     multi: false

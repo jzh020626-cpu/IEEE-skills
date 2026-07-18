@@ -1,0 +1,17 @@
+name: ieee-statistics
+version: 1.0.0
+description: >
+  Declarative routing for engineering statistical reporting and audit.
+
+always_load:
+  - references/source-basis.md
+  - references/statistical-reporting.md
+
+references:
+  on_demand:
+    - condition: pseudoreplication, seeds/runs, cross-validation, leakage, repeated measures, many comparisons, time series, outliers, or significance-only claims
+      path: references/common-failure-modes.md
+    - condition: figure legends, error bars, confidence bands, CDFs, box/violin plots, stars, panel-level n, or benchmark tables
+      path: references/figure-statistics.md
+    - condition: final QA, severity labeling, reviewer-risk summary, or response to a statistics comment
+      path: references/reviewer-checklist.md

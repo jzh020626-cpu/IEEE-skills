@@ -1,0 +1,20 @@
+name: ieee-submission-audit
+version: 1.0.0
+description: >
+  Declarative routing for strict IEEE Transactions pre-submission checks.
+  The audit contract and venue checklist load for every run; the offline
+  manuscript scanner loads when source text or LaTeX is available.
+
+always_load:
+  - SKILL.md
+  - references/strict-ieee-checklist.md
+
+references:
+  on_demand:
+    - condition: applying shared IEEE Transactions format, ethics, ORCID, figure, reproducibility, or prior-version rules
+      path: ../ieee-shared/core/ieee-transactions-contract.md
+
+scripts:
+  on_demand:
+    - condition: auditing supplied LaTeX or plain manuscript text for detectable hard constraints
+      path: scripts/ieee_submission_audit.py

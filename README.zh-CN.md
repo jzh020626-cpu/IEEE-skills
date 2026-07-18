@@ -13,32 +13,38 @@ IEEE Transactions Skills 是一套面向 Codex 的学术写作与投稿辅助技
 |-- README.md
 |-- README.zh-CN.md
 |-- LICENSE
+|-- UPSTREAM_ADAPTATION.md
 |-- scripts/
-|   |-- update-codex-skills.sh
-|   `-- check-nature-upstream.sh
+|   |-- autoupdate-skills.sh
+|   |-- check-nature-upstream.sh
+|   |-- nature-upstream.lock
+|   `-- update-codex-skills.sh
 `-- skills/
-    |-- _ieee_shared/
+    |-- ieee-shared/
     |-- ieee-writing/
     |-- ieee-polishing/
     |-- ieee-citation/
     |-- ieee-figure/
     |-- ieee-data/
+    |-- ieee-experiment-log/
     |-- ieee-response/
     |-- ieee-reviewer/
     |-- ieee-submission-audit/
     |-- ieee-academic-search/
     |-- ieee-literature-pipeline/
     |-- ieee-reader/
+    |-- ieee-ref-verifier/
     |-- ieee-downloader/
     |-- ieee-paper2ppt/
     |-- ieee-paper-to-patent/
+    |-- ieee-statistics/
     `-- ieee-proposal-writer/
 ```
 
 每个 skill 基本遵循 Codex skill 的标准结构：
 
 - `SKILL.md`：触发说明与核心操作规则。
-- `manifest.yaml`：skill 元数据，部分 skill 提供。
+- `manifest.yaml`：每个 skill 均提供的声明式路由元数据。
 - `static/`：skill 执行时会加载的固定片段。
 - `references/`：更细的写作规则、checklist、示例或来源说明。
 - `scripts/`：该 skill 使用的本地辅助脚本。
@@ -69,10 +75,8 @@ scripts/update-codex-skills.sh
 scripts/update-codex-skills.sh --check
 ```
 
-默认安装脚本只会同步以下目录：
-
-- `skills/ieee-*`
-- `skills/_ieee_shared`
+默认安装脚本只会同步 `skills/ieee-*`，其中包括内部依赖
+`ieee-shared`。
 
 目标位置是：
 
@@ -106,15 +110,18 @@ scripts/update-codex-skills.sh --prune
 | [`ieee-citation`](skills/ieee-citation/README.md) | 添加 IEEE 编号引用，检查 claim 支撑强度，并处理 RIS、ENW、BibTeX 等引用工作流。 |
 | [`ieee-figure`](skills/ieee-figure/README.md) | 创建、修改或审查 IEEE 单栏/双栏论文图。 |
 | [`ieee-data`](skills/ieee-data/README.md) | 准备复现包、代码/数据可用性说明、随机种子、日志、参数和硬件/仿真元数据。 |
+| [`ieee-experiment-log`](skills/ieee-experiment-log/README.md) | 将仿真、硬件、现场、网络、训练和 benchmark 运行整理为可追溯工程实验日志。 |
 | [`ieee-response`](skills/ieee-response/README.md) | 起草或审查 IEEE 期刊逐点审稿回复。 |
 | [`ieee-reviewer`](skills/ieee-reviewer/README.md) | 从 IEEE Transactions 审稿人视角模拟预审。 |
 | [`ieee-submission-audit`](skills/ieee-submission-audit/SKILL.md) | 严格投稿前审查，覆盖 IEEEtran、页数、图表、参考文献、NtP、复现和分刊硬约束。 |
 | [`ieee-academic-search`](skills/ieee-academic-search/README.md) | 多源文献搜索、引用核查、DOI/arXiv/IEEE 取向的参考文献管理，以及可选 MCP dispatch。 |
 | [`ieee-literature-pipeline`](skills/ieee-literature-pipeline/README.md) | 面向工程论文的自动化文献发现、打分、聚类和精读流程。 |
 | [`ieee-reader`](skills/ieee-reader/README.md) | 为 IEEE 或工程论文构建图表感知的中英双语阅读材料。 |
+| [`ieee-ref-verifier`](skills/ieee-ref-verifier/README.md) | 核验 DOI、作者顺序、期刊、Early Access/卷期、页码/文章号和会议—期刊版本。 |
 | [`ieee-downloader`](skills/ieee-downloader/README.md) | 配置合法的机构访问或开放获取论文下载，并整理授权 PDF。 |
 | [`ieee-paper2ppt`](skills/ieee-paper2ppt/README.md) | 从机器人、自动化、控制、通信或工业信息学论文构建 IEEE 风格中文汇报 PPT。 |
 | [`ieee-paper-to-patent`](skills/ieee-paper-to-patent/README.md) | 将工程论文、学位论文、技术报告、源码或图表转换为中文发明专利草案。 |
+| [`ieee-statistics`](skills/ieee-statistics/README.md) | 审查随机种子/运行、独立实验单位、不确定性、benchmark 汇总、数据泄漏和图注统计。 |
 | [`ieee-proposal-writer`](skills/ieee-proposal-writer/README.md) | 运行 proposal-first 的 IEEE Transactions 论文构思与写作流程。 |
 
 ## 常见触发方式
@@ -195,7 +202,7 @@ export IEEE_ACADEMIC_SEARCH_LIVE_ELSEVIER=1
 
 ## 上游同步
 
-本仓库可以跟踪上游 `nature-skills` checkout 中可复用的架构变化，同时保持 IEEE 行为不变。
+本仓库可以跟踪上游 `nature-skills` 中可复用的架构变化，同时保持 IEEE 行为不变。本次语义适配记录见 [`UPSTREAM_ADAPTATION.md`](UPSTREAM_ADAPTATION.md)，已适配的上游 SHA 保存在 `scripts/nature-upstream.lock`。
 
 脚本：
 
@@ -214,6 +221,7 @@ scripts/check-nature-upstream.sh --mark <commit>
 - 上游 `nature-*` 内容只能作为架构 diff 的来源。
 - 主动 skill 行为必须保持为 `ieee-*`。
 - 不要把生命科学、临床、基因组学、Nature Portfolio、Nat Commun、CNS 或 Cell Press 假设复制到默认 IEEE 指令中。
+- 不迁移 CAPTCHA/滑块自动处理；验证页面必须交还用户在已授权浏览器中完成。
 
 ## 验证 checklist
 

@@ -23,18 +23,19 @@
 
 - Each reviewer report should use the same skeleton:
   - `Overall assessment`
-  - `Who would be interested in the results, and why`
+  - `Scope and contribution`
   - `Major strengths`
   - `Major concerns`
-  - `Technical failings that need to be addressed before the case is established`
+  - `Required revisions`
   - `Assessment against IEEE Transactions-style criteria`
   - `Recommendation posture`
 - `Assessment against IEEE Transactions-style criteria` should explicitly touch:
-  - `originality`
-  - `scientific importance`
-  - `interdisciplinary readership`
-  - `technical soundness`
-  - `readability for nonspecialists`
+  - `scope / venue fit`
+  - `novelty / advancement`
+  - `technical validity`
+  - `data / experimental evidence`
+  - `reproducibility`
+  - `literature / clarity / compliance`
 - `Recommendation posture` should stay reviewer-like, for example:
   - `supportive if technical concerns are resolved`
   - `promising but broad-interest case remains underdeveloped`
@@ -46,7 +47,7 @@
   - `Consensus strengths`
   - `Consensus technical risks`
   - `Where emphasis differs across reviewers`
-  - `Broad-interest / significance readout`
+  - `Novelty / advancement / venue-fit readout`
   - `Most important issues to resolve before a strong IEEE Transactions-style case is established`
 
 ## Risk / unsupported claims section

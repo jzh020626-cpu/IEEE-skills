@@ -1,0 +1,13 @@
+name: ieee-ref-verifier
+version: 1.0.0
+description: >
+  Declarative routing for field-level IEEE reference verification.
+
+always_load:
+  - SKILL.md
+  - references/source-hierarchy.md
+
+references:
+  on_demand:
+    - condition: DOI-year conflict, author mismatch, page/article-number issue, early access, conference/journal version, legacy IEEE record, or duplicate version
+      path: references/common-patterns.md

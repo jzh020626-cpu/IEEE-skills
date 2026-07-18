@@ -15,12 +15,14 @@
 #
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 UPSTREAM_URL="${UPSTREAM_URL:-https://github.com/Yuan1z0825/nature-skills.git}"
-NATURE_DIR="${NATURE_DIR:-/Users/hjz/Desktop/skills/nature-skills}"
-IEEE_DIR="${IEEE_DIR:-/Users/hjz/Desktop/skills/ieee-trans-skills}"
-ARTIFACT_ROOT="${ARTIFACT_ROOT:-/Users/hjz/Desktop/skills/artifacts}"
+NATURE_DIR="${NATURE_DIR:-$(cd "$REPO_ROOT/.." && pwd)/nature-skills}"
+IEEE_DIR="${IEEE_DIR:-$REPO_ROOT}"
+ARTIFACT_ROOT="${ARTIFACT_ROOT:-$IEEE_DIR/.upstream/artifacts}"
 STATE_DIR="${STATE_DIR:-$IEEE_DIR/.upstream}"
-STATE_FILE="$STATE_DIR/nature-skills.last-adapted"
+LOCK_FILE="${LOCK_FILE:-$SCRIPT_DIR/nature-upstream.lock}"
 PENDING_FILE="$STATE_DIR/nature-skills.pending"
 
 usage() {
@@ -34,9 +36,10 @@ Usage:
 
 Environment:
   UPSTREAM_URL=https://github.com/Yuan1z0825/nature-skills.git
-  NATURE_DIR=/Users/hjz/Desktop/skills/nature-skills
-  IEEE_DIR=/Users/hjz/Desktop/skills/ieee-trans-skills
-  ARTIFACT_ROOT=/Users/hjz/Desktop/skills/artifacts
+  NATURE_DIR=/path/to/nature-skills
+  IEEE_DIR=/path/to/IEEE-skills
+  ARTIFACT_ROOT=/path/to/local/artifacts
+  LOCK_FILE=/path/to/nature-upstream.lock
 USAGE
 }
 
@@ -143,16 +146,16 @@ case "$MODE" in
     if [ "$MARK_SHA" != "$latest" ]; then
       die "refusing to mark $MARK_SHA because current upstream HEAD is $latest"
     fi
-    printf '%s\n' "$MARK_SHA" > "$STATE_FILE"
+    printf '%s\n' "$MARK_SHA" > "$LOCK_FILE"
     rm -f "$PENDING_FILE"
     echo "MARKED $MARK_SHA"
     exit 0
     ;;
   init)
-    previous="$(cat "$STATE_FILE" 2>/dev/null || true)"
+    previous="$(cat "$LOCK_FILE" 2>/dev/null || true)"
     artifact="$(write_artifact "$previous" "$latest" initialized)"
     sync_nature_checkout
-    printf '%s\n' "$latest" > "$STATE_FILE"
+    printf '%s\n' "$latest" > "$LOCK_FILE"
     rm -f "$PENDING_FILE"
     echo "INITIALIZED $latest"
     echo "ARTIFACT $artifact"
@@ -160,7 +163,7 @@ case "$MODE" in
     ;;
 esac
 
-previous="$(cat "$STATE_FILE" 2>/dev/null || true)"
+previous="$(cat "$LOCK_FILE" 2>/dev/null || true)"
 if [ "$latest" = "$previous" ]; then
   echo "UNCHANGED $latest"
   exit 0

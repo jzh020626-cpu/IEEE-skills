@@ -29,8 +29,16 @@ VENUE_LIMITS = {
     ("tcst", "letter"): 4,
     ("tcns", "regular"): 12,
     ("tcns", "paper"): 12,
-    ("tase", "regular"): 12,
+    ("tase", "regular"): 10,
     ("tase", "communication"): 6,
+}
+
+VENUE_LIMIT_SOURCES = {
+    "tase": "T-ASE Procedure Manual v3 (2026-02-04)",
+    "tii": "TII manuscript checklist",
+    "tac": "TAC Author Information",
+    "tcst": "TCST Author Information",
+    "tcns": "TCNS Author Information",
 }
 
 INDUSTRIAL_TERMS = re.compile(
@@ -92,7 +100,16 @@ def add(checks: list[Check], id_: str, status: str, severity: str, message: str,
     checks.append(Check(id_, status, severity, message, evidence))
 
 
-def audit(text: str, suffix: str, venue: str, paper_type: str, pages: int | None, stage: str, conference_extension: bool) -> dict[str, object]:
+def audit(
+    text: str,
+    suffix: str,
+    venue: str,
+    paper_type: str,
+    pages: int | None,
+    stage: str,
+    conference_extension: bool,
+    page_limit: int | None = None,
+) -> dict[str, object]:
     checks: list[Check] = []
     venue = venue.lower()
     paper_type = paper_type.lower()
@@ -128,6 +145,11 @@ def audit(text: str, suffix: str, venue: str, paper_type: str, pages: int | None
     else:
         add(checks, "front.index_terms", "fail", "blocker", "Index Terms not detected.")
 
+    if has(r"\borcid\b|orcid\.org/\d{4}-\d{4}-\d{4}-\d{3}[\dX]", text):
+        add(checks, "front.orcid", "manual", "blocker", "ORCID marker detected; confirm a valid ORCID for every author in the submission system.")
+    else:
+        add(checks, "front.orcid", "manual", "blocker", "Confirm a valid ORCID for every author; manuscript text alone may not expose submission-system records.")
+
     numeric_cites = has(r"\\cite\{|(?<!\w)\[\d+(?:\s*[-,]\s*\d+)*\]", text)
     author_year = has(r"\([A-Z][A-Za-z-]+(?:\s+et\s+al\.)?,\s*(?:19|20)\d{2}\)", text)
     if numeric_cites and not author_year:
@@ -145,11 +167,12 @@ def audit(text: str, suffix: str, venue: str, paper_type: str, pages: int | None
     if pages is None:
         add(checks, "pages.compiled", "manual", "blocker", "Compiled IEEE-format page count not supplied; run with --compiled-pages after PDF build.")
     else:
-        limit = VENUE_LIMITS.get((venue, paper_type)) or VENUE_LIMITS.get((venue, "regular"))
+        limit = page_limit or VENUE_LIMITS.get((venue, paper_type)) or VENUE_LIMITS.get((venue, "regular"))
+        limit_basis = "caller-supplied current rule" if page_limit else VENUE_LIMIT_SOURCES.get(venue, "embedded preflight table")
         if limit and pages > limit:
-            add(checks, "pages.limit", "fail", "blocker", f"{venue.upper()} {paper_type} page count {pages} exceeds strict audit limit {limit}.")
+            add(checks, "pages.limit", "fail", "blocker", f"{venue.upper()} {paper_type} page count {pages} exceeds audit limit {limit}.", limit_basis)
         elif limit:
-            add(checks, "pages.limit", "pass", "blocker", f"Compiled pages {pages} within strict audit limit {limit}.")
+            add(checks, "pages.limit", "pass", "blocker", f"Compiled pages {pages} within audit limit {limit}.", limit_basis)
         else:
             add(checks, "pages.limit", "manual", "blocker", f"No embedded page limit for venue={venue}, paper_type={paper_type}; verify current journal page.")
 
@@ -157,11 +180,18 @@ def audit(text: str, suffix: str, venue: str, paper_type: str, pages: int | None
     if bad_graphics:
         add(checks, "figures.formats", "fail", "major", "Potential non-preferred graphics formats detected; IEEE graphics should use PS/EPS/PDF/PNG/TIFF, with JPEG reserved for author photos.", ", ".join(bad_graphics[:8]))
     elif has(r"\.(?:eps|pdf|png|tiff?|ps)\b|\\includegraphics|Fig\.|Figure", text):
-        add(checks, "figures.formats", "manual", "major", "Figures detected; verify final files are PS/EPS/PDF/PNG/TIFF and readable at column width.")
+        add(checks, "figures.formats", "manual", "major", "Figures detected; verify accepted formats, 88.9/182 mm readability, and ≥300 dpi color/grayscale or ≥600 dpi B/W line art.")
     else:
         add(checks, "figures.formats", "manual", "major", "No figure evidence detected; verify whether the manuscript needs figures/tables.")
 
     if venue == "tase":
+        if abstract:
+            abstract_limit = 50 if paper_type in {"communication", "communications"} else 200
+            abs_words = word_count(abstract)
+            if abs_words > abstract_limit:
+                add(checks, "tase.abstract_length", "fail", "blocker", f"T-ASE {paper_type} Abstract has {abs_words} words; current limit is {abstract_limit}.")
+            else:
+                add(checks, "tase.abstract_length", "pass", "blocker", f"T-ASE Abstract has {abs_words} words within the current {abstract_limit}-word limit.")
         ntp = extract_ntp(text)
         if not ntp:
             add(checks, "tase.ntp", "fail", "blocker", "T-ASE target requires a distinct Note to Practitioners; none detected.")
@@ -169,6 +199,13 @@ def audit(text: str, suffix: str, venue: str, paper_type: str, pages: int | None
             wc = word_count(ntp)
             status = "pass" if 100 <= wc <= 300 else "fail"
             add(checks, "tase.ntp", status, "blocker", f"Note to Practitioners detected with {wc} words; strict target is 100-300 words.")
+            abstract_pos = text.lower().find("abstract")
+            ntp_pos = text.lower().find("note to practitioners")
+            index_pos = text.lower().find("index terms")
+            if abstract_pos >= 0 and ntp_pos > abstract_pos and (index_pos < 0 or ntp_pos < index_pos):
+                add(checks, "tase.ntp_order", "pass", "blocker", "Note to Practitioners appears after Abstract and before Index Terms.")
+            else:
+                add(checks, "tase.ntp_order", "manual", "blocker", "Confirm Note to Practitioners is immediately after Abstract and before Index Terms.")
         if stage == "initial" and has(r"\\author\{|@|Acknowledg|affiliation|thanks\{", text):
             add(checks, "tase.anonymity", "fail", "blocker", "Initial T-ASE audit found author-identifying markers; check double-anonymous hygiene.")
         else:
@@ -183,6 +220,7 @@ def audit(text: str, suffix: str, venue: str, paper_type: str, pages: int | None
             add(checks, "tii.scope", "pass", "blocker", "Industrial informatics relevance terms detected.")
         else:
             add(checks, "tii.scope", "fail", "blocker", "TII scope is not explicit; add industrial system model, constraints, and validation relevance.")
+        add(checks, "tii.portal_rules", "manual", "blocker", "Confirm current anonymous-manuscript hygiene and institutional-email requirements in the TII portal.")
 
     if venue in {"tac", "tcst", "tcns"}:
         if venue == "tac" and CONTROL_TERMS.search(text):
@@ -263,12 +301,22 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--paper-type", default="regular", help="regular, full, paper, brief, letter, communication, review, technical-note, correspondence")
     parser.add_argument("--stage", choices=["initial", "revision", "final"], default="initial")
     parser.add_argument("--compiled-pages", type=int, help="Compiled IEEE-format PDF page count.")
+    parser.add_argument("--page-limit", type=int, help="Current journal/article-type limit verified by the caller; overrides the embedded preflight table.")
     parser.add_argument("--conference-extension", action="store_true", help="Treat as an extension of a conference paper.")
     parser.add_argument("--format", choices=["text", "json"], default="text")
     args = parser.parse_args(argv)
 
     text, suffix = read_input(args.input)
-    result = audit(text, suffix, args.venue, args.paper_type, args.compiled_pages, args.stage, args.conference_extension)
+    result = audit(
+        text,
+        suffix,
+        args.venue,
+        args.paper_type,
+        args.compiled_pages,
+        args.stage,
+        args.conference_extension,
+        args.page_limit,
+    )
     if args.format == "json":
         print(json.dumps(result, ensure_ascii=False, indent=2))
     else:

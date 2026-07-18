@@ -10,7 +10,8 @@
    - Mark what can be assessed versus what remains missing.
    - If evidence is incomplete, preserve momentum but label uncertainty instead of blocking unless the gap is total.
 4. Review the manuscript across the source-grounded axes.
-   - Apply `originality`, `scientific importance`, `interdisciplinary interest`, `technical soundness`, and `readability for nonspecialists`.
+   - Apply scope, novelty/advancement, technical validity, experimental evidence, reproducibility, literature, clarity, and ethics/compliance.
+   - Load only the matching section of `domain-specific-review-gates.md`.
 5. Generate `3` reviewer reports with different emphasis.
    - Use the same fact base for all three reports.
    - Do not invent different reviewer identities or hidden information.
@@ -35,10 +36,11 @@
   - `manuscript type or apparent submission posture`
   - `main claim`
   - `key evidence presented`
-  - `claimed significance`
-  - `likely interested readership from the text`
+  - `claimed advancement and venue fit`
+  - `domain and article type`
   - `visible technical gaps`
-  - `readability or framing issues for nonspecialists`
+  - `experimental/reproducibility gaps`
+  - `clarity or compliance issues`
 
 ## Cross-review generation rule
 
@@ -52,5 +54,5 @@
 ## Failure-safe behaviour
 
 - When evidence is absent, say the case is not yet established from the supplied material.
-- When significance is unclear, distinguish `potentially interesting` from `demonstrated broad importance`.
-- When readability is weak, describe the barrier to nonspecialist comprehension instead of rewriting the manuscript unless asked.
+- When advancement is unclear, distinguish potential engineering value from demonstrated contribution.
+- When clarity is weak, identify the evaluation barrier instead of rewriting unless asked.

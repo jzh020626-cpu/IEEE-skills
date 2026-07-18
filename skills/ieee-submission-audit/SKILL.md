@@ -17,17 +17,17 @@ Use this skill when the user asks for:
 
 ## Workflow
 
-1. Identify the target venue and paper type. If missing, use `generic-ieee` and mark venue-specific items as manual.
-2. Load `references/strict-ieee-checklist.md`.
-3. Read `../_ieee_shared/core/ieee-transactions-contract.md`.
-4. If the user provided a local manuscript text or LaTeX file, run `scripts/ieee_submission_audit.py` with the closest `--venue` and `--paper-type`.
+1. Identify the target venue, article type, stage, and official rules checked. If missing, use `generic-ieee` and mark venue-specific items as manual.
+2. Verify the current journal Information for Authors when online access is available; record URL and date.
+3. Load `references/strict-ieee-checklist.md` and `../ieee-shared/core/ieee-transactions-contract.md`.
+4. If the user supplied manuscript text/LaTeX, run `scripts/ieee_submission_audit.py` with the closest `--venue` and `--paper-type`. Use `--page-limit` when a current authoritative limit has been verified.
 5. Report only evidence-backed results. If a check cannot be confirmed from the provided material, mark it `manual`, not pass.
 6. Return a gate: `Go`, `Conditional Go`, or `No-Go`.
 
 ## Audit Categories
 
 - IEEE template and front matter: IEEEtran/double-column, Abstract, Index Terms, abstract restrictions.
-- Venue hard constraints: T-ASE NtP, TII page cap, TAC/TCST/TCNS page/type rules, anonymity and ORCID where applicable.
+- Venue hard constraints: T-ASE NtP/Abstract/order, TII page/anonymity/email rules, TAC/TCST/TCNS page/type rules, and ORCID for all authors.
 - Argument and evidence: problem definition, novelty, assumptions, theorem/proof, baselines, ablations, complexity, stability/convergence/reliability, limitations.
 - Citations: numeric IEEE style, first-appearance ordering, archival IEEE-first support, conference-extension disclosure.
 - Figures and tables: one claim per figure, final-width readability, captions, subfigure labels, vector/raster export format, black-and-white robustness.

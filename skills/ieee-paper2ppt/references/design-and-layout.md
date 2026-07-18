@@ -85,6 +85,26 @@ When authoring with python-pptx or similar tooling:
 - If using auto-fit, still verify the rendered or estimated text size and document the fallback.
 - Never accept a slide where text is expected to overflow, be clipped, or require manual resizing by the user.
 
+## Alignment and spacing rules
+
+Build each slide on stable guides for the title, main figure, caption/source strip, interpretation rail, and bottom note. If two elements are meant to align, make the edges identical. If they are intentionally asymmetric, separate them enough that the difference does not look like a few-point placement error.
+
+Before delivery, check that figure edges and captions relate visibly, source labels remain attached to the evidence, gutters are consistent within a slide, and no explanatory block is stranded far from its figure. Run `scripts/audit_pptx_quality.py` to catch bounds and near-miss alignment; high-severity findings require revision.
+
+## Chinese academic expression and de-template rules
+
+Write Chinese that can be spoken naturally in a serious engineering group meeting. Name the method, dataset, system, metric, figure evidence, or limitation. Avoid generic frames such as:
+
+- `一句话总结`
+- `最有价值的后续方向`
+- `不是……而是……`
+- `不只是……更是……`
+- `提供了新的视角`
+- `具有重要意义`
+- `未来可以进一步探索`
+
+If a sentence could describe almost any paper, rewrite it until it is source-specific.
+
 ## Style rules
 
 Use a restrained IEEE Transactions-style academic presentation design: clean white or very light background; dark readable text; one or two muted accent colors; compact but not crowded layouts; figure-first result slides; concise captions; no decorative stock images; no decorative gradients; no exaggerated marketing-style section pages.

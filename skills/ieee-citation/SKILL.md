@@ -6,16 +6,25 @@ description: >-
 
 # IEEE Citation Router
 
-## Workflow
+Use the static/dynamic routing in `manifest.yaml`.
 
-- Use numbered citation logic: suggest where `[n]`-style citations belong without fabricating reference numbers.
-- Default scope is IEEE-first archival sources; broaden to non-IEEE or conference coverage only when the user explicitly asks or strict IEEE coverage is unavailable.
-- Use `scripts/ieee_citation.py` for segmented search/export when the user asks to generate references or files.
+## Routing protocol
 
-## Resources
+1. Read `manifest.yaml` and all files under `always_load`.
+2. Confirm the target venue, date boundary, source scope, and output format. Use the manuscript's language for notes, but search with precise English technical terms when useful.
+3. Segment the text into atomic, citable claims; group only claims that need the same evidence.
+4. Search and grade support conservatively. A topical title is not enough: inspect an abstract, publisher record, or full text when accessible.
+5. Prefer the version of record and archival engineering sources. Use conference papers when they are the original or most relevant evidence and label their status.
+6. Suggest IEEE numeric citation positions without inventing final reference numbers. Let the manuscript's citation manager assign ordering.
+7. Export one requested reference-manager format by default. Use `scripts/ieee_citation.py` when executing the segmented search/export workflow.
+8. For more than about ten segments, load `references/script-usage.md` and use the batched strategy.
 
-- If `manifest.yaml` exists, load only the fragments needed for the requested section, paper type, language, or venue.
-- Read `../_ieee_shared/core/ieee-transactions-contract.md` for shared IEEE Transactions constraints when producing manuscript-facing output.
+## Red lines
+
+- Never present a metadata-only candidate as verified claim support.
+- Never fabricate DOI, author order, venue, year, pages, abstract content, citation number, or support strength.
+- Do not force an IEEE-only bibliography when the best primary evidence is from another authoritative archival venue.
+- Use `ieee-ref-verifier` for a field-by-field bibliography audit and `ieee-academic-search` for broader discovery or citation-impact analysis.
 - Keep outputs source-grounded: do not invent citations, metrics, theorem guarantees, hardware details, or experimental results.
 
 ## Script

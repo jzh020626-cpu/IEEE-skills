@@ -65,7 +65,18 @@ Use `low` for cosmetic issues that do not affect comprehension:
 
 ## Programmatic checks when using python-pptx
 
-When generating with python-pptx, perform a lightweight audit in code after the first draft and again after revision:
+When generating with python-pptx, perform a lightweight audit after the first draft and again after revision. Run:
+
+```bash
+python skills/ieee-paper2ppt/scripts/audit_pptx_quality.py \
+  output/final_presentation_cn.pptx \
+  --report output/pptx_audit.md \
+  --fail-on high
+```
+
+The script checks slide bounds, suspicious image crop settings, small evidence images, repeated near-miss alignment, text-heavy shapes, template phrases, media count, and notes count. High-severity findings block delivery; revise, regenerate, rerun, and copy the final summary into `output/qa_report.md`.
+
+Also perform these checks when the generation stack allows it:
 
 - reopen the PPTX with `Presentation(output_path)`,
 - count slides and embedded media,
@@ -86,10 +97,10 @@ Render slide previews when a reliable headless renderer is readily available. If
 
 If rendered preview reveals defects, revise and regenerate the PPTX. Do not deliver a deck with obvious visual defects merely because the package validates.
 
-If no reliable renderer is available, still complete the self-review loop using: crop/contact-sheet inspection for selected assets; python-pptx structural checks; slide-by-slide text and shape inspection; and a clear note in `output/qa_report.md` that rendered preview was unavailable.
+If no reliable renderer is available, still complete the self-review loop using crop/contact-sheet inspection, `audit_pptx_quality.py`, slide-by-slide text and shape inspection, and a clear note in `output/qa_report.md` that rendered preview was unavailable.
 
 ## Step 9 — final verification
 
-After revision, perform lightweight verification: reopen the PPTX with the generation library when possible; check slide count; check embedded media count; check speaker notes presence when notes were planned; check obvious shape bounds if tooling supports it; create a contact sheet from selected extracted assets when figures were cropped.
+After revision, reopen the PPTX when possible; check slide count, media count, notes, shape bounds, and cropped-asset contact sheets; and confirm `audit_pptx_quality.py` has no unresolved high-severity findings.
 
 Do not stop at "PPTX opens" if the self-review found high-severity issues. Correct them first, then verify again. Document any remaining limitation in `output/qa_report.md`.

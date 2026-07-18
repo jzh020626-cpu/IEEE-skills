@@ -1,0 +1,27 @@
+name: ieee-reviewer
+version: 1.0.0
+description: >
+  Declarative routing for IEEE Transactions reviewer simulation. Official
+  peer-review criteria and source provenance remain loaded while workflow,
+  engineering-domain gates, report structure, role boundaries, and QA checks
+  load only when the review stage requires them.
+
+always_load:
+  - SKILL.md
+  - references/ieee-peer-review-criteria.md
+  - references/source-basis.md
+
+references:
+  on_demand:
+    - condition: executing the fact-base extraction workflow or resolving assessment order
+      path: references/reviewer-workflow.md
+    - condition: assessing scope, novelty, validity, evidence, clarity, compliance, or archival advancement
+      path: references/review-axes.md
+    - condition: manuscript is in control, robotics, automation, communications, industrial informatics, power electronics, or a related engineering domain
+      path: references/domain-specific-review-gates.md
+    - condition: composing or auditing the reviewer report and synthesis structure
+      path: references/report-structure.md
+    - condition: preventing invented reviewer identities, editor decisions, confidential-data leakage, or inappropriate role claims
+      path: references/role-boundaries.md
+    - condition: final groundedness, non-invention, coverage, and reviewer-risk QA before delivery
+      path: references/qa-checklist.md

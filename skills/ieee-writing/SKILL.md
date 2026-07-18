@@ -1,20 +1,31 @@
 ---
 name: ieee-writing
 description: >-
-  Draft, restructure, or plan IEEE Transactions manuscript sections from author-provided claims, results, figures, notes, or Chinese drafts. Use for abstracts, introductions, related work, method, experiments, discussion, conclusion, title, T-ASE Note to Practitioners, or full manuscript argument in robotics, automation, control, communications, and industrial informatics.
+  Draft, restructure, or plan IEEE Transactions manuscript sections and initial-submission materials from author-provided claims, results, figures, notes, or Chinese drafts. Use for titles, abstracts, introductions, related work, methods, experiments/results, discussions, conclusions, T-ASE Note to Practitioners, full argument maps, initial cover letters, title pages, author/declaration text, conference-version disclosure, reviewer suggestions, graphical-abstract routing, or complete first-submission packages in robotics, automation, control, communications, and industrial informatics.
 ---
 
 # IEEE Transactions Writing Router
 
-## Workflow
+Use the axes and paths in `manifest.yaml`; do not load every fragment.
 
-- Use a problem-gap-method-evidence-contribution structure, not broad-audience editorial storytelling.
-- For T-ASE front matter, include a Note to Practitioners section when requested or when building a full submission package.
-- For control papers, include assumptions, theorem/proof, stability/convergence, and robustness checks when supported by the source.
-- For robotics/communications papers, include system model, scenario, constraints, latency/throughput/reliability, baselines, ablations, and reproducibility details.
+## Routing protocol
 
-## Resources
+1. Read `manifest.yaml` and all `always_load` paths.
+2. Detect and briefly state `task`, `paper_type`, `section`, `language`, and `venue`.
+3. Use `task=manuscript` for manuscript argument/sections. Use `task=submission-package` for materials prepared before the first editorial decision. Post-decision correspondence belongs to `ieee-response`.
+4. Load only the selected fragments. Skip section fragments for a pure submission-package task.
+5. For manuscript work, follow the core workflow: one-sentence argument, terminology ledger, section architecture, paragraph jobs, confirmation gate when ambiguity is material, evidence-outward drafting, claim calibration, flow check, and targeted revision.
+6. For submission packages, load `static/fragments/task/submission-package.md` and `references/submission-package.md`, verify the named journal's current instructions, build a deliverable matrix, and draft only required items.
+7. Use visible placeholders or `AUTHOR_INPUT_NEEDED` when facts are absent.
 
-- If `manifest.yaml` exists, load only the fragments needed for the requested section, paper type, language, or venue.
-- Read `../_ieee_shared/core/ieee-transactions-contract.md` for shared IEEE Transactions constraints when producing manuscript-facing output.
+## IEEE boundaries
+
+- Use a problem-gap-method-evidence-contribution structure and numeric-citation awareness.
+- The exact journal's current Information for Authors overrides generic IEEE guidance.
+- T-ASE Note to Practitioners is distinct from the abstract and is placed according to current T-ASE instructions.
+- For control papers, expose assumptions, theorem/proof logic, stability/convergence, robustness, and boundaries when supported.
+- For robotics/communications papers, expose system/scenario constraints, baselines, ablations, failure cases, latency/throughput/reliability, and reproducibility as applicable.
+- Never invent results, equations, citations, novelty, author metadata, ORCIDs, funding, ethics, repositories, permissions, reviewer identities, or conference-extension differences.
+- Route figures/graphical abstracts to `ieee-figure`, reproducibility packages to `ieee-data`, and simulated review to `ieee-reviewer`.
+- Read `../ieee-shared/core/ieee-transactions-contract.md` for shared IEEE Transactions constraints when producing manuscript-facing output.
 - Keep outputs source-grounded: do not invent citations, metrics, theorem guarantees, hardware details, or experimental results.

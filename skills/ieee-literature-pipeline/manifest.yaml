@@ -1,0 +1,30 @@
+name: ieee-literature-pipeline
+version: 1.0.0
+description: >
+  Declarative routing for the IEEE engineering literature-discovery pipeline.
+  The stable search, score, read, deliver, and archive stages stay concise while
+  detailed scoring, gap analysis, delivery, and maintenance resources load only
+  when the task reaches them.
+
+always_load:
+  - SKILL.md
+
+templates:
+  on_demand:
+    - condition: configuring keywords, scoring weights, delivery target, archive path, or a reusable recurring profile
+      path: templates/literature-push-template.md
+
+references:
+  on_demand:
+    - condition: ranking candidates, checking score arithmetic, changing dimension weights, or explaining the six-dimension scoring system
+      path: references/scoring-system.md
+    - condition: identifying engineering research gaps, building a review map, or turning discoveries into a research direction
+      path: references/gap-analysis.md
+    - condition: writing or validating archived literature notes with YAML frontmatter
+      path: references/note-template.md
+    - condition: formatting recurring digest messages for chat, email, or another delivery channel
+      path: references/push-format.md
+    - condition: creating, updating, debugging, or documenting the recurring job
+      path: references/cron-setup.md
+    - condition: compiling daily notes into an IEEE related-work section, review, or concentrated reading report
+      path: references/review-compilation-workflow.md

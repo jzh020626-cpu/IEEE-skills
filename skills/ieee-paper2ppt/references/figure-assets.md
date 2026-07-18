@@ -52,3 +52,15 @@ Check every selected figure/table asset for:
 - low-resolution or blurry rendering.
 
 Revise the crop before placing it in the PPTX when any scientific context is cut off. A figure crop that loses a title, y-axis label, legend, or panel label is a defect, not an acceptable tradeoff.
+
+## Crop QA hard gate
+
+A crop is acceptable only when all evidence needed for the slide remains readable:
+
+- panel letters match the slide reference,
+- axes, ticks, legends, color bars, scale bars, method/condition labels, and table headers are preserved where needed,
+- a small safety margin remains around scientific content,
+- the planned slide size is readable without zooming,
+- captions, source notes, and callouts do not cover original labels.
+
+If a crop fails, expand it, split the source figure, use a full-width slide, recreate a simple table/chart only from explicit values, or obtain a higher-resolution source. Record `crop_qa`, preserved elements, extraction method, source panel/page, and slide placement in `output/asset_manifest.md`.

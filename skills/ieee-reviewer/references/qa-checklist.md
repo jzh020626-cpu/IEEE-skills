@@ -3,10 +3,11 @@
 ## Grounding checks
 
 - Every substantive evaluation should be traceable to either:
-  - `references/editorial criteria and processes.md`, or
+  - `references/ieee-peer-review-criteria.md`,
+  - the named journal's current reviewer/author instructions, or
   - manuscript facts explicitly supplied by the user.
 - No reviewer persona detail should appear beyond allowed `emphasis` labels.
-- No technical failing should be invented from domain habit alone when the supplied material does not show it.
+- Domain gates are prompts only; no failing should be asserted when the supplied material does not show it.
 
 ## Coverage checks
 
@@ -20,7 +21,8 @@
 
 - Confirm the output stays in reviewer-assessment mode, not author-response mode.
 - Confirm the output does not claim a final editorial decision.
-- Confirm broad-interest judgment is expressed cautiously, because the source assigns that final judgment to editors.
+- Confirm the output does not claim an editor decision.
+- Confirm any actual confidential-review case was handled under the journal's AI/confidentiality policy.
 
 ## Non-invention checks
 

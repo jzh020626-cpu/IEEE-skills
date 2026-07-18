@@ -342,7 +342,7 @@ Rules:
 ## Related files
 
 - [SKILL.md](../SKILL.md) — When to use this skill
-- [api.md](api.md) — Helper function sigieees and PALETTE
+- [api.md](api.md) — Helper function signatures and PALETTE
 - [design-theory.md](design-theory.md) — Rationale behind every pattern above
 - [ieee-2026-observations.md](ieee-2026-observations.md) — Real IEEE Transactions page archetypes behind these patterns
 - [tutorials.md](tutorials.md) — End-to-end walkthroughs

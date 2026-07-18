@@ -1,29 +1,35 @@
 name: ieee-figure
-version: 2.0.0
+version: 2.1.0
 description: >
   Declarative manifest for the static/dynamic split. SKILL.md uses this to
   decide which fragments to load for a given figure request. The main axis is
-  the plotting backend (Python or R), which is a blocking gate: it must be
-  chosen explicitly before any figure is drawn. The large body of design,
-  API, pattern, and QA material stays in on-demand references.
+  the plotting backend (Python or R). The first plotting use establishes a
+  saved preference; later tasks reuse it unless the user explicitly changes
+  it. Design, API, pattern, and QA material stays in on-demand references.
 
 always_load:
-  # Skill-local core (figure does not use the prose-oriented _shared layer)
+  # Skill-local core (figure does not use the prose-oriented ieee-shared layer)
   - static/core/contract.md
   - static/core/stance.md
+
+preference:
+  backend_script: scripts/ieee_figure_backend.py
+  config_env: IEEE_FIGURE_CONFIG
+  default_config: ~/.config/ieee-skills/ieee-figure.json
+  behavior: |
+    Honor an explicit Python/R choice, then a clearly language-specific input,
+    then the saved preference. If none exists, ask once and save the answer.
 
 axes:
   backend:
     detect: |
-      BLOCKING GATE. Determine the plotting backend from an explicit user
-      choice or a clearly language-specific input file/workflow. If the user
-      has NOT explicitly chosen Python or R, ask exactly one concise question —
-      "Python or R?" — and stop. Do not default, do not guess, do not generate
-      mock data or scripts before the answer. Only recommend a backend when the
-      user explicitly asks you to choose; in that case use
-      references/backend-selection.md, state the reason, then proceed.
-      Once selected, the backend is exclusive for all drawing, previewing,
-      exporting, and visual QA.
+      BLOCKING GATE WITH PERSISTED PREFERENCE. Determine the backend from an
+      explicit user choice, a clearly language-specific input, or
+      scripts/ieee_figure_backend.py get. If none exists, ask exactly one
+      concise question — "Python or R? I will remember this as your default."
+      Save the answer before proceeding. Recommend a backend only when the user
+      asks you to choose; explain and save it. Once selected, the backend is
+      exclusive for drawing, previewing, exporting, and visual QA.
     values:
       python:  static/fragments/backend/python.md
       r:       static/fragments/backend/r.md
@@ -39,11 +45,13 @@ references:
       path: references/r-workflow.md
     - condition: adapt a user-provided or private R template collection without exposing source paths
       path: references/r-template-index.md
+    - condition: reuse or adapt a bundled example, plotting script, preview image, or user-provided template against new data
+      path: references/asset-adaptation.md
     - condition: before final delivery, revision package, engineering experiment figure, or journal-specific audit
       path: references/qa-contract.md
     - condition: typography, color theory, layout rationale, export policy
       path: references/design-theory.md
-    - condition: Python PALETTE, helper function sigieees, validation rules
+    - condition: Python PALETTE, helper function signatures, validation rules
       path: references/api.md
     - condition: "Python layout patterns: hero panels, legend-only axes, sensor/screenshot panels, asymmetric layouts"
       path: references/common-patterns.md
@@ -53,6 +61,8 @@ references:
       path: references/figure-legend-conventions.md
     - condition: "end-to-end walkthroughs: bars, trends, heatmaps"
       path: references/tutorials.md
+    - condition: "validated Python CSV templates: effect-significance, ROC, matrix dot plot, marginal density, or paired comparison"
+      path: references/template-catalog.md
     - condition: "radar, 3D sphere, fill_between, scatter patterns"
       path: references/chart-types.md
     - condition: explicitly requested legacy bundled plotting demos for concrete pattern adaptation

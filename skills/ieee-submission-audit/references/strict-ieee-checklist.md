@@ -25,16 +25,18 @@ Use this checklist for final readiness audits. It is intentionally strict: failu
 | Index Terms | Index Terms are present and separated from the Abstract. |
 | References | In-text citations use numeric square-bracket IEEE style; references are ordered by first citation. |
 | Acronyms | Each acronym is expanded at first use unless it is universally standard in the field. |
-| Figures | Graphics use PS/EPS/PDF/PNG/TIFF; vector preferred for plots and diagrams; JPEG only for author photos. |
+| Figures | Plan for 88.9 mm or 182 mm width; vector preferred; color/grayscale raster ≥300 dpi and B/W line art ≥600 dpi; verify accepted formats. |
 | Tables | Tables have units, definitions, and readable column headings at final two-column scale. |
 | Supplement | Supplementary files are referenced in the main text and contain only support material, not hidden core claims. |
-| ORCID | Confirm ORCID requirements in the submission system for all authors or the journal-specific rule. |
+| ORCID | IEEE journals require ORCID for all authors; confirm every author record. |
 | Integrity | Check plagiarism/overlap, conference-extension disclosure, permissions, and anonymous-review hygiene. |
 
 ## T-ASE Checklist
 
 - The paper addresses automation science and engineering, not generic robotics/control/ML without automation relevance.
-- Include a separate `Note to Practitioners`; audit for 100-300 words when the target page specifies that convention.
+- Include a 100-300 word `Note to Practitioners` immediately after the Abstract and before Index Terms.
+- Audit Abstract length against the current 200-word Regular / 50-word Communication limit.
+- Audit Regular Papers against the current 10-page submission target in the 2026 procedure manual; verify current Communication/overlength details.
 - The NtP explains practical use, assumptions, limitations, and near-term implementation without duplicating the Abstract.
 - For double-anonymous review, remove author-identifying names, affiliations, funding acknowledgments, repository ownership, and supplement metadata.
 - The paper explicitly addresses relevant automation issues such as quality, robustness, stability, productivity, efficiency, completeness, optimality, convergence, performance guarantees, time complexity, sensitivity, verification, or reliability.
@@ -45,7 +47,8 @@ Use this checklist for final readiness audits. It is intentionally strict: failu
 ## TII Checklist
 
 - Industrial informatics relevance is explicit: industrial CPS, IIoT, manufacturing, smart grid, process systems, industrial edge/cloud, reliability, safety/security, or deployment constraints.
-- Regular research manuscripts submitted from 2025 onward are audited against a strict 10-page initial limit.
+- New Research manuscripts are audited against 10 pages; Review/SoA against the current permission/12-page rule; Letters against 4 pages.
+- Confirm anonymous manuscript hygiene and institutional-email requirements.
 - Review/state-of-the-art manuscripts require current checklist compliance and EiC-permission logic; Letters are audited against 4 pages.
 - The system model, data source, industrial constraints, and validation setting must be visible. A generic algorithm paper without industrial evidence is `No-Go`.
 - Results should include baseline comparison, ablation or component evidence, robustness/reliability analysis, and engineering cost or complexity when relevant.

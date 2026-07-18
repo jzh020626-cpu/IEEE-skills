@@ -1,0 +1,26 @@
+name: ieee-shared
+version: 1.0.0
+description: >
+  Declarative manifest for shared IEEE Transactions reference modules. This
+  internal package is not a standalone workflow; requesting IEEE skills load
+  only the exact shared core or journal-format file they need.
+
+always_load: []
+
+core:
+  on_demand:
+    - condition: shared ethics, safety, authorship, disclosure, confidentiality, or non-invention guardrails are needed
+      path: core/ethics.md
+    - condition: applying current IEEE Transactions requirements, source precedence, ORCID, figures, or prior-version rules
+      path: core/ieee-transactions-contract.md
+    - condition: classifying article type or manuscript family before applying a writing or reader workflow
+      path: core/paper-type-taxonomy.md
+    - condition: a shared paper-reading workflow is requested by another IEEE skill
+      path: core/reader-workflow.md
+    - condition: maintaining terminology consistency across reading, polishing, writing, response, or slide generation
+      path: core/terminology-ledger.md
+
+journal_formats:
+  on_demand:
+    - condition: formatting or checking a generic IEEE Transactions manuscript before applying the named journal's current instructions
+      path: journal-formats/ieee-transactions.md

@@ -3,8 +3,8 @@
 # update-codex-skills.sh — install / update IEEE Transactions Skills into Codex.
 #
 # Codex loads skills from ~/.codex/skills/. This script copies every top-level
-# skill folder shipped in this repository's skills/ directory, plus the shared
-# _ieee_shared/ dir, into that location.
+# ieee-* skill folder shipped in this repository's skills/ directory into that
+# location. ieee-shared is installed as an internal dependency.
 #
 # It is intended for users who install the skills by manual copy rather than
 # via the Codex plugin marketplace. Running it again later updates an existing
@@ -113,10 +113,10 @@ for path in "$SRC"/*/; do
   [ -d "$path" ] || continue
   name="$(basename "$path")"
   case "$name" in
-    ieee-*|_ieee_shared) ;;
+    ieee-*) ;;
     *) continue ;;
   esac
-  if [ "$name" != "_ieee_shared" ] && [ ! -f "$path/SKILL.md" ]; then
+  if [ ! -f "$path/SKILL.md" ]; then
     die "unexpected skills/$name directory without SKILL.md"
   fi
   printf '%s\n' "$name" >> "$SKILL_LIST"

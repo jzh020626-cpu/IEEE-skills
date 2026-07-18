@@ -230,7 +230,7 @@ Useful patterns:
 
 - `[Core entity] in/through/by [mechanism or context]`
 - `[Process] shapes [outcome] in [system]`
-- `[Sigieee/pattern/framework] of [phenomenon]`
+- `[Signature/pattern/framework] of [phenomenon]`
 
 Avoid:
 

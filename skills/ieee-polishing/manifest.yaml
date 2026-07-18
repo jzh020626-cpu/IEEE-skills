@@ -4,11 +4,11 @@ description: >
   Declarative manifest for IEEE Transactions static/dynamic guidance. SKILL.md uses this to load only the fragments needed for the request.
 
 always_load:
-  - ../_ieee_shared/core/reader-workflow.md
-  - ../_ieee_shared/core/paper-type-taxonomy.md
-  - ../_ieee_shared/core/ethics.md
-  - ../_ieee_shared/core/terminology-ledger.md
-  - ../_ieee_shared/core/ieee-transactions-contract.md
+  - ../ieee-shared/core/reader-workflow.md
+  - ../ieee-shared/core/paper-type-taxonomy.md
+  - ../ieee-shared/core/ethics.md
+  - ../ieee-shared/core/terminology-ledger.md
+  - ../ieee-shared/core/ieee-transactions-contract.md
 
 axes:
   paper_type:
@@ -60,4 +60,4 @@ axes:
 references:
   on_demand:
     - condition: target venue rules, Note to Practitioners, numbered citations, double-column constraints, or reproducibility package
-      path: ../_ieee_shared/core/ieee-transactions-contract.md
+      path: ../ieee-shared/core/ieee-transactions-contract.md

@@ -17,13 +17,13 @@ Generate a minimal but complete output package by default.
 The main deliverable: a complete Chinese PPTX deck with figures, captions, takeaways, source labels, and speaker notes.
 
 ### 2. `output/qa_report.md`
-A short quality report: PPTX creation status; slide count; figures inserted; missing or placeholder figures; self-review defects found, grouped by severity; defects corrected during the revision pass; text overflow and text-fit checks performed; design-rhythm / anti-template review performed; verification method used after revision; known limitations; manual follow-up if needed.
+A short quality report: PPTX creation status; slide count; figures inserted; missing or placeholder figures; crop QA; alignment and de-template checks; self-review defects grouped by severity; corrections; text overflow checks; audit-script result; render/verification method; known limitations; manual follow-up.
 
 ### 3. `output/assets/figures/`
 Extracted or cropped figure assets used in the deck.
 
 ### 4. `output/asset_manifest.md`
-Figure asset traceability file, generated only when external figure/table assets are extracted: asset filename; original figure / panel; source page or source file; extraction method; slide placement; quality notes, including whether titles, axes, legends, and panel labels are preserved.
+Figure asset traceability file, generated only when external figure/table assets are extracted: filename; original figure/panel; source page/file; extraction or crop method; slide placement; and whether titles, axes, legends, scale bars, table headers, and panel labels are preserved.
 
 If no external figure/table assets are extracted, omit `asset_manifest.md` or write a one-line note in `qa_report.md` instead.
 
@@ -44,12 +44,15 @@ Create these only when useful for review, debugging, or user-requested traceabil
 - Do not deliver slides with text extending beyond visible boxes, clipped by boxes, or likely to overflow after font substitution.
 - Do not make result slides text-only when figures are available.
 - Make every slide serve the paper's argument.
-- Ensure figures are readable at presentation scale, and that selected crops preserve all scientifically necessary context before placement.
+- Ensure figures are readable at presentation scale. Cropped axes, legends, panel labels, scale bars, method labels, or table headers are delivery blockers.
 - Ensure text, captions, and figures do not overlap.
-- Ensure font hierarchy is consistent across slides and that figures, captions, and metrics feel visually related rather than independently placed.
+- Ensure font hierarchy is consistent and that figures, captions, source labels, and metrics feel visually related.
+- Align repeated title blocks, figure edges, caption/source strips, and bottom notes to stable guides.
+- Remove generic AI-template phrases and repetitive slogan structures from Chinese text.
 - Ensure the visual rhythm does not feel like a repeated AI template; vary composition based on evidence role and figure geometry.
 - Ensure the deck is not visually underfilled: empty regions should be intentional whitespace, not leftover template space.
 - Run at least one self-review and corrective revision pass; do not deliver a first draft with known high-severity defects.
+- Run `scripts/audit_pptx_quality.py` when a PPTX exists and record the report path or summary.
 - Document uncertainty and missing source material clearly.
 
 ## Fallback rules

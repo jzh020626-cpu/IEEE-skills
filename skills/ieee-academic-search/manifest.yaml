@@ -3,10 +3,10 @@ version: 2.0.0
 description: >
   Declarative manifest for the static/dynamic split. SKILL.md uses this to
   decide which fragments to load for a literature-search request. The main axis
-  is the workflow: the user's need maps to one of five coordinated workflows,
+  is the workflow: the user's need maps to one of six coordinated workflows,
   each already a self-contained file.
 
-# Note on axis paths: the five workflow files live in references/workflows/ and
+# Note on axis paths: the six workflow files live in references/workflows/ and
 # cross-reference the shared modules with ../ relative links. The workflow axis
 # therefore points at them in place rather than moving them into
 # static/fragments/, which would break those internal links. ieee-academic-
@@ -26,12 +26,14 @@ axes:
         venue-compliance      — verify target-venue official instructions and page/style constraints
         citation-file-mgmt    — convert/manage .ris/.bib/.enw citation files
         reference-mgmt        — BibTeX, related-paper discovery, DOI/arXiv/venue metadata checks
+        strict-other-citation-impact-audit — exclude self/overlap citations, build article metrics, profile influential citers, and extract citation context
     values:
       multi-source-search:   references/workflows/wf1-multi-source-search.md
       citation-verification: references/workflows/wf2-citation-verification.md
       venue-compliance:      references/workflows/wf3-venue-compliance.md
       citation-file-mgmt:    references/workflows/wf4-citation-file-mgmt.md
       reference-mgmt:        references/workflows/wf5-reference-mgmt.md
+      strict-other-citation-impact-audit: references/workflows/wf6-strict-other-citation-impact-audit.md
     multi: true
 
 references:

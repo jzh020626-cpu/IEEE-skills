@@ -1,21 +1,39 @@
 name: ieee-writing
 version: 1.0.0
 description: >
-  Declarative manifest for IEEE Transactions static/dynamic guidance. SKILL.md uses this to load only the fragments needed for the request.
+  Declarative manifest for IEEE Transactions manuscript drafting,
+  restructuring, and initial-submission packages.
 
 always_load:
-  - ../_ieee_shared/core/reader-workflow.md
-  - ../_ieee_shared/core/paper-type-taxonomy.md
-  - ../_ieee_shared/core/ethics.md
-  - ../_ieee_shared/core/terminology-ledger.md
-  - ../_ieee_shared/core/ieee-transactions-contract.md
+  - ../ieee-shared/core/reader-workflow.md
+  - ../ieee-shared/core/paper-type-taxonomy.md
+  - ../ieee-shared/core/ethics.md
+  - ../ieee-shared/core/terminology-ledger.md
+  - ../ieee-shared/core/ieee-transactions-contract.md
+  - static/core/stance.md
+  - static/core/workflow.md
+  - static/core/output-format.md
 
 axes:
+  task:
+    detect: |
+      Use submission-package for first-submission materials such as an initial
+      cover letter, identified title page, author/declaration text, conference-
+      version disclosure, reviewer suggestions, graphical-abstract routing, or
+      a complete submission checklist. Use manuscript for sections and argument
+      development. Post-decision correspondence belongs to ieee-response.
+    values:
+      manuscript:          static/fragments/task/manuscript.md
+      submission-package: static/fragments/task/submission-package.md
+    default: manuscript
+    multi: false
+
   paper_type:
     detect: |
       Decide whether the request is algorithmic/theoretical, robotics/automation system, communication/networked control, industrial informatics, or survey/tutorial. Default to algorithmic when unclear.
     values:
       algorithmic: static/fragments/paper_type/algorithmic.md
+      hypothesis: static/fragments/paper_type/hypothesis.md
       methods: static/fragments/paper_type/methods.md
       research: static/fragments/paper_type/research.md
       review: static/fragments/paper_type/review.md
@@ -35,6 +53,7 @@ axes:
       discussion: static/fragments/section/discussion.md
       conclusion: static/fragments/section/conclusion.md
       title: static/fragments/section/title.md
+      note-to-practitioners: static/fragments/section/note-to-practitioners.md
     multi: true
 
   language:
@@ -60,4 +79,6 @@ axes:
 references:
   on_demand:
     - condition: target venue rules, Note to Practitioners, numbered citations, double-column constraints, or reproducibility package
-      path: ../_ieee_shared/core/ieee-transactions-contract.md
+      path: ../ieee-shared/core/ieee-transactions-contract.md
+    - condition: initial cover letter, title page, declarations, conference-version disclosure, reviewer suggestions, graphical abstract, complete first-submission package, or readiness audit
+      path: references/submission-package.md

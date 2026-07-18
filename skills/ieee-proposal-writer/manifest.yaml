@@ -1,0 +1,44 @@
+name: ieee-proposal-writer
+version: 1.0.0
+description: >
+  Declarative routing for the proposal-first IEEE Transactions writing
+  state machine. Foundation templates, evaluation rubrics, stopping rules, and
+  export tooling load only for the selected compose, revise, hybrid, or QA path.
+
+always_load:
+  - SKILL.md
+
+templates:
+  on_demand:
+    - condition: initializing a proposal project or rebuilding the foundation package
+      path: templates/00_scope.md
+    - condition: creating or auditing the research canon of hard facts and constraints
+      path: templates/01_research_canon.md
+    - condition: mapping claims to evidence before prose drafting
+      path: templates/02_evidence_table.md
+    - condition: building the argument map before section drafting
+      path: templates/03_argument_map.md
+    - condition: defining section purposes, inputs, allowed claims, and forbidden claims
+      path: templates/04_section_contracts.md
+    - condition: setting terminology, voice, banned phrases, or anti-slop rules
+      path: templates/05_style_guide.md
+    - condition: producing a QA report after the review gates
+      path: templates/qa_report.md
+    - condition: writing a targeted revision brief after a failed gate or expert review
+      path: templates/revision_brief.md
+
+references:
+  on_demand:
+    - condition: scoring a proposal or manuscript plan with the evaluation rubric
+      path: references/evaluation-rubric.md
+    - condition: deciding whether to continue, stop, split scope, or request more evidence
+      path: references/stopping-rules.md
+    - condition: creating or repairing the foundation files before drafting
+      path: references/foundation-files.md
+    - condition: validating claims, citations, numbering, reproducibility, or project completeness
+      path: references/validation-checklist.md
+
+scripts:
+  on_demand:
+    - condition: exporting the generated proposal package to DOCX
+      path: scripts/build_proposal_docx.py

@@ -8,7 +8,7 @@ description: >
 
 always_load:
   # Shared layer — common to the ieee-* skills
-  - ../_ieee_shared/core/terminology-ledger.md
+  - ../ieee-shared/core/terminology-ledger.md
   # Skill-local core
   - static/core/principles.md
   - static/core/workflow.md
