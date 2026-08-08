@@ -1,5 +1,5 @@
 name: ieee-proposal-writer
-version: 1.0.0
+version: 1.1.0
 description: >
   Declarative routing for the proposal-first IEEE Transactions writing
   state machine. Foundation templates, evaluation rubrics, stopping rules, and
@@ -29,6 +29,12 @@ templates:
 
 references:
   on_demand:
+    - condition: composing a proposal from a topic, direction, or rough idea
+      path: references/compose-mode.md
+    - condition: revising an existing paragraph, section, framework, or complete proposal
+      path: references/revise-mode.md
+    - condition: preserving an existing draft while composing missing or expanded modules
+      path: references/hybrid-mode.md
     - condition: scoring a proposal or manuscript plan with the evaluation rubric
       path: references/evaluation-rubric.md
     - condition: deciding whether to continue, stop, split scope, or request more evidence
@@ -37,6 +43,28 @@ references:
       path: references/foundation-files.md
     - condition: validating claims, citations, numbering, reproducibility, or project completeness
       path: references/validation-checklist.md
+    - condition: non-trivial technical risks require independent control, robotics, networking, statistics, reproducibility, safety, or venue-fit lenses
+      path: references/specialist-lens-review.md
+    - condition: removing generic, inflated, or template-like language from a Chinese proposal
+      path: references/research-anti-slop.md
+    - condition: drafting or revising a Chinese review article
+      path: references/chinese-review-writing-style.md
+    - condition: initializing or maintaining the project directory and state.json
+      path: references/project-structure.md
+    - condition: exporting and archiving Markdown or DOCX deliverables
+      path: references/export-archive.md
+    - condition: drafting only an approved stage while preventing scope creep
+      path: references/partial-proposal-scope.md
+    - condition: inserting or deleting numbered citations
+      path: references/ref-renumbering-cascade.md
+    - condition: designing the question chain and section architecture of an engineering review paper
+      path: references/review-paper-framework.md
+    - condition: building critical comparison and evidence-weighted synthesis into a review paper
+      path: references/review-critique-methodology.md
+    - condition: extending text inside an approved proposal without changing scientific commitments
+      path: references/within-approved-proposal.md
+    - condition: evidence is insufficient and claims must be deliberately narrowed
+      path: references/降承诺提案模式.md
 
 scripts:
   on_demand:

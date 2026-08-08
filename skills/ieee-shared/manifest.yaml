@@ -19,6 +19,10 @@ core:
       path: core/reader-workflow.md
     - condition: maintaining terminology consistency across reading, polishing, writing, response, or slide generation
       path: core/terminology-ledger.md
+    - condition: auditing cross-section terminology, numbers, assumptions, claims, units, scenarios, and protocol consistency after iterative edits
+      path: core/consistency-sweep.md
+    - condition: screening human-subject, HRI, autonomous deployment, spectrum, cybersecurity, sensitive-data, safety-critical, or dual-use compliance
+      path: core/research-compliance.md
 
 journal_formats:
   on_demand:

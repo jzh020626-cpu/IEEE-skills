@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "IEEE Figure"
+  short_description: "Create and audit submission-grade figures"
+  default_prompt: "Use $ieee-figure to create or audit an IEEE Transactions figure with final-size, statistics, and export QA."

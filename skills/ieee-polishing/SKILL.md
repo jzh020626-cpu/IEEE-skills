@@ -17,3 +17,4 @@ description: >-
 - If `manifest.yaml` exists, load only the fragments needed for the requested section, paper type, language, or venue.
 - Read `../ieee-shared/core/ieee-transactions-contract.md` for shared IEEE Transactions constraints when producing manuscript-facing output.
 - Keep outputs source-grounded: do not invent citations, metrics, theorem guarantees, hardware details, or experimental results.
+- When polishing a full or repeatedly revised manuscript, use `../ieee-shared/core/consistency-sweep.md`; language edits must not desynchronize numbers, symbols, assumptions, scenario names, or claims.

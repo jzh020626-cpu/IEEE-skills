@@ -3,9 +3,15 @@
 ## Current baseline
 
 - Upstream: `https://github.com/Yuan1z0825/nature-skills.git`
-- Adapted commit: `c2a37016ac2868708b262126c7e5684fa2cbd212`
-- Adaptation date: 2026-07-18
+- Adapted commit: `adb7b8a5a7d72ed6fe9f71e085785e9972dd8db2`
+- Adaptation date: 2026-08-08
 - Tracked lock: `scripts/nature-upstream.lock`
+
+## 2026-08 synchronization
+
+- Upstream baseline: `adb7b8a5a7d72ed6fe9f71e085785e9972dd8db2`
+- Scope: substantive skill/tooling capabilities added after the 2026-07 baseline.
+- Policy: port workflow and validation improvements semantically; do not copy Nature flagship rules, life-science assumptions, marketing assets, or unverified venue limits into IEEE workflows.
 
 This repository performs a semantic IEEE adaptation. It does not bulk-rename upstream content.
 
@@ -27,6 +33,17 @@ This repository performs a semantic IEEE adaptation. It does not bulk-rename ups
 | reviewer domain gates | Rebuilt around official IEEE peer-review axes and engineering domain gates |
 | startup updater | Added Codex-default `autoupdate-skills.sh` |
 | missing skill manifests | Added IEEE-adapted manifests for experiment logging, literature pipeline, proposal writing, reference verification, reviewer simulation, and the shared package |
+| `nature-paper-card` | Added `ieee-paper-card` with algorithm, system, theory, benchmark, application, and review lenses for traceable single-paper deep reading |
+| equation-aware reader | Added stable equation IDs, source-map equation records, low-confidence visual fallback, and `validate_reader_math.py` |
+| response-package consistency | Added quote/manuscript and marked/clean consistency checks with a blocking delivery gate |
+| reviewer concern traceability | Added engineering concern axes, severity/blocking calibration, evidence pointers, resolution tests, and independent-review synthesis rules |
+| shared consistency and compliance | Added cross-section numeric/terminology/assumption sweeps and conditional robotics, spectrum, cybersecurity, data, and dual-use readiness checks |
+| figure rendering safety | Added PDF glyph-size auditing, monotone interpolation helpers, uncertainty/annotation checks, and panel-by-panel QA |
+| proposal-writer expansion | Added compose/revise/hybrid modes, scope control, evidence-first foundation files, specialist lenses, review-paper framing, and low-commitment fallback |
+| citation metadata integrity | Changed default export to RIS and made incomplete author metadata a blocking condition unless explicitly overridden |
+| downloader slim routing | Added on-demand institutional-browser and delivery/failure references while preserving manual security-challenge handoff |
+| transactional installer | Added destination-scoped state/locks, staging, backup, rollback, safe pruning, and isolation/safety tests |
+| Codex skill metadata | Added or refreshed `agents/openai.yaml` for all 20 installed IEEE skills |
 
 ## Intentionally not ported
 

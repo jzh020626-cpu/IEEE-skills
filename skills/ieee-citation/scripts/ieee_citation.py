@@ -133,6 +133,7 @@ class Candidate:
     issue: str
     pages: str
     authors: list[str]
+    author_warnings: list[str]
     score: float
     scope: str
 
@@ -247,6 +248,13 @@ def score_item(segment: Segment, item: dict[str, Any]) -> float:
 
 def to_candidate(segment: Segment, item: dict[str, Any]) -> Candidate:
     journal = normalize_journal((item.get("container-title") or [""])[0])
+    raw_authors = item.get("author", []) or []
+    authors = [author_name(a) for a in raw_authors if author_name(a)]
+    author_warnings: list[str] = []
+    if not raw_authors:
+        author_warnings.append("author list missing from source record")
+    elif len(authors) != len(raw_authors):
+        author_warnings.append("one or more source author records could not be rendered")
     return Candidate(
         title=clean_text(item.get("title")),
         journal=journal,
@@ -256,7 +264,8 @@ def to_candidate(segment: Segment, item: dict[str, Any]) -> Candidate:
         volume=clean_text(item.get("volume")),
         issue=clean_text(item.get("issue")),
         pages=pages_from(item),
-        authors=[author_name(a) for a in item.get("author", []) if author_name(a)],
+        authors=authors,
+        author_warnings=author_warnings,
         score=score_item(segment, item),
         scope=candidate_scope(journal),
     )
@@ -350,6 +359,8 @@ def write_report(mapping: list[dict[str, Any]], path: Path, refs_path: Path) -> 
             lines.append(f"- Candidate: {cand['title']} ({cand['journal']}, {cand['year']})")
             lines.append(f"- DOI: {cand['doi'] or 'n/a'}")
             lines.append(f"- Support score: {cand['score']:.2f}")
+            if cand.get("author_warnings"):
+                lines.append(f"- Author metadata warning: {'; '.join(cand['author_warnings'])}")
         else:
             lines.append("- No in-scope IEEE-first candidate found; broaden scope or revise the query.")
         lines.append("")
@@ -364,8 +375,8 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Search IEEE-first citation candidates and export ENW/RIS/Zotero RDF.")
     parser.add_argument("input", nargs="?", help="Input manuscript text file. Reads stdin when omitted.")
     parser.add_argument("--scope", choices=sorted(IEEE_JOURNALS), default="all")
-    parser.add_argument("--format", choices=EXPORT_FORMATS, default="enw")
-    parser.add_argument("--output", default="ieee_references.enw")
+    parser.add_argument("--format", choices=EXPORT_FORMATS, default="ris")
+    parser.add_argument("--output", help="Output path; defaults to ieee_references with a format-matched extension")
     parser.add_argument("--report", default="ieee_citation_report.md")
     parser.add_argument("--json", dest="json_path", default="ieee_citation_candidates.json")
     parser.add_argument("--rows", type=int, default=30)
@@ -373,6 +384,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--polite-delay", type=float, default=0.2)
     parser.add_argument("--no-report", action="store_true")
     parser.add_argument("--no-json", action="store_true")
+    parser.add_argument("--allow-incomplete-authors", action="store_true", help="Export even when source records have missing/unrenderable author metadata")
     args = parser.parse_args(argv)
 
     text = Path(args.input).read_text(encoding="utf-8") if args.input else sys.stdin.read()
@@ -389,7 +401,14 @@ def main(argv: list[str] | None = None) -> int:
             "candidates": [candidate_dict(c) for c in hits[: args.top_k]],
         })
     refs = dedupe(all_refs)
-    output = Path(args.output)
+    incomplete = [c for c in refs if c.author_warnings]
+    if incomplete and not args.allow_incomplete_authors:
+        for c in incomplete:
+            print(f"error: incomplete author metadata for {c.doi or c.title}: {'; '.join(c.author_warnings)}", file=sys.stderr)
+        print("error: verify author metadata or rerun with --allow-incomplete-authors", file=sys.stderr)
+        return 2
+    extension = "rdf" if args.format in {"zotero-rdf", "rdf"} else args.format
+    output = Path(args.output or f"ieee_references.{extension}")
     if args.format == "ris":
         write_ris(refs, output)
     elif args.format in {"zotero-rdf", "rdf"}:

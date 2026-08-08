@@ -39,6 +39,7 @@ venue-specific checklists.
     |-- ieee-submission-audit/
     |-- ieee-academic-search/
     |-- ieee-literature-pipeline/
+    |-- ieee-paper-card/
     |-- ieee-reader/
     |-- ieee-ref-verifier/
     |-- ieee-downloader/
@@ -133,6 +134,7 @@ longer shipped by this repository.
 | [`ieee-submission-audit`](skills/ieee-submission-audit/SKILL.md) | Run a strict pre-submission audit for IEEEtran, page limits, figures, references, NtP, reproducibility, and venue-specific hard constraints. |
 | [`ieee-academic-search`](skills/ieee-academic-search/README.md) | Multi-source literature search, citation verification, DOI/arXiv/IEEE-oriented reference management, and optional MCP dispatch. |
 | [`ieee-literature-pipeline`](skills/ieee-literature-pipeline/README.md) | Automated literature discovery, scoring, clustering, and reading workflow for engineering manuscripts. |
+| [`ieee-paper-card`](skills/ieee-paper-card/README_EN.md) | Deep-read one engineering paper into a source-grounded Sections 01–16 claim–evidence card. |
 | [`ieee-reader`](skills/ieee-reader/README.md) | Build figure/table-aware Chinese-English paper readers for IEEE or engineering papers. |
 | [`ieee-ref-verifier`](skills/ieee-ref-verifier/README.md) | Verify DOI, author order, venue, Early Access/issue metadata, pages/article numbers, and conference/journal versions. |
 | [`ieee-downloader`](skills/ieee-downloader/README.md) | Configure legitimate institutional or open-access paper retrieval and organize authorized PDFs. |
@@ -157,6 +159,7 @@ Use ieee-data to prepare a reproducibility package checklist.
 Use ieee-experiment-log to normalize these simulation and hardware run notes.
 Use ieee-ref-verifier to verify every reference and publication version.
 Use ieee-statistics to audit seeds, repeated runs, uncertainty, and leakage.
+Use ieee-paper-card to deep-read this robotics or communications paper and audit its claim-evidence boundaries.
 Use ieee-response to draft replies to TII reviewer comments.
 Use ieee-submission-audit to run a strict pre-submission check for T-ASE.
 ```

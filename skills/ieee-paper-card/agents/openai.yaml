@@ -1,0 +1,4 @@
+interface:
+  display_name: "IEEE Paper Card"
+  short_description: "Deep-read one engineering paper with traceable evidence"
+  default_prompt: "Use $ieee-paper-card to build a source-grounded Sections 01-16 deep-reading card for this engineering paper."

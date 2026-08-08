@@ -1,4 +1,4 @@
-interface:
-  display_name: "IEEE Transactions Writing"
-  short_description: "Draft IEEE Transactions-style manuscript sections"
-  default_prompt: "Use $ieee-writing to turn my claims, results, figures, or Chinese notes into an IEEE Transactions manuscript section or initial-submission package."
+﻿interface:
+  display_name: "IEEE Writing"
+  short_description: "Plan and draft manuscript sections"
+  default_prompt: "Use $ieee-writing to draft or restructure this section from verified claims, evidence, figures, and section contracts."

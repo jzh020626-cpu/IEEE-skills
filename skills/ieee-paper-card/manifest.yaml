@@ -1,0 +1,46 @@
+name: ieee-paper-card
+version: 1.0.0
+description: Declarative routing for a source-grounded Sections 01-16 engineering Paper Card.
+
+always_load:
+  - ../ieee-shared/core/terminology-ledger.md
+  - static/core/principles.md
+  - static/core/workflow.md
+  - static/core/output-contract.md
+
+axes:
+  paper_type:
+    detect: |
+      Select one primary lens from the dominant argument and at most one
+      secondary lens when it carries substantial independent evidence:
+        algorithm   - learning, optimization, estimation, planning, or protocol method
+        system      - integrated robotic, cyber-physical, networked, or industrial system
+        theory      - theorem, control law, bound, convergence, stability, or capacity result
+        benchmark   - dataset, simulator, testbed, benchmark, or evaluation framework
+        application - engineering deployment or domain application whose validation is central
+        review      - survey, tutorial, perspective, or meta-analysis
+    values:
+      algorithm:   static/fragments/paper_type/algorithm.md
+      system:      static/fragments/paper_type/system.md
+      theory:      static/fragments/paper_type/theory.md
+      benchmark:   static/fragments/paper_type/benchmark.md
+      application: static/fragments/paper_type/application.md
+      review:      static/fragments/paper_type/review.md
+    default: algorithm
+    multi: true
+
+references:
+  on_demand:
+    - condition: assigning provenance labels
+      path: references/evidence-and-provenance.md
+    - condition: drafting or auditing the Sections 01-16 structure
+      path: references/card-schema.md
+    - condition: generating or qualifying candidate research ideas
+      path: references/research-idea-gates.md
+
+quality_tools:
+  prepare_script: scripts/prepare_paper.py
+  prepare_use_when: processing a PDF or ieee-reader source-map JSON
+  audit_script: scripts/audit_paper_card.py
+  audit_use_when: after every complete draft or corrective revision
+  locator_modes: [page-grounded, structure-grounded, source-limited]

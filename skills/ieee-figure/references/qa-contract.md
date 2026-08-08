@@ -1,5 +1,22 @@
 # IEEE Figure QA Contract
 
+## Rendered panel-by-panel audit
+
+Do not approve a figure from a whole-page glance. Inspect each panel at final physical size and record:
+
+| Panel | Unique claim | Center/summary | Spread/interval | Independent unit | Labels/legend | Collision check | Pass |
+|---|---|---|---|---|---|---|---|
+
+If removing a panel leaves the argument complete, merge or remove it. Comparable seed/run/scenario aggregates must show the same variability definition or document a justified exemption. Recompute label clearance from the upper uncertainty extent after adding error bars.
+
+## PDF glyph and numerical-safety gates
+
+- The 5 pt conservative floor applies to every rendered glyph, including math superscripts and subscripts, not only the parent source `fontsize`; verify the current target journal if it differs.
+- Run `python scripts/audit_pdf_text.py figure.pdf --min-pt 5`. A non-auditable result requires another verified method and final-size visual inspection.
+- Reject duplicate or direction-changing interpolation grids. When a grid is decreasing, reverse coordinates and values together; use `scripts/figure_safety.py::interp_monotone` for Python figures.
+- Derive annotations from actual data and uncertainty bounds. Avoid fixed label positions and opaque masks that hide curves.
+- Check hierarchy, grayscale, and color-vision robustness after rendering; numerical color distance alone does not prove the intended evidence is visually salient.
+
 Use this before final delivery, before a revision package, and whenever the figure contains statistical claims, hardware/simulation screenshots, trajectory plots, latency/throughput curves, stability evidence, or baseline comparisons.
 
 Journal rules change, so verify the latest target journal author guide for final submission. The values below are conservative defaults for IEEE Transactions work.

@@ -1,4 +1,4 @@
-interface:
-  display_name: "IEEE Engineering Statistics"
-  short_description: "Audit uncertainty and experimental comparisons"
-  default_prompt: "Use $ieee-statistics to audit the statistical design and reporting of these engineering experiments."
+﻿interface:
+  display_name: "IEEE Statistics"
+  short_description: "Audit statistics for engineering experiments"
+  default_prompt: "Use $ieee-statistics to audit independent units, uncertainty, paired comparisons, tails, and reporting."

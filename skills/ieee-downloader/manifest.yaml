@@ -1,5 +1,5 @@
 name: ieee-downloader
-version: 2.0.0
+version: 2.1.0
 description: >
   Configure a user's legitimate library resource entry, reuse their logged-in
   Chrome institutional session, and download open-access or institution-
@@ -26,5 +26,9 @@ references:
       path: scripts/lib/provider-registry.mjs
     - condition: output manifest schema and per-item provenance
       path: scripts/lib/manifest.mjs
+    - condition: lawful OA and applicable publisher APIs are exhausted and the task needs an institution-authorized browser, publisher verification handoff, authentication handoff, or browser-context PDF transfer
+      path: references/institutional-browser-workflow.md
+    - condition: Supporting Information was requested, downloaded files need final verification and naming, or an access attempt reaches a typed failure or retry state
+      path: references/delivery-verification-and-failures.md
     - condition: source research behind the modular provider design
       path: docs/ieee-downloader-reference-research-2026-07-15.md

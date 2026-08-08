@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "IEEE Paper to Patent"
+  short_description: "Convert engineering evidence into a patent draft"
+  default_prompt: "Use $ieee-paper-to-patent to extract patentable engineering contributions and build a Chinese invention disclosure or draft."

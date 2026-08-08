@@ -1,4 +1,4 @@
-interface:
+﻿interface:
   display_name: "IEEE Experiment Log"
-  short_description: "Build traceable engineering experiment records"
-  default_prompt: "Use $ieee-experiment-log to turn my raw run notes and artifacts into a reproducible engineering experiment log."
+  short_description: "Create auditable engineering experiment logs"
+  default_prompt: "Use $ieee-experiment-log to create a log with lineage, parameters, seeds, anomalies, and artifacts."

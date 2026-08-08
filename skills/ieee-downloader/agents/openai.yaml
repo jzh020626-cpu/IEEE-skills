@@ -1,4 +1,4 @@
-interface:
-  display_name: "IEEE Literature Downloader"
-  short_description: "Retrieve lawful OA or institution-authorized full text"
-  default_prompt: "Use $ieee-downloader to retrieve these papers and optional supplementary files through lawful open-access, publisher API, or my authorized institutional session."
+﻿interface:
+  display_name: "IEEE Downloader"
+  short_description: "Retrieve authorized papers and supplements"
+  default_prompt: "Use $ieee-downloader to retrieve and organize authorized IEEE or open-access papers and supplementary files."

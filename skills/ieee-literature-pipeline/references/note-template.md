@@ -69,14 +69,14 @@ Format: `{FirstAuthorLast}{Year}_{中文核心关键词}.md`
 
 | Good | Bad |
 |------|-----|
-| `Goods2004_商业硝酸盐_304_316_长期腐蚀.md` | `goodscorrosionofstainlesssteelscarbon2004.md` |
-| `Author2018_topic_method.md` | `authortopicmethodology2018.md` |
-| `Kruizenga2011_316SS失效分析_氧覆盖.md` | `kruizengastainlesssteelcorrosion2011.md` |
-| `Author2025_topic_application.md` | `author2025topicengineeringapplication.md` |
+| `Chen2024_多机器人_安全分层控制.md` | `chenmultirobotsafetycontrol2024.md` |
+| `Li2025_语义通信_低时延资源分配.md` | `litopicmethodology2025.md` |
+| `Wang2023_网络化控制_丢包鲁棒性.md` | `wangnetworkedcontrol2023.md` |
+| `Zhao2026_工业边缘网络_联合调度.md` | `zhaoapplication2026.md` |
 
 ## Directory Discipline
 
-Subagents frequently create short directory names (`A/笔记/`, `B/笔记/`). Always verify and correct to full names:
+Generated workflows may create short directory names (`A/笔记/`, `B/笔记/`). Always verify and correct to full names:
 
 - `A_核心主线/笔记/`
 - `B_章节支撑/笔记/`

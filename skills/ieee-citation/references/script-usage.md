@@ -8,8 +8,8 @@ Open this reference when running `scripts/ieee_citation.py` or when the input is
 python scripts/ieee_citation.py \
   manuscript.txt \
   --scope all \
-  --format enw \
-  --output ieee_references.enw \
+  --format ris \
+  --output ieee_references.ris \
   --report ieee_citation_report.md
 ```
 
@@ -19,6 +19,7 @@ python scripts/ieee_citation.py \
 - `--scope robotics|control|communications|industrial`: field bundle.
 - `--scope ieee|all`: broad IEEE-first archival set.
 - `--format enw|ris|zotero-rdf`: export format.
+- `--allow-incomplete-authors`: explicit unsafe override when source author metadata cannot first be verified.
 - `--rows 40`: raise for broad searches; keep top candidates manageable.
 - `--top-k 3`: number of candidates to keep per segment.
 - `--polite-delay 0.5`: seconds between Crossref requests.

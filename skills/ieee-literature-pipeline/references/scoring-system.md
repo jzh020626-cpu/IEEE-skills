@@ -16,10 +16,10 @@ Used in the coarse-filtering stage (30 → 5 papers). Each paper is scored 0-100
 ## Scoring Rules
 
 1. Each dimension is capped at its weight — no overshooting
-2. Total score must equal the sum of all six dimensions — recalculate, don't trust subagent arithmetic
+2. Total score must equal the sum of all six dimensions; recalculate mechanically rather than trusting generated arithmetic.
 3. Dimension 1 is the gate: papers scoring <10 on Topic Match are auto-rejected regardless of other scores
 
-## Subagent Prompt Template
+## Batch scoring prompt template
 
 ```
 Score each of the following 30 papers on six dimensions (0-100 total):
@@ -44,7 +44,7 @@ Return the top 5 papers by total score, sorted descending.
 
 ## Common Pitfalls
 
-- Subagents may inflate Dimension 1 scores for well-known papers that aren't actually relevant — always verify
+- Generated scores may inflate Dimension 1 for famous papers that are not actually relevant; verify against the stated research questions.
 - Papers from prestigious journals can score high on Dimension 3 but be irrelevant (low Dimension 1) — the gate rule catches this
 - The "Network Relevance" dimension is NOT about fame — it's about specific tracked authors/institutions the user cares about
 

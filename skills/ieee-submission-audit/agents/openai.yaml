@@ -1,4 +1,4 @@
-interface:
+﻿interface:
   display_name: "IEEE Submission Audit"
-  short_description: "Strict IEEE Transactions pre-submission audit"
-  default_prompt: "Use $ieee-submission-audit to audit this manuscript against the named journal's current IEEE submission requirements."
+  short_description: "Run a venue-specific submission audit"
+  default_prompt: "Use $ieee-submission-audit to audit this manuscript against current venue, format, claim, figure, and reproducibility requirements."

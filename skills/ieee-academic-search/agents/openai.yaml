@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "IEEE Academic Search"
+  short_description: "Search and verify IEEE engineering literature"
+  default_prompt: "Use $ieee-academic-search to search IEEE-first literature and return verified DOI, venue, method, baseline, metric, and claim relevance."

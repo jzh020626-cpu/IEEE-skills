@@ -26,7 +26,7 @@ Prefer `scripts/ieee_citation.py` when internet access is available:
 python scripts/ieee_citation.py \
   manuscript.txt \
   --scope tase \
-  --output ieee_references.enw \
+  --output ieee_references.ris \
   --report ieee_citation_report.md
 ```
 
@@ -46,7 +46,7 @@ Never cite a `metadata-only candidate` as support without checking the abstract 
 
 ## 5. Export references
 
-Default export is `ieee_references.enw`. Use RIS or Zotero RDF only when requested. Do not invent missing DOI, volume, issue, page, article number, or author fields.
+Default export is `ieee_references.ris`. Use ENW or Zotero RDF when requested. Do not invent missing DOI, volume, issue, page, article number, or author fields; incomplete author metadata blocks export unless the explicit override is retained as a warning.
 
 ## 6. Report results
 

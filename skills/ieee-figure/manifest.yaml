@@ -67,3 +67,8 @@ references:
       path: references/chart-types.md
     - condition: explicitly requested legacy bundled plotting demos for concrete pattern adaptation
       path: references/demos.md
+
+quality_tools:
+  source_validator: scripts/validate_figure.py
+  pdf_text_auditor: scripts/audit_pdf_text.py
+  python_safety_helpers: scripts/figure_safety.py

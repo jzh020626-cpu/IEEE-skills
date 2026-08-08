@@ -16,13 +16,14 @@ Use the static/dynamic routing in `manifest.yaml`.
 4. Search and grade support conservatively. A topical title is not enough: inspect an abstract, publisher record, or full text when accessible.
 5. Prefer the version of record and archival engineering sources. Use conference papers when they are the original or most relevant evidence and label their status.
 6. Suggest IEEE numeric citation positions without inventing final reference numbers. Let the manuscript's citation manager assign ordering.
-7. Export one requested reference-manager format by default. Use `scripts/ieee_citation.py` when executing the segmented search/export workflow.
+7. Export RIS by default because it preserves structured author records across common reference managers; use ENW or Zotero RDF when explicitly requested. Use `scripts/ieee_citation.py` for the segmented search/export workflow.
 8. For more than about ten segments, load `references/script-usage.md` and use the batched strategy.
 
 ## Red lines
 
 - Never present a metadata-only candidate as verified claim support.
 - Never fabricate DOI, author order, venue, year, pages, abstract content, citation number, or support strength.
+- Do not export a record with missing or unrenderable author metadata by default. Verify it against an authoritative publisher record or require the explicit `--allow-incomplete-authors` override and retain the warning.
 - Do not force an IEEE-only bibliography when the best primary evidence is from another authoritative archival venue.
 - Use `ieee-ref-verifier` for a field-by-field bibliography audit and `ieee-academic-search` for broader discovery or citation-impact analysis.
 - Keep outputs source-grounded: do not invent citations, metrics, theorem guarantees, hardware details, or experimental results.

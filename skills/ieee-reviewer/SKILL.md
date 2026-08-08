@@ -20,9 +20,11 @@ description: >-
 3. Mark missing material as not assessable.
 4. Apply `references/review-axes.md` to every report.
 5. If the domain is clear, load only the relevant section of `references/domain-specific-review-gates.md`.
-6. Generate Reviewer 1 (technical validity emphasis), Reviewer 2 (evidence/reproducibility emphasis), and Reviewer 3 (novelty/advancement/clarity emphasis).
-7. Synthesize consensus, weighting differences, blockers, and prioritized revisions.
-8. Run `references/qa-checklist.md`.
+6. Build a traceable concern ledger with `references/technical-concern-taxonomy.md`; every concern needs a claim pointer, evidence pointer or explicit missing-location state, severity rationale, and resolution test.
+7. Generate Reviewer 1 (technical validity emphasis), Reviewer 2 (evidence/reproducibility emphasis), and Reviewer 3 (novelty/advancement/clarity emphasis) in genuinely separate contexts. Freeze each report before comparison; do not let one reviewer read another review.
+8. Separate `Major Concerns` from `Minor Comments`, mark every major item `Blocking: Yes/No`, and never mark a minor item blocking. Do not impose a concern quota.
+9. Synthesize consensus, weighting differences, blockers, and prioritized revisions only after all reports are frozen.
+10. Run `references/qa-checklist.md`.
 
 ## Red lines
 
@@ -31,3 +33,4 @@ description: >-
 - Flag suspected integrity issues to the editor in reviewer-style language; do not accuse authors as fact.
 - Avoid coercive, irrelevant, excessive, or self-serving citation requests.
 - Route author-response drafting to `ieee-response`.
+- Do not invent experiments, claim locations, evidence locations, guarantees, or failures to make a critique look complete.

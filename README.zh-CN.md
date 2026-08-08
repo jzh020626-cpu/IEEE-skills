@@ -32,6 +32,7 @@ IEEE Transactions Skills 是一套面向 Codex 的学术写作与投稿辅助技
     |-- ieee-submission-audit/
     |-- ieee-academic-search/
     |-- ieee-literature-pipeline/
+    |-- ieee-paper-card/
     |-- ieee-reader/
     |-- ieee-ref-verifier/
     |-- ieee-downloader/
@@ -116,6 +117,7 @@ scripts/update-codex-skills.sh --prune
 | [`ieee-submission-audit`](skills/ieee-submission-audit/SKILL.md) | 严格投稿前审查，覆盖 IEEEtran、页数、图表、参考文献、NtP、复现和分刊硬约束。 |
 | [`ieee-academic-search`](skills/ieee-academic-search/README.md) | 多源文献搜索、引用核查、DOI/arXiv/IEEE 取向的参考文献管理，以及可选 MCP dispatch。 |
 | [`ieee-literature-pipeline`](skills/ieee-literature-pipeline/README.md) | 面向工程论文的自动化文献发现、打分、聚类和精读流程。 |
+| [`ieee-paper-card`](skills/ieee-paper-card/README.md) | 将单篇工程论文精读为带来源定位的 01–16 节主张—证据卡片。 |
 | [`ieee-reader`](skills/ieee-reader/README.md) | 为 IEEE 或工程论文构建图表感知的中英双语阅读材料。 |
 | [`ieee-ref-verifier`](skills/ieee-ref-verifier/README.md) | 核验 DOI、作者顺序、期刊、Early Access/卷期、页码/文章号和会议—期刊版本。 |
 | [`ieee-downloader`](skills/ieee-downloader/README.md) | 配置合法的机构访问或开放获取论文下载，并整理授权 PDF。 |

@@ -1,6 +1,6 @@
 # Evaluation rubric
 
-Score each dimension 0-10. Anchors below are for Chinese doctoral proposals in materials/chemistry/engineering domains.
+Score each dimension 0-10. Anchors below are for Chinese or English engineering proposals targeting robotics, control, communications, networking, automation, and industrial informatics.
 
 ## 1. 研究问题清晰度 — Does the text clearly state the problem?
 
@@ -20,7 +20,7 @@ Score each dimension 0-10. Anchors below are for Chinese doctoral proposals in m
 | 3 | Literature listed without synthesis; no gap articulated. |
 | 5 | Gap stated but not motivated — "few studies have..." without explaining why that matters. |
 | 7 | Gap clearly stated with partial motivation; the consequence of filling the gap is implied but not explicit. |
-| 9 | Gap is a genuine contradiction or engineering constraint (e.g., "lowering melting point with ZnCl2 breaks the existing Mg purification path"). Reader feels the tension. |
+| 9 | Gap is a genuine engineering contradiction or constraint, such as higher task efficiency conflicting with safety guarantees, or lower communication overhead degrading closed-loop reliability. |
 
 ## 3. 证据匹配 — Claims backed, hypotheses flagged
 
@@ -46,12 +46,12 @@ Score each dimension 0-10. Anchors below are for Chinese doctoral proposals in m
 
 | Score | Anchor |
 |---|---|
-| 3 | Methods described in generic terms ("characterize the corrosion behavior") with no specifics. |
-| 5 | Some specifics present (composition, temperature ranges) but gaps in environmental control, sampling protocol, or measurement parameters. |
-| 7 | Variables, controls, materials, atmosphere, sample preparation, and characterization methods are concrete. One or two operational details remain to be settled by pre-experiments — flagged, not hidden. |
-| 9 | Another researcher could reproduce the experiment from this description. Pre-experiment uncertainties listed with initial reference values from literature. |
+| 3 | Methods are generic, with no algorithm, system, scenario, protocol, baseline, or evaluation specifics. |
+| 5 | Some specifics exist, but assumptions, timing, hardware/network settings, data splits, or measurement parameters remain unclear. |
+| 7 | Variables, controls, algorithms, platforms, scenarios, baselines, metrics, seeds, and evaluation procedures are concrete; unsettled operational details are flagged. |
+| 9 | Another researcher could reproduce the simulation or experiment; theoretical assumptions, software/hardware versions, run settings, and uncertainty sources are explicit. |
 
-**Common pitfall**: "take sample, then add metal coupon, then re-heat" — if atmosphere control during the intermediate step is not described, flag it.
+**Common pitfall**: claiming real-time or safe execution while omitting control frequency, compute platform, sensing delay, communication overhead, failure handling, or deployment boundary.
 
 ## 6. 创新性 — Specific contribution, not slogan
 
@@ -59,7 +59,7 @@ Score each dimension 0-10. Anchors below are for Chinese doctoral proposals in m
 |---|---|
 | 3 | "First study of..." with no explanation of why being first matters. Innovation as label, not argument. |
 | 5 | Contribution direction stated but vague — "systematic study" without specifying what new knowledge is expected. |
-| 7 | Contribution is specific and motivated (e.g., "establishing whether Zn/ZnO can replace Mg as purifier in a quaternary chloride system"). Innovation is implicit in the argument chain rather than listed as bullet points. |
+| 7 | Contribution is specific and motivated, such as separating unmodelled high-level decisions from a safety-certified execution layer and stating what new guarantee or capability results. |
 | 9 | Contribution is explicit, specific, and novel enough that a reviewer can immediately place it relative to the literature. |
 
 ## 7. 风险边界 — Uncertainty, alternatives, and limitations acknowledged

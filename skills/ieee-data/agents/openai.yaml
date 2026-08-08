@@ -1,4 +1,4 @@
-interface:
-  display_name: "IEEE Transactions Data"
-  short_description: "Build IEEE reproducibility and availability packages"
-  default_prompt: "Use $ieee-data to turn my Chinese or English notes into an IEEE reproducibility package, availability statement, and artifact checklist."
+﻿interface:
+  display_name: "IEEE Data and Reproducibility"
+  short_description: "Audit experiment artifacts and reproducibility"
+  default_prompt: "Use $ieee-data to audit code, data, logs, seeds, parameters, and the availability statement."

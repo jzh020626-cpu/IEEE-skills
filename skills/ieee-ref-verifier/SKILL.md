@@ -11,6 +11,7 @@ Verify identity before formatting. A reference that looks syntactically correct 
 
 1. Parse each entry into authors, title, venue, year, volume, issue, pages/article number, DOI, URL, and version type.
 2. Resolve the candidate by DOI when present, then cross-check title and first author.
+   - Treat DOI resolution as the cheapest identity gate, not proof of correctness: a resolvable DOI may point to a different paper.
 3. When DOI is absent or wrong, search exact title plus author and year.
 4. Prefer the version of record. Keep a preprint only when it is the intended cited object or no archival version exists.
 5. Compare fields using the source hierarchy in `references/source-hierarchy.md`.
@@ -52,6 +53,8 @@ Unresolved checks
 - Do not infer that a DOI is correct from its syntax.
 - Do not use DOI-embedded years as the publication year.
 - Preserve official author order and diacritics when supported.
+- Flag omitted authors, including truncation that is not explicitly represented by an allowed `et al.` form; a correct first author does not validate the full list.
+- Check article numbers character by character for OCR confusions such as `O/0`, `I/l/1`, and `T/7`.
 - Distinguish online publication date, issue year, conference year, and proceedings year.
 - Do not merge a conference paper and journal extension as duplicates merely because titles overlap.
 - For early-access IEEE articles, report the currently authoritative metadata and flag fields that may change after issue assignment.

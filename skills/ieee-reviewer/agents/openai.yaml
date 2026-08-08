@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "IEEE Reviewer"
+  short_description: "Run a strict reviewer assessment"
+  default_prompt: "Use $ieee-reviewer to review this manuscript for novelty, correctness, evidence, reproducibility, and venue fit."

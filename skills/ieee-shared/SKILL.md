@@ -10,5 +10,7 @@ Use this package only as a dependency of another IEEE skill.
 - Load the exact referenced file; do not preload the whole package.
 - Treat `core/` and `journal-formats/` as shared definitions, not standalone workflows.
 - Use `core/ieee-transactions-contract.md` for suite-wide IEEE constraints.
+- Use `core/consistency-sweep.md` for cross-section terminology, numeric, assumption, and claim consistency after iterative edits.
+- Use `core/research-compliance.md` only when human subjects, autonomous deployment, spectrum use, cybersecurity, sensitive traces, safety-critical systems, or dual-use concerns apply.
 - Use `journal-formats/ieee-transactions.md` for stable generic format facts, then verify the named journal's current Information for Authors when exact limits matter.
 - Return to the requesting skill for task logic, output format, and final QA.

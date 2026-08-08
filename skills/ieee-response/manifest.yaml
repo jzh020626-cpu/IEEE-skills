@@ -42,3 +42,9 @@ references:
       path: references/difficult-cases.md
     - condition: before finalizing an output or auditing a draft response
       path: references/qa-checklist.md
+    - condition: auditing consistency among a response letter, marked manuscript, clean manuscript, and quoted revised passages
+      path: references/package-consistency-audit.md
+
+quality_tools:
+  package_consistency_script: scripts/check_package_consistency.py
+  use_when: finalizing or auditing a multi-file revision package

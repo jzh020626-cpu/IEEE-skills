@@ -19,7 +19,7 @@ Use this skill when the user asks for:
 
 1. Identify the target venue, article type, stage, and official rules checked. If missing, use `generic-ieee` and mark venue-specific items as manual.
 2. Verify the current journal Information for Authors when online access is available; record URL and date.
-3. Load `references/strict-ieee-checklist.md` and `../ieee-shared/core/ieee-transactions-contract.md`.
+3. Load `references/strict-ieee-checklist.md`, `../ieee-shared/core/ieee-transactions-contract.md`, and `../ieee-shared/core/consistency-sweep.md`. When human/HRI, autonomous deployment, spectrum, cybersecurity, sensitive traces, safety-critical systems, or dual-use issues apply, also load `../ieee-shared/core/research-compliance.md`; unknown administrative facts are `AUTHOR_INPUT_NEEDED`.
 4. If the user supplied manuscript text/LaTeX, run `scripts/ieee_submission_audit.py` with the closest `--venue` and `--paper-type`. Use `--page-limit` when a current authoritative limit has been verified.
 5. Report only evidence-backed results. If a check cannot be confirmed from the provided material, mark it `manual`, not pass.
 6. Return a gate: `Go`, `Conditional Go`, or `No-Go`.

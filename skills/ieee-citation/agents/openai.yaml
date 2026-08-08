@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "IEEE Citation"
+  short_description: "Add claim-matched IEEE numeric citations"
+  default_prompt: "Use $ieee-citation to add source-grounded IEEE Transactions citations and export reference records."

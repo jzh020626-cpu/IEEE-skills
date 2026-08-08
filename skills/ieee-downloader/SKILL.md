@@ -21,6 +21,7 @@ Before creating output files, resolve the requested papers and determine whether
 5. Use institutional Web Access only with the user's authorization and active authenticated browser state. Do not assume a new browser profile has the same session.
 6. Do not substitute HTML, CAJ, a login page, or an error page when the user requested PDF.
 7. Validate signature/content type, size, and readability; write a per-item manifest with source URL, access route, status, filename, checksum when available, and retrieval time.
+8. Load `references/institutional-browser-workflow.md` only when OA and applicable publisher APIs are exhausted and authorized browser access is needed. Load `references/delivery-verification-and-failures.md` for SI, final file verification, naming, or typed failures.
 
 ## Configuration and references
 

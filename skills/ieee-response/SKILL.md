@@ -17,7 +17,8 @@ Use `manifest.yaml` and load the response core before drafting.
 5. Build a strategy/tracker, then draft a direct answer, action/evidence, manuscript location, and scoped limitation or disagreement for every item.
 6. If manuscript text is edited, work on a copy and mark changes visibly. Revised excerpts quoted in the response are italic.
 7. In print/LaTeX output, begin each reviewer on a new page. Use templates under `templates/` when requested.
-8. Run `references/qa-checklist.md` and return a readiness state.
+8. For a multi-file revision package, read `references/package-consistency-audit.md` and run `scripts/check_package_consistency.py` against the response letter and marked/clean manuscripts.
+9. Run `references/qa-checklist.md` and return a readiness state.
 
 ## Red lines
 
@@ -27,3 +28,4 @@ Use `manifest.yaml` and load the response core before drafting.
 - For conference extensions, identify the prior paper and added archival value without inventing a universal percentage threshold.
 - Route an actual appeal separately instead of disguising it as a routine revision response.
 - Keep outputs source-grounded: do not invent citations, metrics, theorem guarantees, hardware details, or experimental results.
+- A response-letter quote that is absent from the manuscript, a promised change that is not present, or a marked/clean pair with content differences is a blocking package error.

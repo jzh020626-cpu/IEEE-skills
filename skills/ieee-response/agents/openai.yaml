@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "IEEE Reviewer Response"
+  short_description: "Draft auditable reviewer responses"
+  default_prompt: "Use $ieee-response to draft a point-by-point response and audit manuscript-response consistency."

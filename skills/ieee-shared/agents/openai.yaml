@@ -1,0 +1,6 @@
+﻿interface:
+  display_name: "IEEE Shared References"
+  short_description: "Internal support package for IEEE skills"
+  default_prompt: "Use $ieee-shared to load only the exact shared reference requested by another IEEE skill."
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "IEEE Paper to PPT"
+  short_description: "Create an efficient IEEE paper presentation"
+  default_prompt: "Use $ieee-paper2ppt to create a Chinese presentation from this paper with figure and layout QA."

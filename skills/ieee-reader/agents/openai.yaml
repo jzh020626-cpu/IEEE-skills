@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "IEEE Reader"
+  short_description: "Build bilingual equation-aware paper readers"
+  default_prompt: "Use $ieee-reader to create a Chinese-English reader preserving equations, figures, tables, and anchors."

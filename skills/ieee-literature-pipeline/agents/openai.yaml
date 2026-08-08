@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "IEEE Literature Pipeline"
+  short_description: "Run an IEEE-first literature pipeline"
+  default_prompt: "Use $ieee-literature-pipeline to build a scored and deduplicated IEEE literature set with reading notes and claim relevance."

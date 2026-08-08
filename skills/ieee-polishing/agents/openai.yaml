@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "IEEE Polishing"
+  short_description: "Polish prose in IEEE Transactions style"
+  default_prompt: "Use $ieee-polishing to polish this section without changing technical claims."

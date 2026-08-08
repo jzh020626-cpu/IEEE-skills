@@ -19,6 +19,8 @@ references:
       path: references/review-axes.md
     - condition: manuscript is in control, robotics, automation, communications, industrial informatics, power electronics, or a related engineering domain
       path: references/domain-specific-review-gates.md
+    - condition: constructing traceable major/minor concerns, calibrating blocking status, or preserving reviewer independence before synthesis
+      path: references/technical-concern-taxonomy.md
     - condition: composing or auditing the reviewer report and synthesis structure
       path: references/report-structure.md
     - condition: preventing invented reviewer identities, editor decisions, confidential-data leakage, or inappropriate role claims
