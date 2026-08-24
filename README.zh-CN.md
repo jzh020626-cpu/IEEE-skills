@@ -66,6 +66,27 @@ IEEE Transactions Skills 是一套面向 Codex 的学术写作与投稿辅助技
 - 支持控制类论文的 assumptions、theorem/proof、stability、convergence、feasibility 和 conference-extension value 检查。
 - 支持机器人和通信类论文的硬件/仿真设置、任务场景、延迟、吞吐、丢包、鲁棒性和统计显著性检查。
 
+## 证据校准型反防御写作
+
+本套件已融入针对 IEEE 工作流适配的
+[Anti-Defensive Writing skill](https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill/tree/0212d11541f6df5ce8a6f22ae82bc651452abd24)。
+适配后的规则集中维护在
+[`ieee-shared/core/claim-centered-writing.md`](skills/ieee-shared/core/claim-centered-writing.md)，
+不再额外安装一个触发范围重叠的独立 skill。这样可以保持路由确定性，防止作者侧的叙事立场误入独立审稿、论文精读或证据核验流程。
+
+该适配保留了原 skill 中有价值的原则：围绕最强且有证据支持的贡献组织论文，避免实验流水账，让每个实验承担明确论证职责，并删除无依据的自我贬低表达。但它**不会**把“不占优就不说输”当作通用规则。共享模块明确禁止选择性报告、隐藏会改变结论的负面结果、事后切换指标或 baseline、误导性图表、弱化统计问题以及回避审稿意见。
+
+路由边界如下：
+
+| 接入方式 | Skills | 行为 |
+|---|---|---|
+| 默认加载 | `ieee-writing`、`ieee-polishing`、`ieee-proposal-writer`、`ieee-response`、`ieee-submission-audit` | 在突出核心贡献的同时，强制保留证据边界、必要 limitation 和不得回避审稿问题的约束。 |
+| 按需加载 | `ieee-statistics`、`ieee-figure` | 仅在统计审查完成后撰写结果文字、图注，或进行 panel 选择和视觉强调时加载。 |
+| 不接入 | `ieee-reviewer`、`ieee-reader`、`ieee-paper-card`、引用/搜索/下载 skills | 独立评审、证据提取与来源核验不能继承作者侧叙事立场。 |
+
+原始项目采用 MIT License；本仓库保留的许可证文本见
+[`skills/ieee-shared/licenses/anti-defensive-writing-MIT.txt`](skills/ieee-shared/licenses/anti-defensive-writing-MIT.txt)。
+
 ## 安装到 Codex
 
 进入仓库目录后运行：
