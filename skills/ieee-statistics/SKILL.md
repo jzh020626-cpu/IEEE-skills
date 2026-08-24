@@ -21,10 +21,14 @@ Make the experimental unit, uncertainty, comparison design, and claim boundary e
 2. Extract design: baselines, factors, datasets/scenes/topologies, independent unit, repeated structure, randomization, seeds, exclusions, tuning, and missing-data handling.
 3. Map each claim to its metric, aggregation rule, comparison, test/model, assumptions, multiplicity policy, effect estimate, and uncertainty.
 4. Check leakage, pseudoreplication, paired versus unpaired comparison, autocorrelation, and benchmark-selection bias.
-5. Read `references/statistical-reporting.md` for Methods/Results wording.
-6. Read `references/common-failure-modes.md` for high-risk designs.
-7. Read `references/figure-statistics.md` for legends and plots.
-8. Run `references/reviewer-checklist.md` before final delivery.
+5. When drafting or revising manuscript wording after the statistical assessment,
+   read `../ieee-shared/core/claim-centered-writing.md`. It may remove rhetorical
+   self-weakening, but it never overrides complete reporting, uncertainty, null
+   results, or the statistical claim boundary.
+6. Read `references/statistical-reporting.md` for Methods/Results wording.
+7. Read `references/common-failure-modes.md` for high-risk designs.
+8. Read `references/figure-statistics.md` for legends and plots.
+9. Run `references/reviewer-checklist.md` before final delivery.
 
 ## Output
 

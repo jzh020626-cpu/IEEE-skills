@@ -1,5 +1,5 @@
 name: ieee-proposal-writer
-version: 1.1.0
+version: 1.2.0
 description: >
   Declarative routing for the proposal-first IEEE Transactions writing
   state machine. Foundation templates, evaluation rubrics, stopping rules, and
@@ -7,6 +7,7 @@ description: >
 
 always_load:
   - SKILL.md
+  - ../ieee-shared/core/claim-centered-writing.md
 
 templates:
   on_demand:

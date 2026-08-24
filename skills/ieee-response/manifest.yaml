@@ -1,5 +1,5 @@
 name: ieee-response
-version: 1.0.0
+version: 1.1.0
 description: >
   Declarative manifest for the static/dynamic split. SKILL.md uses this to
   decide which fragments and templates to load for a reviewer-response or
@@ -12,13 +12,14 @@ description: >
 # decision type, user language — is identified at runtime, mainly by
 # references/intake-and-routing.md, not by loading different large content
 # bodies. There is therefore no content axis; the split is core (always loaded)
-# plus the existing on-demand references. ieee-response does not use the
-# prose-oriented ieee-shared layer (it has its own response-specific stance and
-# source basis).
+# plus the existing on-demand references. ieee-response keeps its own
+# response-specific stance and source basis, while the shared claim-centered
+# module supplies bounded anti-defensive wording and explicit non-evasion rules.
 
 always_load:
   - static/core/stance.md
   - static/core/workflow.md
+  - ../ieee-shared/core/claim-centered-writing.md
 
 references:
   on_demand:

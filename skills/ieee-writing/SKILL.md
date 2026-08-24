@@ -28,5 +28,8 @@ Use the axes and paths in `manifest.yaml`; do not load every fragment.
 - Never invent results, equations, citations, novelty, author metadata, ORCIDs, funding, ethics, repositories, permissions, reviewer identities, or conference-extension differences.
 - Route figures/graphical abstracts to `ieee-figure`, reproducibility packages to `ieee-data`, and simulated review to `ieee-reviewer`.
 - Read `../ieee-shared/core/ieee-transactions-contract.md` for shared IEEE Transactions constraints when producing manuscript-facing output.
+- Apply `../ieee-shared/core/claim-centered-writing.md` to make the strongest
+  supported contribution explicit without hiding conclusion-changing evidence,
+  switching comparisons post hoc, or evading required limitations.
 - Keep outputs source-grounded: do not invent citations, metrics, theorem guarantees, hardware details, or experimental results.
 - For a full manuscript or multi-round revision, load `../ieee-shared/core/consistency-sweep.md` and reconcile numbers, terminology, assumptions, scenarios, units, and claims before delivery.

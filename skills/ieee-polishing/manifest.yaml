@@ -1,5 +1,5 @@
 name: ieee-polishing
-version: 1.0.0
+version: 1.1.0
 description: >
   Declarative manifest for IEEE Transactions static/dynamic guidance. SKILL.md uses this to load only the fragments needed for the request.
 
@@ -7,6 +7,7 @@ always_load:
   - ../ieee-shared/core/reader-workflow.md
   - ../ieee-shared/core/paper-type-taxonomy.md
   - ../ieee-shared/core/ethics.md
+  - ../ieee-shared/core/claim-centered-writing.md
   - ../ieee-shared/core/terminology-ledger.md
   - ../ieee-shared/core/ieee-transactions-contract.md
 

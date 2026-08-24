@@ -1,5 +1,5 @@
 name: ieee-submission-audit
-version: 1.0.0
+version: 1.1.0
 description: >
   Declarative routing for strict IEEE Transactions pre-submission checks.
   The audit contract and venue checklist load for every run; the offline
@@ -8,6 +8,7 @@ description: >
 always_load:
   - SKILL.md
   - references/strict-ieee-checklist.md
+  - ../ieee-shared/core/claim-centered-writing.md
 
 references:
   on_demand:

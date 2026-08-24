@@ -19,6 +19,9 @@ Use `manifest.yaml` to select one exclusive plotting backend and load only the r
 3. Once resolved, keep the backend exclusive for drawing, previewing, exporting, and visual QA. Save an explicit user choice with `scripts/ieee_figure_backend.py set`.
 4. Define the figure contract before plotting: claim, target journal/column width, panel map, variables, units, baselines, independent unit, statistics, uncertainty, source data, and export formats.
 5. Run the data-integrity gate: preserve values and labels, do not fabricate data, distinguish demo data, and document transformations/aggregation.
+   For author-facing panel selection, emphasis, or captions, also apply
+   `../ieee-shared/core/claim-centered-writing.md`; visual hierarchy may clarify
+   the main claim but must not hide uncertainty, relevant baselines, or failures.
 6. Select an existing template only when its evidence structure matches; read `references/template-catalog.md` and `references/asset-adaptation.md`.
 7. Build and export. Prefer vector PDF/EPS/SVG for plots and diagrams; use PNG/TIFF for raster content when appropriate.
 8. Run `scripts/validate_figure.py` and the QA contract. For PDF output also run `scripts/audit_pdf_text.py FIGURE.pdf --min-pt 5` to detect math superscripts or other glyph runs below the floor.

@@ -17,6 +17,9 @@ This is an evidence-first state machine, not a generic “write my paper” prom
 6. Content before style: repair logic, assumptions, evidence, and feasibility before polishing language.
 7. Never upgrade epistemic strength: simulation is not deployment, compatibility is not causality, and an observed mean gap is not statistical superiority.
 8. Stop when key evidence, authority, or feasibility is missing; lower claim commitment or split scope instead of masking the gap.
+9. Apply `../ieee-shared/core/claim-centered-writing.md`: organize the proposal
+   around its strongest evidence-backed value, but retain disconfirming evidence,
+   failure boundaries, and planned tests that could falsify the central claim.
 
 ## Mode routing
 

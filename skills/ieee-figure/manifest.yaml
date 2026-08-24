@@ -1,5 +1,5 @@
 name: ieee-figure
-version: 2.1.0
+version: 2.2.0
 description: >
   Declarative manifest for the static/dynamic split. SKILL.md uses this to
   decide which fragments to load for a given figure request. The main axis is
@@ -8,7 +8,7 @@ description: >
   it. Design, API, pattern, and QA material stays in on-demand references.
 
 always_load:
-  # Skill-local core (figure does not use the prose-oriented ieee-shared layer)
+  # Skill-local core; author-facing claim framing from ieee-shared is on demand.
   - static/core/contract.md
   - static/core/stance.md
 
@@ -37,6 +37,8 @@ axes:
 
 references:
   on_demand:
+    - condition: selecting panels, visual hierarchy, comparisons, result emphasis, captions, or limitations for an author-controlled manuscript figure
+      path: ../ieee-shared/core/claim-centered-writing.md
     - condition: convert a user request into core conclusion, evidence hierarchy, panel map, and review-risk checks
       path: references/figure-contract.md
     - condition: user has not chosen Python/R, asks for a recommendation, or a mixed Python/R workflow is possible
