@@ -81,7 +81,7 @@ This repository is intentionally IEEE-first:
   task scenes, latency, throughput, packet drops, robustness, and statistical
   significance.
 
-## Evidence-calibrated anti-defensive writing
+## Evidence-calibrated press-release writing
 
 The suite incorporates an IEEE-specific adaptation of
 [Adkid-Zephyr's Anti-Defensive Writing skill](https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill/tree/0212d11541f6df5ce8a6f22ae82bc651452abd24).
@@ -91,20 +91,27 @@ rather than installed as a separate, overlapping skill. This keeps routing
 deterministic and prevents author-facing rhetoric from leaking into independent
 review or source-analysis workflows.
 
-The adaptation keeps the useful principles: organize the paper around its
-strongest supported contribution, avoid experiment-diary narration, give each
-experiment an argumentative role, and remove unsupported self-undermining
-language. It does **not** adopt “never report a loss” as a blanket rule. The
-shared module explicitly prohibits selective reporting, hidden negative results,
-post-hoc metric or baseline switching, misleading figures, weakened statistical
-findings, and evasive reviewer responses.
+The adaptation now preserves the original skill's full press-release principle:
+organize the main paper around its strongest supported contribution, avoid
+project-report and experiment-diary narration, state the advantage explicitly,
+and keep non-leading contests from becoming the Abstract, contributions,
+Discussion, or Conclusion. It also adds a deterministic routing rule between the
+main manuscript and the complete evidence record: essential claims and
+decision-changing boundaries stay in the paper, while non-leading ablations,
+stopped attempts, provenance logs, evaluator counts, hashes, and repeated audit
+detail move to the supplement or artifact package.
+
+This routing never authorizes selective reporting. The shared module prohibits
+hidden conclusion-changing evidence, post-hoc metric or baseline switching,
+misleading figures, weakened statistical findings, and evasive reviewer
+responses.
 
 Routing is deliberately bounded:
 
 | Integration | Skills | Behavior |
 |---|---|---|
-| Always loaded | `ieee-writing`, `ieee-polishing`, `ieee-proposal-writer`, `ieee-response`, `ieee-submission-audit` | Applies claim-centered framing together with evidence, limitation, and non-evasion safeguards. |
-| On demand | `ieee-statistics`, `ieee-figure` | Loads only when drafting result prose, legends, captions, panel selection, or visual emphasis after the integrity/statistical gate. |
+| Always loaded | `ieee-writing`, `ieee-polishing`, `ieee-proposal-writer`, `ieee-response`, `ieee-submission-audit` | Applies the press-release principle, defensive-writing attack-surface audit, and main-versus-supplement evidence routing. |
+| On demand | `ieee-statistics`, `ieee-figure` | Loads when result prose, legends, captions, panel selection, visual emphasis, or evidence placement follows the integrity/statistical gate. |
 | Not applied | `ieee-reviewer`, `ieee-reader`, `ieee-paper-card`, citation/search/retrieval skills | Independent assessment, evidence extraction, and source verification must not inherit the author's rhetorical stance. |
 
 The adapted source remains under its MIT terms; the preserved notice is at
