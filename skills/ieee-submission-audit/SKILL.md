@@ -32,6 +32,13 @@ Use this skill when the user asks for:
   baselines, ablations, complexity, stability/convergence/reliability, explicit
   strongest supported contribution, proportionate limitations, and any omitted
   negative evidence that would change the conclusion.
+- Defensive-writing attack surface: work-report chronology, experiment-log prose,
+  non-leading ablations promoted to headline contests, repeated limitations,
+  audit/provenance detail left in the main text, and Conclusions that end on
+  missing work instead of demonstrated value.
+- Main-versus-supplement routing: essential claims and evidence remain in the main
+  paper; complete non-leading audit detail remains discoverable in the supplement
+  or artifact record.
 - Citations: numeric IEEE style, first-appearance ordering, archival IEEE-first support, conference-extension disclosure.
 - Figures and tables: one claim per figure, final-width readability, captions, subfigure labels, vector/raster export format, black-and-white robustness.
 - Reproducibility: code/data/logs/seeds/configs/weights/ROS bags/hardware/simulation settings and exact reproduction commands.

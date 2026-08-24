@@ -10,10 +10,10 @@ Use this package only as a dependency of another IEEE skill.
 - Load the exact referenced file; do not preload the whole package.
 - Treat `core/` and `journal-formats/` as shared definitions, not standalone workflows.
 - Use `core/ieee-transactions-contract.md` for suite-wide IEEE constraints.
-- Use `core/claim-centered-writing.md` for evidence-calibrated, non-defensive
-  author-facing writing, restructuring, result presentation, captions, reviewer
-  responses, and submission audits. Do not use it to soften independent review
-  or statistical findings.
+- Use `core/claim-centered-writing.md` for the evidence-calibrated press-release
+  principle: organize the main manuscript around its strongest supported value,
+  separate the main argument from the complete supplementary record, and remove
+  repeated self-defense without softening independent review or statistical findings.
 - Use `core/consistency-sweep.md` for cross-section terminology, numeric, assumption, and claim consistency after iterative edits.
 - Use `core/research-compliance.md` only when human subjects, autonomous deployment, spectrum use, cybersecurity, sensitive traces, safety-critical systems, or dual-use concerns apply.
 - Use `journal-formats/ieee-transactions.md` for stable generic format facts, then verify the named journal's current Information for Authors when exact limits matter.

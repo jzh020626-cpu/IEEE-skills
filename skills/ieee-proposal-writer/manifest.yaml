@@ -1,5 +1,5 @@
 name: ieee-proposal-writer
-version: 1.2.0
+version: 1.3.0
 description: >
   Declarative routing for the proposal-first IEEE Transactions writing
   state machine. Foundation templates, evaluation rubrics, stopping rules, and

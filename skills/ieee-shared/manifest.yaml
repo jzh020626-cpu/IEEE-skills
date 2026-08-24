@@ -1,5 +1,5 @@
 name: ieee-shared
-version: 1.1.0
+version: 1.2.0
 description: >
   Declarative manifest for shared IEEE Transactions reference modules. This
   internal package is not a standalone workflow; requesting IEEE skills load
@@ -9,7 +9,7 @@ always_load: []
 
 core:
   on_demand:
-    - condition: author-facing argument design, drafting, restructuring, polishing, result presentation, captions, reviewer responses, or submission audits need evidence-calibrated anti-defensive writing
+    - condition: author-facing argument design, drafting, restructuring, polishing, result presentation, captions, reviewer responses, or submission audits need the evidence-calibrated press-release principle and main-manuscript-versus-supplement routing
       path: core/claim-centered-writing.md
     - condition: shared ethics, safety, authorship, disclosure, confidentiality, or non-invention guardrails are needed
       path: core/ethics.md

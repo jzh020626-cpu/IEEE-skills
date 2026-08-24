@@ -12,6 +12,21 @@ Force every section to serve this sentence. If the sentence cannot be written, t
 
 On first contact with the material, extract the recurring terms, abbreviations, notation, and proper names into a Terminology Ledger before drafting any prose. Lock the canonical forms and reuse them across every section. See `../../../ieee-shared/core/terminology-ledger.md`.
 
+## 1c. Separate the main argument from the complete record
+
+Before choosing section architecture, classify the material:
+
+- **Main manuscript:** the central claim, distinctive solution, direct evidence,
+  mechanism, strongest alternative explanation, and any boundary that changes a
+  reasonable reader's interpretation.
+- **Supplement or artifact record:** complete scenario tables, non-leading
+  ablations, stopped attempts, evaluator counts, provenance, hashes, projection
+  diagnostics, and repeated audit detail.
+
+Preserve required evidence, but do not let the main paper read as a project log
+or pre-emptive reviewer response. See
+`../../../ieee-shared/core/claim-centered-writing.md`.
+
 ## 2. Choose section architecture
 
 Pick the section structure from the relevant `section/*.md` fragment and, if needed, deeper patterns from `references/article-architecture.md`.

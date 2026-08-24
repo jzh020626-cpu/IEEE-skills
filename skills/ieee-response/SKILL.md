@@ -15,9 +15,10 @@ Use `manifest.yaml` and load the response core before drafting.
 3. If the user pasted a decision email, extract manuscript ID/title, journal, decision, deadline, required files, editor instructions, reviewer boundaries, and portal constraints before drafting.
 4. Preserve editor items as `E.1...` and reviewer items as `R1.1...`; classify novelty, theory, experiment, baseline, ablation, statistics, clarity, citation, format, reproducibility, or venue fit.
 5. Build a strategy/tracker, then draft a direct answer, action/evidence, manuscript location, and scoped limitation or disagreement for every item.
-   Apply `../ieee-shared/core/claim-centered-writing.md`: avoid unnecessary
-   self-attack, but never use reframing to evade the reviewer's requested result,
-   a valid limitation, or a conclusion-changing weakness.
+   Apply `../ieee-shared/core/claim-centered-writing.md`: answer directly, then
+   frame the response around the strongest supported resolution. Avoid repeated
+   self-attack and project-history narration, but never use reframing to evade a
+   requested result, valid limitation, or conclusion-changing weakness.
 6. If manuscript text is edited, work on a copy and mark changes visibly. Revised excerpts quoted in the response are italic.
 7. In print/LaTeX output, begin each reviewer on a new page. Use templates under `templates/` when requested.
 8. For a multi-file revision package, read `references/package-consistency-audit.md` and run `scripts/check_package_consistency.py` against the response letter and marked/clean manuscripts.

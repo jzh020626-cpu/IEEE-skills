@@ -8,6 +8,10 @@
 - If the draft is Chinese or structurally rough, reconstruct the logic first and the prose second.
 - On first contact with the draft, build a Terminology Ledger and keep terms, abbreviations, units, and notation consistent across every section. Do not introduce synonyms to vary the prose. See `../../../ieee-shared/core/terminology-ledger.md`.
 - Avoid em dashes in polished output by default. Prefer commas, parentheses, or full stops. Use colons sparingly unless the user explicitly asks to preserve dash-based punctuation or wants a colon-led style.
+- Apply the press-release principle before sentence polishing: every main-text
+  paragraph must establish, explain, test, or proportionally delimit the strongest
+  supported contribution. Route non-leading audit trails, stopped attempts,
+  project history, and repeated caveats to the supplement or artifact record.
 
 ## Reader workflow
 

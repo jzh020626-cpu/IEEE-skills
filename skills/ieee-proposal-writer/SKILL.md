@@ -18,8 +18,10 @@ This is an evidence-first state machine, not a generic “write my paper” prom
 7. Never upgrade epistemic strength: simulation is not deployment, compatibility is not causality, and an observed mean gap is not statistical superiority.
 8. Stop when key evidence, authority, or feasibility is missing; lower claim commitment or split scope instead of masking the gap.
 9. Apply `../ieee-shared/core/claim-centered-writing.md`: organize the proposal
-   around its strongest evidence-backed value, but retain disconfirming evidence,
-   failure boundaries, and planned tests that could falsify the central claim.
+   around its strongest evidence-backed value; keep the narrative focused on the
+   problem, distinctive move, decisive tests, and significance. Preserve
+   disconfirming evidence and falsification tests in the evidence/section
+   contracts without turning the prose into a risk register.
 
 ## Mode routing
 
