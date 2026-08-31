@@ -16,7 +16,7 @@ If reviewer boundaries or comment segmentation are ambiguous, flag the ambiguity
 6. Build a strategy summary and tracker.
 7. Draft preserved-comment responses except in `triage-only`, `cover-letter`, or `appeal-like`.
 8. Draft a concise cover letter for `cover-letter` or `revision-package`.
-9. Map every claimed change to a location, figure, table, supplement, citation, or explicit placeholder.
+9. Map every claimed change to a location, figure, table, Supplementary Material, artifact repository, citation, or explicit placeholder. For every main-text edit, load `../../../ieee-shared/core/main-text-discipline.md`, classify the result or explanation, and decide whether it belongs in the main text, caption, Methods, artifact record, Supplementary Material, or response letter. Answer the reviewer fully in the letter while keeping the manuscript change to the shortest reader-facing text that preserves the central inference. Every addition triggers a deletion check across the affected paragraph.
 10. When editing, use a backup/copy and red-mark changes; italicize quoted revised excerpts.
 11. Start each reviewer on a new page in LaTeX/print outputs and use bundled templates when requested.
 12. Flag missing input, run QA, and return `ready_to_submit`, `draft_with_placeholders`, `needs_author_input`, or `blocked`.
@@ -49,6 +49,7 @@ Marked manuscript / LaTeX files
 
 Manuscript change checklist
 - [specific manuscript changes or placeholders]
+- Main-text discipline audit: [result/explanation class; destination; appended, replaced, compressed, relocated, or deleted; before/after paragraph word count]
 
 Missing information / risk flags
 - [specific unresolved items or "None"]

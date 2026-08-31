@@ -27,6 +27,13 @@ Preserve required evidence, but do not let the main paper read as a project log
 or pre-emptive reviewer response. See
 `../../../ieee-shared/core/claim-centered-writing.md`.
 
+For Results or full-main-text work, refine this split with
+`../../../ieee-shared/core/main-text-discipline.md`: classify core results,
+necessary support, qualifications, robustness, heterogeneity, provenance,
+alternative inference, and edge/failure cases before placement. If the target
+venue does not permit Supplementary Material, use an allowed appendix or
+artifact repository and keep indispensable evidence in the main text.
+
 ## 2. Choose section architecture
 
 Pick the section structure from the relevant `section/*.md` fragment and, if needed, deeper patterns from `references/article-architecture.md`.

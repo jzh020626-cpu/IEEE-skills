@@ -12,6 +12,11 @@ Only recommend a backend when the user explicitly asks you to choose or recommen
 
 Once Python or R is selected, every plotting script, preview image, SVG/PDF/TIFF/PNG export, QA render, and visual workaround must be produced by that same backend. Do not use Python to draw a preview for an R figure, and do not use R to draw a preview for a Python figure, even if the selected runtime or packages are missing locally. The non-selected language may only be used for non-visual file inspection or data conversion when it does not open a graphics device, import plotting libraries, create image/vector files, or change the final visual appearance.
 
+The backend-neutral `audit_panel_alignment.py`, `audit_pdf_text.py`, and
+`audit_figure_collisions.py` may inspect a layout manifest or final PDF from
+either backend. They do not redraw scientific content. Alignment/collision
+overlays are QA-only and never replace the selected-backend submission asset.
+
 ## Missing runtime/package rule
 
 After the backend is selected, check the selected runtime early (`Rscript`/R for R; Python and required plotting packages for Python). If the selected runtime or required packages are unavailable, stop before rendering and report the exact blocker. You may provide a selected-backend script and installation commands, or ask permission to install dependencies, but you must not fall back to the other language to make a substitute figure.
@@ -19,11 +24,13 @@ After the backend is selected, check the selected runtime early (`Rscript`/R for
 ## The five-point contract
 
 1. **Core conclusion**: write the one-sentence claim the figure must defend.
-2. **Evidence chain**: map each planned panel to the claim, and drop panels that do not carry a unique piece of evidence.
+2. **Evidence chain**: map each planned panel to one distinct inferential role, and drop, merge, or demote panels that only redraw another panel's evidence.
 3. **Archetype**: classify the figure as `quantitative grid`, `schematic-led system figure`, `experiment snapshot + quant`, or `asymmetric mixed-modality figure`.
 4. **Backend**: use the selected Python or R track exclusively for all figure drawing, previewing, exporting, and visual QA. Do not cross-render with the other language.
-5. **Journal/export contract**: set final dimensions, editable text, figure/table data, statistics, image-integrity notes, and export formats before styling.
+5. **Journal/export contract**: set final dimensions, editable text, figure/table data, statistics, image-integrity notes, export formats, render-time multi-panel alignment, and final PDF collision QA before styling.
 
 The highest-priority rule is: **the chart serves the scientific logic**. Aesthetic polish, template matching, and complex layout are subordinate to making the core conclusion clear, defensible, and reviewable.
 
 For the full method to convert a request into core conclusion, evidence hierarchy, panel map, and review-risk checks, open `references/figure-contract.md`.
+For a multi-panel figure or figure sequence, also open
+`references/multipanel-evidence-architecture.md`.

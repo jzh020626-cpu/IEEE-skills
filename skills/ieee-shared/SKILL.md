@@ -14,6 +14,15 @@ Use this package only as a dependency of another IEEE skill.
   principle: organize the main manuscript around its strongest supported value,
   separate the main argument from the complete supplementary record, and remove
   repeated self-defense without softening independent review or statistical findings.
+- Use `core/main-text-discipline.md` when allocating core results, qualifications,
+  robustness checks, failure cases, configuration detail, and statistics across
+  the main text, captions, Supplementary Material, and artifact repositories.
+- Use `core/discussion-argument-language.md` when a Discussion needs a clear
+  finding-to-interpretation progression, evidence-calibrated modality,
+  claim-specific limitations, or uncertainty-resolving future work.
+- Use `core/engineering-evidence-chain.md` when Abstract, Introduction,
+  Results/Experiments, Discussion, and Conclusion must follow one paper-type-
+  appropriate claim–evidence route.
 - Use `core/consistency-sweep.md` for cross-section terminology, numeric, assumption, and claim consistency after iterative edits.
 - Use `core/research-compliance.md` only when human subjects, autonomous deployment, spectrum use, cybersecurity, sensitive traces, safety-critical systems, or dual-use concerns apply.
 - Use `journal-formats/ieee-transactions.md` for stable generic format facts, then verify the named journal's current Information for Authors when exact limits matter.

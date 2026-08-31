@@ -19,9 +19,9 @@ def load_module(name: str, path: Path):
     return module
 
 
-VALIDATOR = load_module("nature_figure_validator_test", SKILL / "scripts" / "validate_figure.py")
-PDF_AUDIT = load_module("nature_figure_pdf_audit_test", SKILL / "scripts" / "audit_pdf_text.py")
-FIGURE_SAFETY = load_module("nature_figure_safety_test", SKILL / "scripts" / "figure_safety.py")
+VALIDATOR = load_module("ieee_figure_validator_test", SKILL / "scripts" / "validate_figure.py")
+PDF_AUDIT = load_module("ieee_figure_pdf_audit_test", SKILL / "scripts" / "audit_pdf_text.py")
+FIGURE_SAFETY = load_module("ieee_figure_safety_test", SKILL / "scripts" / "figure_safety.py")
 
 
 def fake_pdf(stream: bytes, compressed: bool = False) -> bytes:
@@ -61,6 +61,22 @@ class PdfTextAuditTests(unittest.TestCase):
 class SourceSafetyTests(unittest.TestCase):
     def findings(self, source: str):
         return {row.check_id: row for row in VALIDATOR.validate_source(source, "python")}
+
+    def test_ieee_column_width_defaults_are_preserved(self):
+        for width in (88.9, 182.0):
+            finding = VALIDATOR.check_dimensions(f"width_mm = {width}", "python")
+            self.assertEqual("PASS", finding.level)
+            self.assertIn("IEEE", finding.message)
+
+    def test_tight_bbox_export_is_blocking(self):
+        rows = self.findings('fig.savefig("figure.pdf", bbox_inches="tight")')
+        self.assertEqual("FAIL", rows["FINAL-CANVAS"].level)
+
+    def test_bundled_template_defaults_use_ieee_column_widths(self):
+        template = (SKILL / "scripts" / "plot_templates.py").read_text(encoding="utf-8")
+        self.assertIn("add_common_arguments(marginal, 182.0, 105.0)", template)
+        self.assertIn("add_common_arguments(paired, 88.9, 86.0)", template)
+        self.assertNotIn('bbox_inches="tight"', template)
 
     def test_risky_patterns_are_reported(self):
         source = '''
@@ -125,6 +141,70 @@ ax.text(0.5, 0.6, "B", rotation=90)
         rows = self.findings(source)
         self.assertEqual(rows["ROTATION-ANCHOR"].level, "WARN")
         self.assertEqual(rows["ROTATION-ANCHOR"].evidence, ["line 3: rotation=..."])
+
+    def test_python_multipanel_source_requires_alignment_gate(self):
+        missing = self.findings("fig, axes = plt.subplots(2, 2)")
+        self.assertEqual(missing["PANEL-ALIGNMENT-GATE"].level, "FAIL")
+
+        import_only = self.findings(
+            "from audit_panel_alignment import require_matplotlib_panel_alignment\n"
+            "fig, axes = plt.subplots(2, 2)"
+        )
+        self.assertEqual(import_only["PANEL-ALIGNMENT-GATE"].level, "FAIL")
+
+        manual_axes = self.findings(
+            "fig = plt.figure()\n"
+            "ax_a = fig.add_axes([0.1, 0.1, 0.3, 0.8])\n"
+            "ax_b = fig.add_axes([0.6, 0.1, 0.3, 0.8])"
+        )
+        self.assertEqual(manual_axes["PANEL-ALIGNMENT-GATE"].level, "FAIL")
+
+        mosaic = self.findings("fig, axes = plt.subplot_mosaic([['a', 'b']])")
+        self.assertEqual(mosaic["PANEL-ALIGNMENT-GATE"].level, "FAIL")
+
+        wired = self.findings(
+            '''
+fig, axes = plt.subplots(2, 2)
+require_matplotlib_panel_alignment(fig, strict=True)
+'''
+        )
+        self.assertEqual(wired["PANEL-ALIGNMENT-GATE"].level, "PASS")
+
+    def test_r_patchwork_source_requires_alignment_gate(self):
+        missing = {
+            row.check_id: row
+            for row in VALIDATOR.validate_source(
+                "fig <- (p_a | p_b) + plot_layout(guides = 'collect')",
+                "r",
+            )
+        }
+        self.assertEqual(missing["PANEL-ALIGNMENT-GATE"].level, "FAIL")
+
+        manifest_only = {
+            row.check_id: row
+            for row in VALIDATOR.validate_source(
+                "fig <- p_a | p_b\nwrite_patchwork_panel_layout(fig, manifest_path='a.json')",
+                "r",
+            )
+        }
+        self.assertEqual(manifest_only["PANEL-ALIGNMENT-GATE"].level, "FAIL")
+
+        wired = {
+            row.check_id: row
+            for row in VALIDATOR.validate_source(
+                "fig <- p_a | p_b\nrequire_patchwork_panel_alignment(fig, manifest_path='a.json')",
+                "r",
+            )
+        }
+        self.assertEqual(wired["PANEL-ALIGNMENT-GATE"].level, "PASS")
+
+    def test_r_delimiter_check_ignores_comments(self):
+        finding = VALIDATOR.check_syntax(
+            "# patchwork's final panel cells { are measured\nfig <- (p_a | p_b)",
+            "r",
+        )
+        self.assertEqual(finding.level, "WARN")
+        self.assertIn("delimiter check passed", finding.message)
 
 
 class NumericalSafetyTests(unittest.TestCase):

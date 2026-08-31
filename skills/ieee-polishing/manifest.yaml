@@ -1,5 +1,5 @@
 name: ieee-polishing
-version: 1.2.0
+version: 1.4.0
 description: >
   Declarative manifest for IEEE Transactions static/dynamic guidance. SKILL.md uses this to load only the fragments needed for the request.
 
@@ -10,11 +10,14 @@ always_load:
   - ../ieee-shared/core/claim-centered-writing.md
   - ../ieee-shared/core/terminology-ledger.md
   - ../ieee-shared/core/ieee-transactions-contract.md
+  - static/core/stance.md
+  - static/core/failure-modes.md
+  - static/core/output-format.md
 
 axes:
   paper_type:
     detect: |
-      Decide whether the request is algorithmic/theoretical, robotics/automation system, communication/networked control, industrial informatics, or survey/tutorial. Default to algorithmic when unclear.
+      Decide whether the request is algorithmic/theoretical, robotics/automation system, communication/networked control, industrial informatics, or survey/tutorial. Use research when the dominant paper type is unclear; use algorithmic only when an algorithm, model, or theorem is central.
     values:
       algorithmic: static/fragments/paper_type/algorithmic.md
       methods: static/fragments/paper_type/methods.md
@@ -60,5 +63,11 @@ axes:
 
 references:
   on_demand:
+    - condition: aligning claim and evidence logic across Abstract, Introduction, Results/Experiments, Discussion, and Conclusion
+      path: ../ieee-shared/core/engineering-evidence-chain.md
+    - condition: polishing, restructuring, or shortening Results or full main text; allocating evidence across main text, captions, Supplementary Material, and artifacts; preventing revision accretion or claim repetition
+      path: ../ieee-shared/core/main-text-discipline.md
+    - condition: polishing, restructuring, or auditing Discussion; repairing finding-to-interpretation movement; calibrating modals or hedging; making limitations claim-specific; or converting generic future work into uncertainty-resolving tests
+      path: ../ieee-shared/core/discussion-argument-language.md
     - condition: target venue rules, Note to Practitioners, numbered citations, double-column constraints, or reproducibility package
       path: ../ieee-shared/core/ieee-transactions-contract.md

@@ -88,13 +88,13 @@ DEFAULT_COLOR_ORDER = [
 ]
 ```
 
-### Unified-family rule (recommended for NMI-style pages)
+### Unified-family rule (recommended for related-method comparison pages)
 
 Publication figures should read like **one figure**, not six unrelated plots. Prefer one cool family for
 baselines and one lilac/rose family for the proposed method line.
 
 ```python
-PALETTE_NMI_PASTEL = {
+PALETTE_IEEE_FAMILY_PASTEL = {
     "baseline_dark": "#484878",
     "baseline_mid":  "#7884B4",
     "baseline_soft": "#B4C0E4",
@@ -105,7 +105,7 @@ PALETTE_NMI_PASTEL = {
     "delta_down": "#E53935",
 }
 
-DEFAULT_COLOR_ORDER_NMI_PASTEL = [
+DEFAULT_COLOR_ORDER_IEEE_FAMILY_PASTEL = [
     "#484878",   # baseline_dark
     "#7884B4",   # baseline_mid
     "#B4C0E4",   # baseline_soft
@@ -335,10 +335,10 @@ os.makedirs('./figures/', exist_ok=True)
 fig.tight_layout(pad=2)   # default; use pad=1 for compact multi-panel
 
 # ── PRIMARY ── editable vector, text as <text> nodes ─────────────────────────
-fig.savefig('./figures/name.svg', bbox_inches='tight')
+fig.savefig('./figures/name.svg')
 
 # ── SECONDARY ── raster for quick preview / submission portals ────────────────
-fig.savefig('./figures/name.png', dpi=300, bbox_inches='tight')
+fig.savefig('./figures/name.png', dpi=300)
 
 plt.close(fig)   # always close to free memory
 ```
@@ -425,6 +425,8 @@ To match IEEE Transactions publication standards:
 - [ ] **Save as SVG** (primary). PNG dpi=300 as optional raster preview.
 - [ ] Top and right spines off; frameless legend
 - [ ] Figure architecture chosen intentionally: grid, schematic-led composite, image plate, or asymmetric hero layout
+- [ ] Every panel has a distinct inferential role; redundant panels were merged, demoted, or removed using `multipanel-evidence-architecture.md`
+- [ ] Final multi-panel geometry passed render-time alignment QA and the exported PDF passed collision QA
 - [ ] Font size ≥ 16 base; 24 for large bar panels; 32–54 for axis labels on large panels
 - [ ] Colors from blue-green-red-neutral semantic palette
 - [ ] Black background used only for imaging plates, not for ordinary plots

@@ -14,6 +14,7 @@ IEEE Transactions Skills 是一套面向 Codex 的学术写作与投稿辅助技
 |-- README.zh-CN.md
 |-- LICENSE
 |-- UPSTREAM_ADAPTATION.md
+|-- .codex-plugin/plugin.json
 |-- scripts/
 |   |-- autoupdate-skills.sh
 |   |-- check-nature-upstream.sh
@@ -36,6 +37,7 @@ IEEE Transactions Skills 是一套面向 Codex 的学术写作与投稿辅助技
     |-- ieee-reader/
     |-- ieee-ref-verifier/
     |-- ieee-downloader/
+    |-- ieee-image2ppt/
     |-- ieee-paper2ppt/
     |-- ieee-paper-to-patent/
     |-- ieee-statistics/
@@ -77,6 +79,8 @@ IEEE Transactions Skills 是一套面向 Codex 的学术写作与投稿辅助技
 该适配现在完整保留原 skill 的“学术发布会”原则：主文围绕最强且有证据支持的贡献组织，避免项目汇报和实验流水账，明确说出优势，不把非领先指标、失败过程或非核心消融提升为摘要、贡献、Discussion 或 Conclusion 的主战场。
 
 同时，IEEE 版本新增了明确的主文—完整证据记录路由：直接支撑核心主张的证据、会改变结论的限制和必要安全边界保留在主文；非核心消融、停止的验证尝试、provenance 日志、评估次数、哈希和重复审计细节进入补充材料或 artifact package。该路由不允许选择性报告；共享模块仍明确禁止隐藏会改变结论的证据、事后切换指标或 baseline、误导性图表、弱化统计问题以及回避审稿意见。
+
+2026-09 同步进一步加入主文证据分配和跨章节工程证据链：分别处理哪些结果进入主文、caption、补充材料、附录或 artifact，以及算法、控制理论、机器人系统、通信网络和 benchmark 论文如何让 Abstract、Introduction、Results、Discussion 与 Conclusion 对齐。最强贡献可以是定理、保证、机制、系统能力、工程权衡或失败边界，不要求强行改写成性能竞赛。
 
 路由边界如下：
 
@@ -144,6 +148,7 @@ scripts/update-codex-skills.sh --prune
 | [`ieee-reader`](skills/ieee-reader/README.md) | 为 IEEE 或工程论文构建图表感知的中英双语阅读材料。 |
 | [`ieee-ref-verifier`](skills/ieee-ref-verifier/README.md) | 核验 DOI、作者顺序、期刊、Early Access/卷期、页码/文章号和会议—期刊版本。 |
 | [`ieee-downloader`](skills/ieee-downloader/README.md) | 配置合法的机构访问或开放获取论文下载，并整理授权 PDF。 |
+| [`ieee-image2ppt`](skills/ieee-image2ppt/README.md) | 将已有幻灯片截图、扫描版幻灯片或图片型 PPTX 还原为对象级可编辑 PowerPoint。 |
 | [`ieee-paper2ppt`](skills/ieee-paper2ppt/README.md) | 从机器人、自动化、控制、通信或工业信息学论文构建 IEEE 风格中文汇报 PPT。 |
 | [`ieee-paper-to-patent`](skills/ieee-paper-to-patent/README.md) | 将工程论文、学位论文、技术报告、源码或图表转换为中文发明专利草案。 |
 | [`ieee-statistics`](skills/ieee-statistics/README.md) | 审查随机种子/运行、独立实验单位、不确定性、benchmark 汇总、数据泄漏和图注统计。 |
@@ -189,16 +194,23 @@ $ieee-submission-audit
 - 机器人和自动化实验设置：任务场景、硬件/仿真、安全边界、延迟、吞吐和可靠性。
 - 复现包准备情况：代码、数据集、随机种子、日志、模型权重、必要时的 ROS bag、参数和运行命令。
 
-## 可选依赖
+## 运行依赖
 
-大多数 skills 是提示词/指令型 skill，不需要额外安装包。少数辅助脚本有可选依赖：
+大多数 skills 是提示词/指令型 skill，不需要额外安装包。仅安装实际使用工作流所需的依赖：
 
 ```bash
+# ieee-figure 最终 PDF 碰撞审查所需
+python -m pip install -r skills/ieee-figure/requirements.txt
+
+# 使用 ieee-image2ppt 运行时前必须安装（Python 3.10+）
+python -m pip install -r skills/ieee-image2ppt/requirements.txt
+
+# 仅在使用相应可选脚本/MCP 时安装
 python -m pip install -r skills/ieee-paper-to-patent/requirements.txt
 python -m pip install -r skills/ieee-academic-search/mcp-server/requirements.txt
 ```
 
-只有在使用对应脚本时才需要安装。
+安装器只提示命令，不会自动修改 Python 环境。
 
 ## IEEE academic search MCP
 

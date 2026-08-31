@@ -1,10 +1,10 @@
 # Section: Abstract (writing)
 
-The abstract is a mini-paper. Draft it last, when Results and Discussion are stable.
+The abstract is the manuscript's shortest evidence chain. Draft it last, when Results and Discussion are stable.
 
 ## Default IEEE Transactions pattern
 
-`context / problem -> gap -> approach -> key result -> implication -> boundary`
+`precise problem / gap -> answer-enabling approach -> main result -> decisive support or boundary -> implication`
 
 ## Paragraph movement (recommended)
 
@@ -34,5 +34,7 @@ Open `references/abstract.md` for templates and examples.
 ## Drafting discipline
 
 - Keep it compact. Cut sentences that re-summarize background the title already implies.
+- Organize it around one principal claim and at most one or two decisive supporting claims or boundaries; do not inventory every experiment.
+- Keep method detail only when it explains why the question is answerable.
 - Include quantitative or comparative detail when the user provided it. Do not invent numbers.
 - End with what the work enables, not generic importance.

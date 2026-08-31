@@ -1,5 +1,5 @@
 name: ieee-response
-version: 1.2.0
+version: 1.3.0
 description: >
   Declarative manifest for the static/dynamic split. SKILL.md uses this to
   decide which fragments and templates to load for a reviewer-response or
@@ -23,6 +23,8 @@ always_load:
 
 references:
   on_demand:
+    - condition: a reviewer or editor comment leads to additions, deletions, compression, relocation, or statistical-detail changes in the manuscript main text
+      path: ../ieee-shared/core/main-text-discipline.md
     - condition: before drafting — identify task mode, parse pasted decision emails, minimum inputs, editor IDs, readiness state, clarifying-question need
       path: references/intake-and-routing.md
     - condition: source hierarchy, rule provenance, or policy-vs-advice boundaries

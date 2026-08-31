@@ -37,7 +37,7 @@ DEFAULT_COLORS = [
     PALETTE["neutral_light"],
 ]
 
-PALETTE_NMI_PASTEL = {
+PALETTE_IEEE_FAMILY_PASTEL = {
     "baseline_dark": "#484878",
     "baseline_mid":  "#7884B4",
     "baseline_soft": "#B4C0E4",
@@ -54,13 +54,13 @@ PALETTE_NMI_PASTEL = {
     "delta_down": "#E53935",
 }
 
-DEFAULT_COLORS_NMI_PASTEL = [
-    PALETTE_NMI_PASTEL["baseline_dark"],
-    PALETTE_NMI_PASTEL["baseline_mid"],
-    PALETTE_NMI_PASTEL["baseline_soft"],
-    PALETTE_NMI_PASTEL["ours_tiny"],
-    PALETTE_NMI_PASTEL["ours_base"],
-    PALETTE_NMI_PASTEL["ours_large"],
+DEFAULT_COLORS_IEEE_FAMILY_PASTEL = [
+    PALETTE_IEEE_FAMILY_PASTEL["baseline_dark"],
+    PALETTE_IEEE_FAMILY_PASTEL["baseline_mid"],
+    PALETTE_IEEE_FAMILY_PASTEL["baseline_soft"],
+    PALETTE_IEEE_FAMILY_PASTEL["ours_tiny"],
+    PALETTE_IEEE_FAMILY_PASTEL["ours_base"],
+    PALETTE_IEEE_FAMILY_PASTEL["ours_large"],
 ]
 
 PALETTE_IEEE_TRAJECTORY = {
@@ -101,7 +101,7 @@ PALETTE_IEEE_COMMUNICATION = {
 ```
 
 Use `DEFAULT_COLORS` when color itself carries explicit semantic meaning (`hero`, `baseline`, `positive variant`).
-Use `DEFAULT_COLORS_NMI_PASTEL` when several compared methods belong to one or two related families and the page
+Use `DEFAULT_COLORS_IEEE_FAMILY_PASTEL` when several compared methods belong to one or two related families and the page
 should feel visually unified.
 
 ---
@@ -169,22 +169,28 @@ def is_dark(hex_color, threshold=128):
 ## add_panel_label(ax, label, ...)
 
 ```python
-def add_panel_label(ax, label, x=-0.06, y=1.02, fontsize=14,
-                    color='black', fontweight='bold'):
-    """Place a IEEE Transactions-style panel label near the top-left edge."""
+def add_panel_label(ax, label, x=0, y=1, x_offset_pt=-4, y_offset_pt=3,
+                    fontsize=8, color='black', fontweight='bold', va='bottom'):
+    """Place a panel label with a fixed physical offset from an axes anchor."""
+    from matplotlib.transforms import ScaledTranslation
+    offset = ScaledTranslation(
+        x_offset_pt / 72,
+        y_offset_pt / 72,
+        ax.figure.dpi_scale_trans,
+    )
     ax.text(
         x, y, label,
-        transform=ax.transAxes,
+        transform=ax.transAxes + offset,
         fontsize=fontsize,
         fontweight=fontweight,
         color=color,
         ha='left',
-        va='bottom',
+        va=va,
     )
 ```
 
 For dark image plates, move the label inside the panel and switch to white:
-`add_panel_label(ax, 'a', x=0.01, y=0.98, color='white')`
+`add_panel_label(ax, '(a)', x=0.01, y=0.98, x_offset_pt=0, y_offset_pt=0, color='white', va='top')`
 
 ---
 
@@ -221,7 +227,7 @@ def make_grouped_bar(ax, categories, series, labels,
     labels     : list[str]  — legend label per group
     ylabel     : str
     colors     : list[str] | None  — defaults to DEFAULT_COLORS; override with
-                                     DEFAULT_COLORS_NMI_PASTEL for unified-family figures
+                                     DEFAULT_COLORS_IEEE_FAMILY_PASTEL for unified-family figures
     annotate   : bool  — print value above each bar
     bar_width  : float — total width for all bars in one category
     error_kw   : dict  — passed to ax.bar as error_kw
@@ -367,13 +373,55 @@ def make_heatmap(ax, matrix, x_labels=None, y_labels=None,
 
 ---
 
+## Render-time alignment and PDF collision gates
+
+For every multi-panel figure, call the alignment helper after the final layout,
+legend, colorbar, or manual position change and before saving:
+
+```python
+from audit_panel_alignment import require_matplotlib_panel_alignment
+
+require_matplotlib_panel_alignment(
+    fig,
+    json_out="figure.alignment.json",
+    overlay_svg="figure.alignment.svg",
+    tolerance_pt=1.5,
+    gutter_tolerance_pt=1.5,
+    require_panel_labels=False,
+    strict=True,
+)
+```
+
+The `1.5 pt` tolerance is an internal QA default, not an IEEE requirement.
+Declare explicit row/column groups for nested grids and use only panel-specific
+exemptions with exact checks and reasons. IEEE labels `a` and `(a)` are both
+recognized when labels are embedded; leave `require_panel_labels=False` when
+LaTeX adds subfigure labels outside the exported figure.
+
+After PDF export, run:
+
+```bash
+python skills/ieee-figure/scripts/audit_pdf_text.py figure.pdf --min-pt 5
+python skills/ieee-figure/scripts/audit_figure_collisions.py figure.pdf \
+  --expected-width-mm 88.9 \
+  --json-out figure.collisions.json \
+  --overlay-pdf figure.collisions.pdf
+```
+
+The overlay is diagnostic only. Fix text–text overlap, text–stroke collision,
+and page clipping in the source figure. `NOT AUDITABLE` requires documented
+final-size visual inspection and is never silently converted to `PASS`.
+
+---
+
 ## finalize_figure(fig, out_path, ...)
 
 ```python
 def finalize_figure(fig, out_path, formats=None, dpi=300,
-                    pad=2, bbox_inches=None, close=True):
+                    pad=2, close=True,
+                    alignment_options=None):
     """
-    Apply tight_layout and save figure.
+    Apply tight_layout, run alignment QA, and save figure.
 
     Parameters
     ----------
@@ -384,24 +432,35 @@ def finalize_figure(fig, out_path, formats=None, dpi=300,
     """
     import os
     from pathlib import Path
-    fig.tight_layout(pad=pad)
     base = Path(out_path)
-    os.makedirs(base.parent, exist_ok=True)
     if formats is None:
         formats = [base.suffix.lstrip('.') or 'png']
         base = base.with_suffix('')
+    os.makedirs(base.parent, exist_ok=True)
+    fig.tight_layout(pad=pad)
+    options = {} if alignment_options is None else dict(alignment_options)
+    require_matplotlib_panel_alignment(
+        fig,
+        json_out=str(base) + ".alignment.json",
+        overlay_svg=str(base) + ".alignment.svg",
+        strict=True,
+        **options,
+    )
     saved = []
     for fmt in formats:
         p = str(base) + f'.{fmt}'
-        kw = {}
-        if bbox_inches is not None:
-            kw['bbox_inches'] = bbox_inches
-        fig.savefig(p, dpi=dpi, **kw)
+        fig.savefig(p, dpi=dpi)
         saved.append(p)
     if close:
         plt.close(fig)
     return saved
 ```
+
+Do not use `bbox_inches="tight"` for the publication bundle: it changes the
+declared canvas and can invalidate IEEE column-width planning after alignment
+was measured. Fix margins in the layout, export the exact canvas, then verify
+the PDF media box with `audit_figure_collisions.py --expected-width-mm 88.9`
+or `182`.
 
 ---
 

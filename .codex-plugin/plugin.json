@@ -1,0 +1,38 @@
+{
+  "name": "ieee-skills",
+  "version": "0.2.0",
+  "description": "IEEE Transactions research workflows for robotics, automation, control, communications, networking, and industrial informatics.",
+  "author": {
+    "name": "jzh020626-cpu and contributors",
+    "url": "https://github.com/jzh020626-cpu"
+  },
+  "homepage": "https://github.com/jzh020626-cpu/IEEE-skills",
+  "repository": "https://github.com/jzh020626-cpu/IEEE-skills",
+  "license": "Apache-2.0",
+  "keywords": [
+    "ieee-transactions",
+    "robotics",
+    "control",
+    "communications",
+    "academic-writing"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "IEEE Transactions Skills",
+    "shortDescription": "Engineering paper research and writing workflows",
+    "longDescription": "Evidence-grounded workflows for literature, paper planning and writing, figures, statistics, reproducibility, peer review, revision, and submission in robotics, control, communications, networking, automation, and industrial informatics.",
+    "developerName": "jzh020626-cpu and contributors",
+    "category": "Research",
+    "capabilities": [
+      "Engineering research workflows",
+      "IEEE manuscript writing",
+      "Evidence and submission audits"
+    ],
+    "websiteURL": "https://github.com/jzh020626-cpu/IEEE-skills",
+    "defaultPrompt": [
+      "Show me the IEEE Transactions workflows in this plugin.",
+      "Review and strengthen this engineering manuscript.",
+      "Build an evidence and experiment plan for this paper."
+    ]
+  }
+}

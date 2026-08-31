@@ -13,3 +13,7 @@ If the user asks for side-by-side revision, provide:
 - `Why changed`
 
 If any paragraph's structural problem could not be fixed without inventing content, say so under `Revision notes:` instead of papering over it.
+
+For Results or full-main-text restructuring, also return a compact main-text
+discipline audit: destination decisions, replaced/compressed/relocated/deleted
+material, unresolved integrity constraints, and before/after word count.

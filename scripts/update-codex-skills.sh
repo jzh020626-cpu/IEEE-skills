@@ -38,12 +38,14 @@ DIFF_EXCLUDES=(
   -x '.pytest_cache'
   -x '*.pyc'
   -x '*.pyo'
+  -x 'config.yaml'
 )
 RSYNC_EXCLUDES=(
   --exclude='.DS_Store'
   --exclude='__pycache__'
   --exclude='.pytest_cache'
   --exclude='*.py[cod]'
+  --exclude='config.yaml'
 )
 
 usage() {
@@ -260,21 +262,31 @@ verify_install() {
 
 print_dependency_notes() {
   notes=0
+  if [ -f "$SRC/ieee-figure/requirements.txt" ]; then
+    notes=1
+    echo "    # required for automatic rendered collision QA in ieee-figure"
+    echo "    python -m pip install -r $DST/ieee-figure/requirements.txt"
+  fi
+  if [ -f "$SRC/ieee-image2ppt/requirements.txt" ]; then
+    notes=1
+    echo "    # required before using ieee-image2ppt (Python 3.10+)"
+    echo "    python -m pip install -r $DST/ieee-image2ppt/requirements.txt"
+  fi
   if [ -f "$SRC/ieee-paper-to-patent/requirements.txt" ]; then
     notes=1
-    echo "    python -m pip install -r $SRC/ieee-paper-to-patent/requirements.txt"
+    echo "    python -m pip install -r $DST/ieee-paper-to-patent/requirements.txt"
     if [ -f "$SRC/ieee-paper-to-patent/scripts/disclosure/requirements-cnipa.txt" ]; then
       echo "    # optional: CNIPA published-patent search"
-      echo "    python -m pip install -r $SRC/ieee-paper-to-patent/scripts/disclosure/requirements-cnipa.txt"
+      echo "    python -m pip install -r $DST/ieee-paper-to-patent/scripts/disclosure/requirements-cnipa.txt"
       echo "    python -m playwright install chromium"
     fi
   fi
   if [ -f "$SRC/ieee-academic-search/mcp-server/requirements.txt" ]; then
     notes=1
-    echo "    python -m pip install -r $SRC/ieee-academic-search/mcp-server/requirements.txt"
+    echo "    python -m pip install -r $DST/ieee-academic-search/mcp-server/requirements.txt"
     echo "    Configure optional Scopus, Web of Science, CrossRef, or Elsevier credentials separately."
   fi
-  [ "$notes" = "0" ] || echo "    Python dependencies are optional and are not installed automatically."
+  [ "$notes" = "0" ] || echo "    Python dependencies are not installed automatically."
 }
 
 if [ "$CHECK_ONLY" = "1" ]; then
@@ -294,6 +306,10 @@ echo "    for $DST"
 while IFS= read -r name; do
   mkdir -p "$STAGE_ROOT/$name"
   copy_tree "$SRC/$name" "$STAGE_ROOT/$name"
+  if [ "$name" = "ieee-image2ppt" ] && [ -f "$DST/$name/config.yaml" ]; then
+    cp -p "$DST/$name/config.yaml" "$STAGE_ROOT/$name/config.yaml"
+    echo "    preserved legacy ieee-image2ppt/config.yaml (migrate to the user config path)"
+  fi
   if ! diff -qr "${DIFF_EXCLUDES[@]}" "$SRC/$name" "$STAGE_ROOT/$name" >"$DIFF_OUT"; then
     sed 's/^/         /' "$DIFF_OUT" >&2
     die "staged copy of $name failed verification"
@@ -329,6 +345,13 @@ if [ "$PRUNE" = "1" ]; then
         printf 'warning: ignoring unsafe managed skill name: %q\n' "$old_name" >&2
         continue
       fi
+      case "$old_name" in
+        ieee-*) ;;
+        *)
+          printf 'warning: ignoring unmanaged skill name in IEEE manifest: %q\n' "$old_name" >&2
+          continue
+          ;;
+      esac
       if ! grep -Fxq "$old_name" "$SKILL_LIST" && [ -d "$DST/$old_name" ]; then
         printf '%s\n' "$old_name" >> "$PRUNED_LIST"
         mv "$DST/$old_name" "$BACKUP_ROOT/pruned/$old_name"

@@ -20,6 +20,10 @@ Use `manifest.yaml` and load the response core before drafting.
    self-attack and project-history narration, but never use reframing to evade a
    requested result, valid limitation, or conclusion-changing weakness.
 6. If manuscript text is edited, work on a copy and mark changes visibly. Revised excerpts quoted in the response are italic.
+   Load `../ieee-shared/core/main-text-discipline.md` for every proposed
+   main-text edit. Answer the reviewer fully in the letter, but prefer
+   replacement, compression, or Supplementary Material relocation over
+   appending non-central defense prose.
 7. In print/LaTeX output, begin each reviewer on a new page. Use templates under `templates/` when requested.
 8. For a multi-file revision package, read `references/package-consistency-audit.md` and run `scripts/check_package_consistency.py` against the response letter and marked/clean manuscripts.
 9. Run `references/qa-checklist.md` and return a readiness state.
@@ -33,3 +37,4 @@ Use `manifest.yaml` and load the response core before drafting.
 - Route an actual appeal separately instead of disguising it as a routine revision response.
 - Keep outputs source-grounded: do not invent citations, metrics, theorem guarantees, hardware details, or experimental results.
 - A response-letter quote that is absent from the manuscript, a promised change that is not present, or a marked/clean pair with content differences is a blocking package error.
+- Do not turn the manuscript into a pre-emptive response letter or bury its central evidence chain under robustness and reconciliation prose.

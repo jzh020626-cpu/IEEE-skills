@@ -11,11 +11,16 @@ Before rewriting, identify the main problem:
 - weak title or abstract signal
 - inconsistent terminology, abbreviations, units, or notation across sections
 - sentence-level clutter only
+- main-text accretion, duplicated statistics, or non-central reviewer-defense prose
 
 Prioritize fixes in this order:
 
 `paper type -> section job -> paragraph logic -> claim/evidence/boundary -> sentence polish`
 
 Do not sentence-polish a draft whose section job is wrong. Surface the structural problem first, then polish.
+
+For main-text accretion, use `../../../ieee-shared/core/main-text-discipline.md`
+before editing sentences. Preserve conclusion-changing failures, uncertainty,
+and required engineering boundaries.
 
 Terminology consistency is a cross-cutting check that runs at every level: build the Terminology Ledger on first contact (see `../../../ieee-shared/core/terminology-ledger.md`) and enforce its canonical forms throughout the polish.

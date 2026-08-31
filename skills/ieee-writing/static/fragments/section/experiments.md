@@ -6,6 +6,13 @@
 
 Each subsection has a claim-first opening, then data support.
 
+Before drafting, build a result-allocation table and retain only the shortest
+sufficient main-text evidence chain. Non-central robustness, configuration,
+secondary estimator, and diagnostic detail belongs in Supplementary Material
+or the artifact package unless it changes the conclusion.
+Use `../../../../ieee-shared/core/main-text-discipline.md` for the allocation,
+deletion, paragraph-necessity, and claim-repetition checks.
+
 ## Drafting rules
 
 - Stay mainly in past tense.
@@ -13,6 +20,7 @@ Each subsection has a claim-first opening, then data support.
 - Use statistics correctly and sparingly. Every test needs a stated hypothesis.
 - Use supplementary data sparingly. If a result belongs in the main text, do not hide it in supplements.
 - **Each major claim needs comparison, ablation, or stress-test evidence.** If a claim has none, mark it for follow-up rather than drafting around it.
+- After any reviewer-driven addition, check what it replaces or compresses; do not append defensive prose by default.
 
 ## Results syntax (vs Discussion)
 

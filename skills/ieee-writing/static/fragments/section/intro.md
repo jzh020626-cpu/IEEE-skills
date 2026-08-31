@@ -4,6 +4,10 @@
 
 `field scale -> bottleneck -> prior attempts -> unresolved gap -> present study`
 
+The gap must be an unresolved engineering or scientific question, not merely
+the absence of the authors' chosen module. Literature should establish the
+known-to-unknown transition rather than catalogue the field.
+
 For an IEEE Transactions abstract or contribution paragraph, strengthen this into (See `references/ieee-summary-paragraph.md`.):
 
 `engineering context -> specific bottleneck -> technical gap -> proposed method/system/theory -> evidence -> bounded contribution`
@@ -34,3 +38,4 @@ Tell the user which variant you picked and why.
 - Do not summarize results in detail. The final paragraph states the contribution and approach, not the numbers.
 - Cite prior work to position, not to demonstrate breadth. Each citation should earn its place.
 - The transition from "what is known" to "what this paper does" must be explicit, not implied.
+- The closing paragraph previews the question–answer route and bounded contributions, not a detached feature list.

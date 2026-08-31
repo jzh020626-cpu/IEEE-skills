@@ -1,5 +1,5 @@
 name: ieee-writing
-version: 1.2.0
+version: 1.4.0
 description: >
   Declarative manifest for IEEE Transactions manuscript drafting,
   restructuring, and initial-submission packages.
@@ -31,7 +31,7 @@ axes:
 
   paper_type:
     detect: |
-      Decide whether the request is algorithmic/theoretical, robotics/automation system, communication/networked control, industrial informatics, or survey/tutorial. Default to algorithmic when unclear.
+      Decide whether the request is algorithmic/theoretical, robotics/automation system, communication/networked control, industrial informatics, or survey/tutorial. Use research when the dominant paper type is unclear; use algorithmic only when an algorithm, model, or theorem is central.
     values:
       algorithmic: static/fragments/paper_type/algorithmic.md
       hypothesis: static/fragments/paper_type/hypothesis.md
@@ -79,6 +79,12 @@ axes:
 
 references:
   on_demand:
+    - condition: aligning Abstract, Introduction, Results/Experiments, Discussion, and Conclusion across a multi-section or full manuscript
+      path: ../ieee-shared/core/engineering-evidence-chain.md
+    - condition: drafting, restructuring, compressing, or reviewer-revising Results or full main text; allocating results across main text, captions, Supplementary Material, and artifacts; preventing revision accretion; or auditing paragraph necessity and claim repetition
+      path: ../ieee-shared/core/main-text-discipline.md
+    - condition: drafting, restructuring, or auditing Discussion; calibrating interpretation and modal strength; relating results to prior work; writing claim-specific limitations; or proposing uncertainty-resolving future work
+      path: ../ieee-shared/core/discussion-argument-language.md
     - condition: target venue rules, Note to Practitioners, numbered citations, double-column constraints, or reproducibility package
       path: ../ieee-shared/core/ieee-transactions-contract.md
     - condition: initial cover letter, title page, declarations, conference-version disclosure, reviewer suggestions, graphical abstract, complete first-submission package, or readiness audit

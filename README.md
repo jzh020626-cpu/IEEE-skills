@@ -21,6 +21,7 @@ venue-specific checklists.
 |-- README.md
 |-- LICENSE
 |-- UPSTREAM_ADAPTATION.md
+|-- .codex-plugin/plugin.json
 |-- scripts/
 |   |-- autoupdate-skills.sh
 |   |-- check-nature-upstream.sh
@@ -43,6 +44,7 @@ venue-specific checklists.
     |-- ieee-reader/
     |-- ieee-ref-verifier/
     |-- ieee-downloader/
+    |-- ieee-image2ppt/
     |-- ieee-paper2ppt/
     |-- ieee-paper-to-patent/
     |-- ieee-statistics/
@@ -100,6 +102,16 @@ main manuscript and the complete evidence record: essential claims and
 decision-changing boundaries stay in the paper, while non-leading ablations,
 stopped attempts, provenance logs, evaluator counts, hashes, and repeated audit
 detail move to the supplement or artifact package.
+
+The 2026-09 synchronization adds two complementary contracts. Main-text
+discipline classifies core evidence, qualifications, robustness, failure cases,
+and provenance before routing them among the paper, captions, Supplementary
+Material, appendices, and artifact repositories. The engineering evidence-chain
+contract keeps Abstract, Introduction, Results, Discussion, and Conclusion
+aligned for algorithm, theory/control, robotics/system, communications/network,
+and benchmark papers. A strong contribution may be a theorem, guarantee,
+mechanism, system capability, trade-off, or failure boundary; it need not be a
+leaderboard win.
 
 This routing never authorizes selective reporting. The shared module prohibits
 hidden conclusion-changing evidence, post-hoc metric or baseline switching,
@@ -174,6 +186,7 @@ longer shipped by this repository.
 | [`ieee-reader`](skills/ieee-reader/README.md) | Build figure/table-aware Chinese-English paper readers for IEEE or engineering papers. |
 | [`ieee-ref-verifier`](skills/ieee-ref-verifier/README.md) | Verify DOI, author order, venue, Early Access/issue metadata, pages/article numbers, and conference/journal versions. |
 | [`ieee-downloader`](skills/ieee-downloader/README.md) | Configure legitimate institutional or open-access paper retrieval and organize authorized PDFs. |
+| [`ieee-image2ppt`](skills/ieee-image2ppt/README_EN.md) | Reconstruct existing slide images, scanned slide decks, or image-only PPTX files as object-level editable PowerPoint. |
 | [`ieee-paper2ppt`](skills/ieee-paper2ppt/README.md) | Build IEEE-style Chinese presentation decks from robotics, automation, control, communications, or industrial informatics papers. |
 | [`ieee-paper-to-patent`](skills/ieee-paper-to-patent/README.md) | Convert engineering papers, theses, technical reports, source code, or figures into Chinese invention patent drafts. |
 | [`ieee-statistics`](skills/ieee-statistics/README.md) | Audit seeds/runs, independent units, uncertainty, benchmark aggregation, leakage, comparisons, and figure statistics. |
@@ -196,6 +209,7 @@ Use ieee-experiment-log to normalize these simulation and hardware run notes.
 Use ieee-ref-verifier to verify every reference and publication version.
 Use ieee-statistics to audit seeds, repeated runs, uncertainty, and leakage.
 Use ieee-paper-card to deep-read this robotics or communications paper and audit its claim-evidence boundaries.
+Use ieee-image2ppt to reconstruct these existing slide screenshots as editable PowerPoint objects.
 Use ieee-response to draft replies to TII reviewer comments.
 Use ieee-submission-audit to run a strict pre-submission check for T-ASE.
 ```
@@ -227,17 +241,24 @@ It checks:
 - Reproducibility package readiness: code, datasets, seeds, logs, model
   weights, ROS bags where relevant, parameters, and run commands.
 
-## Optional dependencies
+## Runtime dependencies
 
 Most skills are prompt/instruction skills and do not require extra packages.
-Some helper scripts have optional dependencies:
+Install only the dependencies for the workflows you use:
 
 ```bash
+# Required for ieee-figure rendered PDF collision QA
+python -m pip install -r skills/ieee-figure/requirements.txt
+
+# Required before using the ieee-image2ppt runtime (Python 3.10+)
+python -m pip install -r skills/ieee-image2ppt/requirements.txt
+
+# Required only for the corresponding optional script/MCP workflows
 python -m pip install -r skills/ieee-paper-to-patent/requirements.txt
 python -m pip install -r skills/ieee-academic-search/mcp-server/requirements.txt
 ```
 
-Run these only when using the corresponding scripts.
+The installer reports these commands but never modifies a Python environment.
 
 ## IEEE academic search MCP
 

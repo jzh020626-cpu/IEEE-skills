@@ -22,7 +22,7 @@ image/vector outputs or alter visual layout.
 | Task | Preferred packages |
 |---|---|
 | Bars, boxplots, violins, dot plots, lines, volcano plots | `ggplot2`, `ggrepel`, `dplyr`, `tidyr` |
-| Multi-panel assembly | `patchwork`; use `cowplot` only when inset alignment requires it |
+| Multi-panel assembly and alignment QA | `patchwork`, `grid`, `jsonlite`; use `cowplot` only when inset alignment requires it |
 | Dense engineering heatmaps | `ComplexHeatmap`, `grid`, `ggplot2` |
 | Reliability or subgroup plots | `forestplot`, `ggplot2`, `dplyr` |
 | Circular or polar engineering plots | `circlize`, `ggplot2`, domain-specific packages |
@@ -33,6 +33,7 @@ image/vector outputs or alter visual layout.
 ```r
 library(ggplot2)
 library(patchwork)
+source("skills/ieee-figure/scripts/panel_alignment.R")
 
 palette_contract <- c(
   neutral_dark = "#272727",
@@ -61,9 +62,23 @@ theme_ieee_contract <- function(base_size = 6.5, base_family = "Arial") {
 
 theme_set(theme_ieee_contract())
 
-save_pub_r <- function(plot, filename, width_mm = 183, height_mm = 120, dpi = 600) {
+save_pub_r <- function(plot, filename, width_mm = 182, height_mm = 120, dpi = 600) {
   w <- width_mm / 25.4
   h <- height_mm / 25.4
+
+  if (inherits(plot, "patchwork")) {
+    require_patchwork_panel_alignment(
+      plot,
+      manifest_path = paste0(filename, ".alignment-layout.json"),
+      report_path = paste0(filename, ".alignment.json"),
+      overlay_svg = paste0(filename, ".alignment.svg"),
+      width_in = w,
+      height_in = h,
+      tolerance_pt = 1.5,
+      gutter_tolerance_pt = 1.5,
+      strict = TRUE
+    )
+  }
 
   svglite::svglite(paste0(filename, ".svg"), width = w, height = h)
   print(plot)
@@ -85,12 +100,14 @@ Use patchwork tags for most multi-panel figures:
 
 ```r
 fig <- (p_a | p_b) / (p_c | p_d) +
-  plot_annotation(tag_levels = "a") &
+  plot_annotation(tag_levels = "a", tag_prefix = "(", tag_suffix = ")") &
   theme(plot.tag = element_text(size = 8, face = "bold"))
 ```
 
 Use manual labels only when dark image plates or inset geometry make patchwork tags
 misalign.
+The R alignment manifest measures plot-area cells, not tag text anchors. Verify
+`(a)`, `(b)`, and later labels manually at final size even when panel geometry passes.
 
 ## Patchwork layout patterns
 
@@ -129,6 +146,23 @@ p_img <- ggplot(img_df, aes(x, y, fill = intensity)) +
   theme_void() +
   theme(legend.position = "none", plot.background = element_rect(fill = "black", colour = NA))
 ```
+
+## Patchwork panel-alignment gate
+
+`panel_alignment.R` measures final patchwork gtable cells in physical points and
+passes a JSON manifest to the backend-neutral Python auditor. Python does not
+render or modify the R figure. Set `IEEE_FIGURE_PYTHON` when the correct Python
+is not on `PATH`.
+
+Simple grids and common unequal-span layouts are inferred. Nested patchwork
+gtables are not recursively expanded by this helper; flatten the composition or
+provide a separately measured JSON manifest to `audit_panel_alignment.py`.
+For measurable manual layouts, declare `panel_ids`, row/column groups, excluded
+inset/colorbar axes, and narrow exemptions. Every exemption names exact panels,
+checks, and reason.
+Do not increase the global `1.5 pt` internal tolerance to hide a local design
+choice. A non-zero status blocks delivery; preserve the layout manifest and
+audit JSON. The overlay SVG is diagnostic only.
 
 ## ComplexHeatmap export
 

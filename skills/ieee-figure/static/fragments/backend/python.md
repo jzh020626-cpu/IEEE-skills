@@ -7,6 +7,7 @@
 ```python
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+from audit_panel_alignment import require_matplotlib_panel_alignment
 
 mpl.rcParams.update({
     "font.family": "sans-serif",
@@ -21,9 +22,19 @@ mpl.rcParams.update({
 })
 
 def save_pub_py(fig, filename, dpi=600):
-    fig.savefig(f"{filename}.svg", bbox_inches="tight")
-    fig.savefig(f"{filename}.pdf", bbox_inches="tight")
-    fig.savefig(f"{filename}.tiff", dpi=dpi, bbox_inches="tight")
+    require_matplotlib_panel_alignment(
+        fig,
+        json_out=f"{filename}.alignment.json",
+        overlay_svg=f"{filename}.alignment.svg",
+        tolerance_pt=1.5,
+        gutter_tolerance_pt=1.5,
+        strict=True,
+    )
+    # Keep the declared canvas width. Tight bounding-box cropping changes the
+    # final physical width and is forbidden for the publication bundle.
+    fig.savefig(f"{filename}.svg")
+    fig.savefig(f"{filename}.pdf")
+    fig.savefig(f"{filename}.tiff", dpi=dpi)
 ```
 
 Use `text.usetex = True` only when LaTeX is installed and math-rich labels are required.
@@ -35,3 +46,5 @@ Use `text.usetex = True` only when LaTeX is installed and math-rich labels are r
 - `references/chart-types.md` — radar, 3D sphere, fill_between, scatter patterns.
 - `references/tutorials.md` — end-to-end walkthroughs for bars, trends, heatmaps.
 - `references/demos.md` — bundled figures4papers Python scripts and output previews.
+- `scripts/audit_panel_alignment.py` — mandatory final-layout alignment gate for multi-panel figures.
+- `scripts/audit_pdf_text.py` and `scripts/audit_figure_collisions.py` — inspect the exported PDF without redrawing it.

@@ -1,5 +1,5 @@
 name: ieee-submission-audit
-version: 1.2.0
+version: 1.3.0
 description: >
   Declarative routing for strict IEEE Transactions pre-submission checks.
   The audit contract and venue checklist load for every run; the offline
@@ -12,6 +12,10 @@ always_load:
 
 references:
   on_demand:
+    - condition: auditing result allocation, main-text compression, Supplementary Material/appendix/artifact routing, revision accretion, or claim repetition
+      path: ../ieee-shared/core/main-text-discipline.md
+    - condition: auditing a multi-round manuscript for terminology, numeric, assumption, unit, scenario, and claim consistency
+      path: ../ieee-shared/core/consistency-sweep.md
     - condition: applying shared IEEE Transactions format, ethics, ORCID, figure, reproducibility, or prior-version rules
       path: ../ieee-shared/core/ieee-transactions-contract.md
 

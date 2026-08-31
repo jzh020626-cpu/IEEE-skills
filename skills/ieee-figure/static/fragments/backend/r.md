@@ -7,6 +7,7 @@
 ```r
 library(ggplot2)
 library(patchwork)
+source("skills/ieee-figure/scripts/panel_alignment.R")
 
 theme_set(
   theme_classic(base_size = 6.5, base_family = "Arial") +
@@ -21,9 +22,22 @@ theme_set(
     )
 )
 
-save_pub_r <- function(plot, filename, width_mm = 183, height_mm = 120, dpi = 600) {
+save_pub_r <- function(plot, filename, width_mm = 182, height_mm = 120, dpi = 600) {
   w <- width_mm / 25.4
   h <- height_mm / 25.4
+  if (inherits(plot, "patchwork")) {
+    require_patchwork_panel_alignment(
+      plot,
+      manifest_path = paste0(filename, ".alignment-layout.json"),
+      report_path = paste0(filename, ".alignment.json"),
+      overlay_svg = paste0(filename, ".alignment.svg"),
+      width_in = w,
+      height_in = h,
+      tolerance_pt = 1.5,
+      gutter_tolerance_pt = 1.5,
+      strict = TRUE
+    )
+  }
   svglite::svglite(paste0(filename, ".svg"), width = w, height = h)
   print(plot)
   dev.off()
@@ -42,3 +56,5 @@ save_pub_r <- function(plot, filename, width_mm = 183, height_mm = 120, dpi = 60
 - `references/r-template-index.md` — adapt a user-provided or private R template collection without exposing source paths.
 - `references/design-theory.md` — typography, color theory, layout rationale, export policy (backend-agnostic).
 - `references/ieee-2026-observations.md` — real IEEE Transactions page archetypes to match before choosing layout.
+- `scripts/panel_alignment.R` plus `scripts/audit_panel_alignment.py` — blocking patchwork/gtable alignment gate; set `IEEE_FIGURE_PYTHON` when Python is not on `PATH`.
+- `scripts/audit_pdf_text.py` and `scripts/audit_figure_collisions.py` — inspect the final PDF without redrawing it.

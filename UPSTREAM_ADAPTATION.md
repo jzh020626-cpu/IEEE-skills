@@ -3,8 +3,8 @@
 ## Current baseline
 
 - Upstream: `https://github.com/Yuan1z0825/nature-skills.git`
-- Adapted commit: `adb7b8a5a7d72ed6fe9f71e085785e9972dd8db2`
-- Adaptation date: 2026-08-08
+- Adapted commit: `ebd722e18808442688bd205917a3e774195c258f`
+- Adaptation date: 2026-09-01
 - Tracked lock: `scripts/nature-upstream.lock`
 
 ## 2026-08 synchronization
@@ -14,6 +14,17 @@
 - Policy: port workflow and validation improvements semantically; do not copy Nature flagship rules, life-science assumptions, marketing assets, or unverified venue limits into IEEE workflows.
 
 This repository performs a semantic IEEE adaptation. It does not bulk-rename upstream content.
+
+## 2026-09 synchronization
+
+- Previous baseline: `adb7b8a5a7d72ed6fe9f71e085785e9972dd8db2`
+- New upstream baseline: `ebd722e18808442688bd205917a3e774195c258f`
+- Scope: reusable writing discipline, engineering evidence-chain alignment,
+  multi-panel figure architecture, rendered figure QA, Image2PPT reconstruction,
+  dependency notes, and Codex plugin packaging.
+- Boundary: Nature Machine Intelligence/flagship Nature limits, Nature-specific
+  AI policy, marketing/star-history content, and provider-specific OpenRouter
+  routing remain excluded.
 
 ## Ported in this update
 
@@ -43,7 +54,17 @@ This repository performs a semantic IEEE adaptation. It does not bulk-rename ups
 | citation metadata integrity | Changed default export to RIS and made incomplete author metadata a blocking condition unless explicitly overridden |
 | downloader slim routing | Added on-demand institutional-browser and delivery/failure references while preserving manual security-challenge handoff |
 | transactional installer | Added destination-scoped state/locks, staging, backup, rollback, safe pruning, and isolation/safety tests |
-| Codex skill metadata | Added or refreshed `agents/openai.yaml` for all 20 installed IEEE skills |
+| Codex skill metadata | Added or refreshed `agents/openai.yaml` for every installed IEEE skill |
+| main-text discipline | Added result classification, main/caption/Supplementary Material/appendix/artifact allocation, deletion checks, paragraph necessity, and claim-repetition auditing |
+| Discussion calibration | Added finding-to-interpretation sequencing, modal-strength gates, claim-specific limitations, and uncertainty-resolving future work |
+| engineering evidence chain | Added algorithm, control/theory, robotics/system, communications/networking, and benchmark routes across Abstract–Conclusion |
+| multi-panel figure architecture | Added distinct engineering evidence roles and across-figure claim progression without Nature corpus examples |
+| rendered figure QA | Added PyMuPDF collision/media-box auditing and physical-point panel alignment for Matplotlib and R/patchwork while retaining IEEE 88.9/182 mm widths and rejecting tight-crop width drift |
+| AI graphical abstracts | Added provider-neutral concept/provenance/policy routing with explicit external-service authorization and no submission-policy assumptions |
+| `nature-image2ppt` | Added separate `ieee-image2ppt` for faithful reconstruction of existing slide images; preserved the bundled MIT license and upstream Image2PPT source provenance |
+| Image2PPT hardening | Removed unverified OCR cost/quota claims, made external OCR run-scoped and explicit-consent-only, moved persistent configuration outside the replaceable skill tree, rejected Windows `convert.exe` as ImageMagick, and replaced the PowerShell heuristic with a real PowerPoint COM probe |
+| Codex plugin package | Added a validated `.codex-plugin/plugin.json` for the IEEE suite; repo-local marketplace metadata was not copied without a verified source-path/install flow |
+| dependency and installer safety | Installer reports required figure/Image2PPT dependencies without installing them, preserves unrelated non-`ieee-*` skills even if a manifest is polluted, and points commands at the installed destination |
 
 ## Intentionally not ported
 
@@ -51,6 +72,12 @@ This repository performs a semantic IEEE adaptation. It does not bulk-rename ups
 - Life-science-only examples, MeSH/PubMed-first workflow defaults, genomics/single-cell templates, and biological replicate assumptions.
 - Website/marketing copy and upstream bilingual promotional README additions.
 - OpenRouter-specific image-generation code; IEEE schematic generation remains routed through the installed image/figure tools.
+- Nature Machine Intelligence article limits, display/Extended Data counts,
+  NMI-specific data/code placement, Software Submission Checklist, and other
+  Nature Portfolio stage rules.
+- Upstream repo-local marketplace metadata whose `source.path: "./"` has not
+  been verified against this private repository layout; the validated plugin
+  manifest is included without claiming marketplace installation.
 - CAPTCHA, slider, or anti-bot automation. Verification is always handed to the user in the authenticated browser.
 
 ## IEEE rule refresh

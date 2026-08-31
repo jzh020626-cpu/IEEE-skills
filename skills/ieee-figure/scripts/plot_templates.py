@@ -33,6 +33,8 @@ try:
 
     mpl.use("Agg")
     import matplotlib.pyplot as plt
+    from audit_panel_alignment import require_matplotlib_panel_alignment
+    from audit_figure_collisions import audit_pdf, exit_code as collision_exit_code
     from matplotlib.colors import LinearSegmentedColormap
     from matplotlib.lines import Line2D
 except ImportError as exc:  # Keep --help usable in a minimal environment.
@@ -85,10 +87,30 @@ def save_bundle(fig: Any, output: Path) -> dict[str, str]:
         "pdf": str(output.with_suffix(".pdf")),
         "tiff": str(output.with_suffix(".tiff")),
     }
-    fig.savefig(paths["svg"], bbox_inches="tight", facecolor="white")
-    fig.savefig(paths["pdf"], bbox_inches="tight", facecolor="white")
-    fig.savefig(paths["tiff"], dpi=600, bbox_inches="tight", facecolor="white")
+    require_matplotlib_panel_alignment(
+        fig,
+        json_out=output.with_suffix(".alignment.json"),
+        overlay_svg=output.with_suffix(".alignment.svg"),
+        tolerance_pt=1.5,
+        gutter_tolerance_pt=1.5,
+        strict=True,
+    )
+    fig.savefig(paths["svg"], facecolor="white")
+    fig.savefig(paths["pdf"], facecolor="white")
+    fig.savefig(paths["tiff"], dpi=600, facecolor="white")
+    expected_width_mm = float(fig.get_size_inches()[0]) * MM_PER_INCH
+    collision_report = audit_pdf(Path(paths["pdf"]), expected_width_mm=expected_width_mm)
+    collision_path = output.with_suffix(".collisions.json")
+    collision_path.write_text(
+        json.dumps(collision_report, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    paths["collision_audit"] = str(collision_path)
     plt.close(fig)
+    if collision_exit_code(collision_report) != 0:
+        raise RuntimeError(
+            f"rendered collision/media-box audit failed; inspect {collision_path}"
+        )
     return paths
 
 
@@ -298,32 +320,41 @@ def plot_volcano(args: argparse.Namespace) -> tuple[dict[str, str], dict[str, An
     ax.axhline(-math.log10(args.p_threshold), color="#666666", linestyle="--", linewidth=0.6)
     ax.axvline(-args.effect_threshold, color="#666666", linestyle="--", linewidth=0.6)
     ax.axvline(args.effect_threshold, color="#666666", linestyle="--", linewidth=0.6)
+    ax.margins(x=0.25, y=0.08)
     significant = np.flatnonzero(up | down)
     if args.top_labels > 0 and len(significant):
         selected = significant[np.argsort(pvalues[significant])[: args.top_labels]]
+        label_gap = max(0.35, float(np.ptp(scores)) * 0.05)
+        label_tops: list[float] = []
         for is_positive in (False, True):
             side = [index for index in selected if (effects[index] >= 0) == is_positive]
             last_label_y = -math.inf
             for index in sorted(side, key=lambda value: scores[value]):
-                label_y = max(float(scores[index]) + 0.12, last_label_y + 0.30)
+                label_y = max(float(scores[index]) + 0.15 * label_gap, last_label_y + label_gap)
                 last_label_y = label_y
+                label_tops.append(label_y)
+                # Place labels beyond the threshold lines while reserving
+                # generous fixed-canvas x margins for the label width.
                 direction = 1 if is_positive else -1
-                ax.annotate(
+                ax.text(
+                    effects[index] + 0.15 * direction,
+                    label_y,
                     labels[index],
-                    (effects[index], scores[index]),
-                    xytext=(effects[index] + 0.07 * direction, label_y),
-                    textcoords="data",
                     ha="left" if is_positive else "right",
                     va="bottom",
                     fontsize=5,
                     color="#333333",
-                    arrowprops={"arrowstyle": "-", "color": "#777777", "linewidth": 0.3},
                 )
+        if label_tops:
+            lower, upper = ax.get_ylim()
+            ax.set_ylim(lower, max(upper, max(label_tops) + label_gap))
     ax.set_xlabel(args.effect_label)
     ax.set_ylabel(r"$-\log_{10}$(adjusted p value)")
     if args.title:
         ax.set_title(args.title)
-    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.19), ncol=3)
+    handles, legend_labels = ax.get_legend_handles_labels()
+    fig.legend(handles, legend_labels, loc="lower center", bbox_to_anchor=(0.5, 0.01), ncol=3)
+    fig.subplots_adjust(bottom=0.20)
     paths = save_bundle(fig, args.output)
 
     qa = base_qa(args, "volcano", len(rows) + len(invalid))
@@ -395,7 +426,7 @@ def plot_dotplot(args: argparse.Namespace) -> tuple[dict[str, str], dict[str, An
 
     fig, ax = plt.subplots(figsize=(args.width_mm / MM_PER_INCH, args.height_mm / MM_PER_INCH))
     scatter = ax.scatter(xs, ys, s=sizes, c=color_norm, cmap=cmap, vmin=0, vmax=1, edgecolors="#666666", linewidths=0.35)
-    ax.set_xticks(range(len(column_order)), column_order, rotation=90)
+    ax.set_xticks(range(len(column_order)), column_order, rotation=35, ha="right")
     ax.set_yticks(range(len(row_order)), row_order)
     ax.set_xlim(-0.7, len(column_order) - 0.3)
     ax.set_ylim(-0.7, len(row_order) - 0.3)
@@ -406,10 +437,17 @@ def plot_dotplot(args: argparse.Namespace) -> tuple[dict[str, str], dict[str, An
     ax.set_axisbelow(True)
     colorbar = fig.colorbar(scatter, ax=ax, fraction=0.025, pad=0.02)
     colorbar.set_label(args.color_label)
+    fig.subplots_adjust(left=0.12, right=0.78, bottom=0.23, top=0.93)
     reference_values = nice_reference_values(size_max)
     handles = [Line2D([], [], marker="o", linestyle="", markerfacecolor="#999999", markeredgecolor="#666666", markersize=math.sqrt(12 + 160 * math.sqrt(value / size_max))) for value in reference_values]
     if handles:
-        ax.legend(handles, [f"{value:g}" for value in reference_values], title=args.size_label, bbox_to_anchor=(1.18, 1), loc="upper left")
+        fig.legend(
+            handles,
+            [f"{value:g}" for value in reference_values],
+            title=args.size_label,
+            bbox_to_anchor=(0.985, 0.92),
+            loc="upper right",
+        )
     if args.title:
         ax.set_title(args.title)
     paths = save_bundle(fig, args.output)
@@ -480,13 +518,13 @@ def plot_paired(args: argparse.Namespace) -> tuple[dict[str, str], dict[str, Any
         subjects.setdefault(subject, {}).setdefault(condition, []).append(float(row[args.value_col]))
     duplicates = [subject for subject, values in subjects.items() if any(len(values.get(condition, [])) > 1 for condition in condition_order)]
     if duplicates:
-        raise ValueError("multiple values per subject-condition pair found; aggregate only with an explicit scientific rule before plotting")
+        raise ValueError("multiple values per independent-unit/condition pair found; aggregate only with an explicit scientific rule before plotting")
     incomplete = [subject for subject, values in subjects.items() if any(condition not in values for condition in condition_order)]
     if incomplete and not args.drop_incomplete:
-        raise ValueError(f"{len(incomplete)} incomplete subject pairs found; fix the data or rerun with explicit --drop-incomplete")
+        raise ValueError(f"{len(incomplete)} incomplete independent-unit pairs found; fix the data or rerun with explicit --drop-incomplete")
     complete = [subject for subject in subjects if subject not in incomplete]
     if not complete:
-        raise ValueError("no complete subject pairs remain")
+        raise ValueError("no complete independent-unit pairs remain")
     values_a = np.asarray([subjects[subject][condition_order[0]][0] for subject in complete])
     values_b = np.asarray([subjects[subject][condition_order[1]][0] for subject in complete])
 
@@ -557,7 +595,7 @@ def build_parser() -> argparse.ArgumentParser:
     dotplot.set_defaults(plotter=plot_dotplot)
 
     marginal = subparsers.add_parser("marginal", help="2D scatter with marginal distributions")
-    add_common_arguments(marginal, 120.0, 105.0)
+    add_common_arguments(marginal, 182.0, 105.0)
     marginal.add_argument("--x-col", default="x")
     marginal.add_argument("--y-col", default="y")
     marginal.add_argument("--group-col", default="group")
@@ -568,8 +606,8 @@ def build_parser() -> argparse.ArgumentParser:
     marginal.set_defaults(plotter=plot_marginal)
 
     paired = subparsers.add_parser("paired", help="paired box-and-point plot for exactly two conditions")
-    add_common_arguments(paired, 89.0, 86.0)
-    paired.add_argument("--id-col", default="subject")
+    add_common_arguments(paired, 88.9, 86.0)
+    paired.add_argument("--id-col", default="run")
     paired.add_argument("--condition-col", default="condition")
     paired.add_argument("--value-col", default="value")
     paired.add_argument("--condition-order", help="comma-separated two-condition order")

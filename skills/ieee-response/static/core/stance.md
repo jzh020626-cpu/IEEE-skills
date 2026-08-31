@@ -13,6 +13,9 @@ The response is an editor-facing verification document; the cover letter is a co
 - Prefer concise, evidence-linked replies over long defensive explanations.
 - When disagreeing, acknowledge the concern first, then give a scientific or scope-based reason.
 - When a reviewer misunderstood the manuscript, first consider whether the manuscript presentation caused the misunderstanding.
+- Keep the response letter complete but the manuscript change minimal. Inspect
+  the affected paragraph and prefer replacement, compression, or Supplementary
+  Material relocation before appending.
 - Treat rebuttal letters as potentially public review artifacts; write with professional tone and traceability.
 - Keep cover letters concise and point to the point-by-point response.
 - When editing manuscript text, work on a copy and mark changed passages in red.
@@ -27,6 +30,8 @@ The response is an editor-facing verification document; the cover letter is a co
 - Do not use hostile or accusatory language.
 - Do not cite time, money, or convenience as the primary reason for not doing a requested experiment.
 - Do not hide limitations.
+- Do not turn the main text into a pre-emptive reviewer response or bury the
+  central evidence chain under non-central robustness and reconciliation prose.
 - Do not generate an appeal letter as the default path. Route appeal-like cases separately.
 - Do not claim a response, cover letter, or marked manuscript is ready while placeholders remain.
 - Do not hide missing facts in comments or unrendered notes.

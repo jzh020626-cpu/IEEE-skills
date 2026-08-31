@@ -1,5 +1,5 @@
 name: ieee-shared
-version: 1.2.0
+version: 1.4.0
 description: >
   Declarative manifest for shared IEEE Transactions reference modules. This
   internal package is not a standalone workflow; requesting IEEE skills load
@@ -11,6 +11,12 @@ core:
   on_demand:
     - condition: author-facing argument design, drafting, restructuring, polishing, result presentation, captions, reviewer responses, or submission audits need the evidence-calibrated press-release principle and main-manuscript-versus-supplement routing
       path: core/claim-centered-writing.md
+    - condition: drafting, restructuring, compressing, or reviewer-revising main text; allocating core results, qualifications, robustness, heterogeneity, failure cases, provenance, or alternative analyses across main text, captions, Supplementary Material, and artifact repositories; preventing revision accretion or claim repetition
+      path: core/main-text-discipline.md
+    - condition: drafting, restructuring, or polishing a Discussion; sequencing finding anchor, positioning, interpretation, contribution, limitations, and future work; calibrating modal verbs; or preventing Results replay
+      path: core/discussion-argument-language.md
+    - condition: aligning Abstract, Introduction, Results/Experiments, Discussion, and Conclusion around one engineering claim-evidence chain for algorithm, control/theory, robotics/system, communications/networking, or benchmark papers
+      path: core/engineering-evidence-chain.md
     - condition: shared ethics, safety, authorship, disclosure, confidentiality, or non-invention guardrails are needed
       path: core/ethics.md
     - condition: applying current IEEE Transactions requirements, source precedence, ORCID, figures, or prior-version rules

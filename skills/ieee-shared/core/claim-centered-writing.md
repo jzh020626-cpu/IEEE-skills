@@ -7,9 +7,13 @@ evidence during paper reading, or bias a statistical audit.
 
 ## Governing stance
 
-A paper is an academic press release, not a project report, experiment log, or
-self-audit. Identify the strongest publishable value that the evidence supports
-and make every main-text section help the reader understand and trust that value.
+A paper should have the focus of an evidence-calibrated academic press release,
+not read like a project report, experiment log, or self-audit. Identify the
+strongest publishable contribution that the evidence supports and make every
+main-text section help the reader understand and trust it. That contribution may
+be a theorem or guarantee, a new mechanism, a system capability, a complexity or
+resource improvement, an engineering trade-off, or a clarified failure boundary;
+it need not be a leaderboard win.
 
 Remove unsupported self-attack; never remove decision-relevant evidence.
 Truthfulness, protocol and preregistration commitments, editor/reviewer
@@ -23,9 +27,9 @@ advantage.
 2. Organize the paper as problem -> gap -> distinctive solution -> evidence ->
    significance. Do not narrate attempts, failed branches, internal version
    history, debugging, or how the project evolved.
-3. Name the contest the work actually wins. Narrow the claim, task, metric,
-   comparator, scenario, or application scope when needed; do not make a
-   non-leading dimension the paper's headline contest.
+3. Name the evaluation or proof obligation the work actually satisfies. Narrow
+   the claim, assumptions, task, metric, comparator, scenario, or application
+   scope when needed; do not force every contribution into a performance contest.
 4. State the advantage explicitly. Give the metric, comparator, condition,
    uncertainty, and practical meaning when available.
 5. Let every main-text experiment perform one job: establish the main effect,
@@ -94,7 +98,8 @@ they are necessary and supported.
 
 - **Title:** name the system, capability, and consequence the evidence supports.
 - **Abstract:** establish the problem, gap, distinctive solution, strongest
-  quantitative result, and significance. Do not headline a non-leading ablation,
+  decisive evidence, and significance. This may be a quantitative result or a
+  formal result with its assumptions and guarantee. Do not headline a non-leading ablation,
   stopped attempt, missing validation, or project-history caveat.
 - **Introduction:** position the important unresolved gap and the paper's move.
   Contributions state advances and evidence, not audit activities.

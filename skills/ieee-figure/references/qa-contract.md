@@ -36,8 +36,12 @@ Journal rules change, so verify the latest target journal author guide for final
 | Archetype | Figure has a declared engineering archetype and panel hierarchy |
 | Backend exclusivity | The selected backend produced all plotting, previews, exports, and visual QA renders |
 | Final size | Single-column or double-column IEEE width is chosen before styling |
+| Final PDF media box | Export preserves the declared canvas; measured width matches the verified target within the documented QA tolerance |
 | Text size | Body/tick/legend text is readable at final size |
 | Panel labels | Subfigures use consistent `(a)`, `(b)`, `(c)` or equivalent IEEE-compatible labels |
+| Panel evidence roles | Every panel contributes a distinct setup, primary, comparison, mechanism, stress, or boundary role |
+| Rendered alignment | Final axes/grob geometry passes the `1.5 pt` internal alignment gate or has narrow reasoned exemptions |
+| Rendered collision | No blocking text–text, text–stroke, or page-clipping finding in the final PDF |
 | Editable text | SVG/PDF text remains editable; no outlined text unless unavoidable |
 | Font | Arial/Helvetica/sans-serif fallback is used consistently |
 | Color | No rainbow color maps; red/green is not the only encoding; grayscale print remains interpretable |
@@ -72,6 +76,41 @@ sampling rate / time step:
 latency / throughput / packet-loss model:
 ```
 
+## Required rendered checks
+
+For a multi-panel Python figure, call
+`require_matplotlib_panel_alignment()` after the final layout change and before
+export. For an R patchwork figure, call
+`require_patchwork_panel_alignment()` from `scripts/panel_alignment.R`; use
+`IEEE_FIGURE_PYTHON` when the audit Python is not on `PATH`. The auditor measures
+physical point geometry. The default `1.5 pt` tolerance is an internal QA
+threshold, not an official IEEE value.
+Both helpers use `scripts/audit_panel_alignment.py`; preserve its JSON report.
+The R helper does not measure patchwork tag anchors, and labels added by LaTeX
+also sit outside the figure PDF. Treat label consistency/alignment as a required
+manual final-size check rather than claiming it passed the geometry gate.
+
+After PDF export, run:
+
+```bash
+python scripts/audit_pdf_text.py figure.pdf --min-pt 5
+python scripts/audit_figure_collisions.py figure.pdf \
+  --expected-width-mm 88.9 \
+  --json-out figure.collisions.json \
+  --overlay-pdf figure.collisions.pdf
+```
+
+- `text-text`, `text-stroke`, and `text-page-clipping` failures block delivery.
+- A final PDF media-box width outside the expected width (use `182` for a
+  verified double-column target) also blocks delivery. The default `0.5 mm`
+  tolerance is an internal QA value, not an IEEE policy.
+- Fill/image-edge findings require final-size review because heatmaps, hardware
+  images, and direct labels can be intentional.
+- A PDF with rasterized or outlined text may be `NOT AUDITABLE`; record that
+  limitation and perform visual/OCR inspection rather than declaring a pass.
+- Alignment and collision overlays are diagnostic artifacts and never replace
+  the original selected-backend figure.
+
 ## Export checks
 
 IEEE accepts PS, EPS, PDF, PNG, or TIFF graphics. Use vector output for plots/diagrams and high-resolution raster only when the source is raster.
@@ -82,9 +121,9 @@ IEEE accepts PS, EPS, PDF, PNG, or TIFF graphics. Use vector output for plots/di
 import matplotlib as mpl
 mpl.rcParams["svg.fonttype"] = "none"
 mpl.rcParams["pdf.fonttype"] = 42
-fig.savefig("figure.svg", bbox_inches="tight")
-fig.savefig("figure.pdf", bbox_inches="tight")
-fig.savefig("figure.tiff", dpi=600, bbox_inches="tight")
+fig.savefig("figure.svg")
+fig.savefig("figure.pdf")
+fig.savefig("figure.tiff", dpi=600)
 ```
 
 ### R

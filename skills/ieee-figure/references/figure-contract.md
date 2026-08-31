@@ -36,6 +36,10 @@ Reviewer risk:
 Do not start from a favorite template. Start from the conclusion, then choose the
 minimum set of panels that make the conclusion clear and defensible.
 
+For multi-panel figures, load `multipanel-evidence-architecture.md` and assign
+each panel a distinct setup, primary, comparison, mechanism, stress, or boundary
+role before choosing layout.
+
 ## Core conclusion rules
 
 - The core conclusion should be one sentence with a verb: "Controller X reduces

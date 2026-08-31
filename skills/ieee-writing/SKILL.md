@@ -15,6 +15,12 @@ Use the axes and paths in `manifest.yaml`; do not load every fragment.
 3. Use `task=manuscript` for manuscript argument/sections. Use `task=submission-package` for materials prepared before the first editorial decision. Post-decision correspondence belongs to `ieee-response`.
 4. Load only the selected fragments. Skip section fragments for a pure submission-package task.
 5. For manuscript work, follow the core workflow: one-sentence argument, terminology ledger, section architecture, paragraph jobs, confirmation gate when ambiguity is material, evidence-outward drafting, claim calibration, flow check, and targeted revision.
+   For multi-section or full-manuscript work, load
+   `../ieee-shared/core/engineering-evidence-chain.md` and select the route that
+   matches the actual paper type.
+   When drafting, compressing, or reviewer-revising Results/main text, load
+   `../ieee-shared/core/main-text-discipline.md`. When drafting or restructuring
+   Discussion, also load `../ieee-shared/core/discussion-argument-language.md`.
 6. For submission packages, load `static/fragments/task/submission-package.md` and `references/submission-package.md`, verify the named journal's current instructions, build a deliverable matrix, and draft only required items.
 7. Use visible placeholders or `AUTHOR_INPUT_NEEDED` when facts are absent.
 

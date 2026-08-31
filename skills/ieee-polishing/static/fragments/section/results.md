@@ -1,30 +1,27 @@
 # Section: Results
 
-Results are a summary of the data collected to address the problem stated in the Introduction.
+Results are the evidence chain that establishes and bounds the paper's claims.
+Load `../../../../ieee-shared/core/main-text-discipline.md` before deciding
+which material remains in the main text.
 
 Results writing should:
 
-- stay mainly in past tense
-- report what was observed, under what conditions, and with what quantitative support
-- use statistics correctly and sparingly
-- use supplementary data sparingly
+- stay mainly in past tense;
+- report what was observed, under what platform/channel/scenario conditions, and with what quantitative support;
+- keep core evidence, necessary support, and conclusion-changing qualifications visible;
+- move non-central robustness, configuration, provenance, and alternative-analysis detail to Supplementary Material or the artifact package;
+- report the primary descriptive and inferential support once rather than duplicating a full numeric report in prose and captions;
+- end each evidence unit with the bounded inference it supports.
 
-Results should answer `what happened`, not `what it ultimately means`.
+Do not narrate every completed experiment. For robotics, control, and
+communications, retain the comparisons, ablations, uncertainty, timing or
+overhead, robustness, feasibility/safety, scalability, and failure boundaries
+that the central claim actually needs.
 
-## Sentence syntax (Results vs Discussion)
+Local interpretation is permitted when directly supported by the visible
+evidence. Cross-result synthesis, extensive prior-work comparison, and broader
+implications belong in Discussion.
 
-Results sentences usually report:
-
-- `was detected`
-- `increased`
-- `showed`
-- `enabled`
-- `achieved`
-
-Do not let a Results paragraph drift into Discussion syntax (`may reflect`, `suggests that`, `is likely due to`) unless the transition is intentional.
-
-## Common failure modes
-
-- Interpreting findings inline instead of in Discussion.
-- Citing supplementary data when the result should stand in the main text.
-- Vague comparisons (`higher than control`) without effect size or test.
+After restructuring, run the paragraph-necessity and claim-repetition checks.
+Do not relocate contradictory or conclusion-changing evidence merely to save
+space.

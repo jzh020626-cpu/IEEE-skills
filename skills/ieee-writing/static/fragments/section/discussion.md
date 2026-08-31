@@ -4,12 +4,18 @@
 
 `central advance -> what the evidence means -> relation to prior work -> constraints / limitations -> future use or open questions`
 
+Load `../../../../ieee-shared/core/discussion-argument-language.md`. Treat this
+sequence as functions, not mandatory paragraphs: anchor, position, interpret and
+contribute, then bound and extend.
+
 ## Drafting rules
 
 - Discussion **interprets**, it does not repeat Results figure by figure.
 - Address rival explanations before generalizing. Reviewers look for this.
 - Hedging strength must match evidence strength. Do not promote a "consistent with" finding to "demonstrates" wording.
 - Limitations come from inside the paper, not from generic disclaimers. Name the specific condition or dataset where the result stops holding.
+- Every strong verb or modal must be licensed by a stated design, proof, or physical constraint. Use one calibrated hedge rather than stacked qualifiers.
+- Future work should identify the unresolved uncertainty, the discriminating test, and how either outcome would change the interpretation.
 
 ## Sentence syntax
 

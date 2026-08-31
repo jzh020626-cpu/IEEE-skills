@@ -1,5 +1,7 @@
 # Section: Discussion
 
+Load `../../../../ieee-shared/core/discussion-argument-language.md` for the full function chain, modality ladder, limitation logic, and sentence-function audit.
+
 Discussion should answer:
 
 - how the work fits within the broader field
@@ -11,8 +13,8 @@ Discussion should answer:
 
 Short rule:
 
-- `Results = what we observed`
-- `Discussion = how we understand it, and when it may fail`
+- `Results = the evidence chain that establishes and bounds claims`
+- `Discussion = what those claims mean together, how they relate to the field, and when the synthesis may fail`
 
 ## Sentence syntax
 
@@ -31,3 +33,6 @@ Hedging strength should match evidence strength. Do not promote a "consistent wi
 - Re-summarizing Results instead of interpreting them.
 - Skipping rival explanations.
 - Omitting boundaries: when does the interpretation stop holding?
+- Stacking hedges or using `must`, `cannot`, `demonstrates`, or causal verbs more strongly than the design or proof permits.
+- Naming a limitation without stating which claim, platform, channel, topology, or regime it constrains.
+- Offering generic future work that does not resolve an identified uncertainty.
