@@ -34,8 +34,12 @@
 
 - Shared manuscript facts should stay consistent across all three reviewers.
 - Divergence across reviewers should reflect weighting differences, not contradictory factual claims.
-- Technical failings listed in the synthesis should match issues already raised in at least one individual report.
+- Reviewer-attributed technical failings in the synthesis must match a frozen report. New forensic audit findings may appear independently, explicitly labelled as editorial findings rather than reviewer consensus.
 
 ## Final release rule
 
 - If the skill cannot produce a grounded three-reviewer package without major invention, it should return a bounded draft review with explicit missing-information flags rather than pretending certainty.
+
+## Forensic consistency checks
+
+After freezing all individual reports, run the forensic consistency audit in a separate editorial pass using [forensic-consistency-audit.md](forensic-consistency-audit.md). Keep confirmed internal errors, aggregation ambiguities, provenance gaps and reviewer consensus distinct; never modify frozen reports or backfill their contexts.

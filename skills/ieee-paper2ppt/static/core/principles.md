@@ -4,7 +4,7 @@
 
 Transform a scientific paper or paper-derived notes into a complete Chinese, figure-integrated PPTX presentation package with a IEEE Transactions-style reporting logic.
 
-The skill must not stop at an outline or script. The expected end product is a real `.pptx` deck. Keep supporting files minimal unless the user asks for more traceability.
+When the user requests a deck, deliver a real `.pptx` rather than stopping at an outline or script. If the user explicitly requests only an outline, explanation, or approval stage, honor that scope. Keep supporting files minimal unless the user asks for more traceability.
 
 Use this skill for IEEE Transactions-style engineering papers in robotics, automation, control, communications, industrial informatics, computational engineering, AI, methods, reviews, perspectives, datasets, and benchmark papers.
 

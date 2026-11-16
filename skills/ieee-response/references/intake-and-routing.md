@@ -121,3 +121,7 @@ and whether Fig. 5 is a main or supplementary figure.
 - Rejection challenge -> `appeal-like`.
 - User asks only "what should we do?" -> `triage-only`.
 - Pasted decision email with reports -> parse it and begin `draft` or `revision-package`; do not ask the user to reformat it.
+
+## Scope of the decision gate
+
+An unknown decision blocks only decision-dependent package strategy or complete-package drafting. Continue local edits, visible-draft audits, and comment-level triage. Keep package readiness unassessed until required inputs are available.

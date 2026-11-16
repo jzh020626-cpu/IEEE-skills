@@ -14,7 +14,7 @@ Use the axes and paths in `manifest.yaml`; do not load every fragment.
 2. Detect and briefly state `task`, `paper_type`, `section`, `language`, and `venue`.
 3. Use `task=manuscript` for manuscript argument/sections. Use `task=submission-package` for materials prepared before the first editorial decision. Post-decision correspondence belongs to `ieee-response`.
 4. Load only the selected fragments. Skip section fragments for a pure submission-package task.
-5. For manuscript work, follow the core workflow: one-sentence argument, terminology ledger, section architecture, paragraph jobs, confirmation gate when ambiguity is material, evidence-outward drafting, claim calibration, flow check, and targeted revision.
+5. For manuscript work, follow the core workflow: one-sentence argument, terminology ledger, section architecture, paragraph jobs, scoped alignment when ambiguity is material, evidence-outward drafting, claim calibration, flow check, and targeted revision.
    For multi-section or full-manuscript work, load
    `../ieee-shared/core/engineering-evidence-chain.md` and select the route that
    matches the actual paper type.
@@ -41,3 +41,7 @@ Use the axes and paths in `manifest.yaml`; do not load every fragment.
   comparisons post hoc.
 - Keep outputs source-grounded: do not invent citations, metrics, theorem guarantees, hardware details, or experimental results.
 - For a full manuscript or multi-round revision, load `../ieee-shared/core/consistency-sweep.md` and reconcile numbers, terminology, assumptions, scenarios, units, and claims before delivery.
+
+## Task scope
+
+Honor the requested deliverable and supplied scope. For a passage, formula, local edit, or bounded audit, load only relevant references and run only checks that affect that output. Use the complete package workflow only when that package is requested. Missing package-level metadata does not block independent local work; keep missing facts explicit and do not infer whole-manuscript readiness from a partial check.

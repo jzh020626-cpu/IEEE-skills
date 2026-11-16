@@ -5,3 +5,4 @@ lxml>=4.9.0,<6.0.0
 pybliometrics>=4.4.1,<5.0.0
 pytest>=8.0.0,<9.0.0
 pywin32>=306; sys_platform == "win32"
+defusedxml>=0.7.1,<1.0.0

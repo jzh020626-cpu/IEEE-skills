@@ -40,6 +40,8 @@ venue-specific checklists.
     |-- ieee-submission-audit/
     |-- ieee-academic-search/
     |-- ieee-literature-pipeline/
+    |-- ieee-paper-xray/
+    |-- ieee-paper2word/
     |-- ieee-paper-card/
     |-- ieee-reader/
     |-- ieee-ref-verifier/
@@ -182,6 +184,8 @@ longer shipped by this repository.
 | [`ieee-submission-audit`](skills/ieee-submission-audit/SKILL.md) | Run a strict pre-submission audit for IEEEtran, page limits, figures, references, NtP, reproducibility, and venue-specific hard constraints. |
 | [`ieee-academic-search`](skills/ieee-academic-search/README.md) | Multi-source literature search, citation verification, DOI/arXiv/IEEE-oriented reference management, and optional MCP dispatch. |
 | [`ieee-literature-pipeline`](skills/ieee-literature-pipeline/README.md) | Automated literature discovery, scoring, clustering, and reading workflow for engineering manuscripts. |
+| [`ieee-paper-xray`](skills/ieee-paper-xray/README_EN.md) | Explain engineering paper logic, assumptions, worked equations and evidence boundaries. |
+| [`ieee-paper2word`](skills/ieee-paper2word/README_EN.md) | Format editable Word manuscripts against verified IEEE requirements or reference templates. |
 | [`ieee-paper-card`](skills/ieee-paper-card/README_EN.md) | Deep-read one engineering paper into a source-grounded Sections 01–16 claim–evidence card. |
 | [`ieee-reader`](skills/ieee-reader/README.md) | Build figure/table-aware Chinese-English paper readers for IEEE or engineering papers. |
 | [`ieee-ref-verifier`](skills/ieee-ref-verifier/README.md) | Verify DOI, author order, venue, Early Access/issue metadata, pages/article numbers, and conference/journal versions. |
@@ -348,6 +352,29 @@ Recommended publish hygiene:
   them; otherwise replace them with smaller IEEE-oriented examples over time.
 - Prefer focused commits that separate README/documentation changes from skill
   behavior changes.
+
+## 2026-11 upstream adaptation
+
+Version 0.3.0 adapts nature-skills through `14ca69710cae192325395a380e9cdd4ae5d9d0c8`
+(2026-11-16). The suite now ships 22 task skills plus the internal `ieee-shared`
+package. New routes cover source-grounded paper explanation and IEEE-aware Word
+formatting. Existing workflows gain task-scoped drafting, a separate post-review
+numerical audit, editable SVG schematic checks, safer download/conversion, and
+source-preserving Office export. See [the adaptation record](UPSTREAM_ADAPTATION.md)
+for exact inclusions, exclusions, dependencies and validation scope.
+
+The Word helper requires the separately installed `md-to-word-docx` engine; its
+implicit publication/citation defaults are not IEEE compliance. Installing the
+skill does not install that engine. For the helper's tested environment, see
+`skills/ieee-paper2word/requirements.txt`. Standalone academic-search conversion
+requires `requests` and `defusedxml`; neither requires an API key for local
+format conversion. External readers and OCR remain optional.
+
+Offline metadata validation (requires PyYAML):
+
+```bash
+python scripts/validate-skills.py
+```
 
 ## License
 

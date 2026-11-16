@@ -33,6 +33,8 @@ IEEE Transactions Skills 是一套面向 Codex 的学术写作与投稿辅助技
     |-- ieee-submission-audit/
     |-- ieee-academic-search/
     |-- ieee-literature-pipeline/
+    |-- ieee-paper-xray/
+    |-- ieee-paper2word/
     |-- ieee-paper-card/
     |-- ieee-reader/
     |-- ieee-ref-verifier/
@@ -144,6 +146,8 @@ scripts/update-codex-skills.sh --prune
 | [`ieee-submission-audit`](skills/ieee-submission-audit/SKILL.md) | 严格投稿前审查，覆盖 IEEEtran、页数、图表、参考文献、NtP、复现和分刊硬约束。 |
 | [`ieee-academic-search`](skills/ieee-academic-search/README.md) | 多源文献搜索、引用核查、DOI/arXiv/IEEE 取向的参考文献管理，以及可选 MCP dispatch。 |
 | [`ieee-literature-pipeline`](skills/ieee-literature-pipeline/README.md) | 面向工程论文的自动化文献发现、打分、聚类和精读流程。 |
+| [`ieee-paper-xray`](skills/ieee-paper-xray/README.md) | 重建工程论文的方法逻辑、假设、关键公式算例与证据边界。 |
+| [`ieee-paper2word`](skills/ieee-paper2word/README.md) | 按已核实的 IEEE 格式或参考模板生成可编辑 Word，并检查排版。 |
 | [`ieee-paper-card`](skills/ieee-paper-card/README.md) | 将单篇工程论文精读为带来源定位的 01–16 节主张—证据卡片。 |
 | [`ieee-reader`](skills/ieee-reader/README.md) | 为 IEEE 或工程论文构建图表感知的中英双语阅读材料。 |
 | [`ieee-ref-verifier`](skills/ieee-ref-verifier/README.md) | 核验 DOI、作者顺序、期刊、Early Access/卷期、页码/文章号和会议—期刊版本。 |
@@ -290,3 +294,21 @@ rg -i "IEEE|T-ASE|TII|Transactions|Note to Practitioners|double-column|baselines
 ## License
 
 见 [`LICENSE`](LICENSE)。
+## 2026-11 上游适配
+
+0.3.0 版本适配至 nature-skills 的 `14ca69710cae192325395a380e9cdd4ae5d9d0c8`
+（2026-11-16）。现在共 22 个任务技能和内部 `ieee-shared` 共享包。新增工程论文推理精读和
+IEEE Word 排版入口；已有流程补充局部任务范围、审稿后独立数值审计、可编辑 SVG 示意图检查、
+检索下载与格式转换修复，以及 Office 导出原稿保护。具体迁移、排除项和验证范围见
+[适配记录](UPSTREAM_ADAPTATION.md)。
+
+Word 段落格式提取工具依赖单独安装的 `md-to-word-docx` 引擎；其默认出版样式和引用样式
+不代表 IEEE 合规。安装 skill 不会安装引擎。已测试依赖见
+`skills/ieee-paper2word/requirements.txt`。独立引用转换脚本需要 `requests` 和 `defusedxml`，
+本地完整记录转换不需要 API key；外部阅读服务和 OCR 保持可选。
+
+离线元数据检查（需要 PyYAML）：
+
+```bash
+python scripts/validate-skills.py
+```

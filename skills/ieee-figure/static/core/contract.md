@@ -2,11 +2,9 @@
 
 A publication-quality scientific figure is a visual argument, not an isolated pretty plot. Every figure starts from a claim, an evidence hierarchy, and a review-risk check before code or aesthetics. Before generating or editing code, establish the contract below.
 
-## Backend selection is a blocking gate
+## Backend selection follows task scope
 
-If the user has not explicitly chosen Python or R in the current request or provided a clearly language-specific input file/workflow, ask one concise question: **Python or R?** Then stop and wait for the user's answer. Do not generate mock data, write scripts, create figures, or choose Python/R by default. This overrides general autonomy/default-execution behavior for figure tasks.
-
-Only recommend a backend when the user explicitly asks you to choose or recommend one. In that case, use `references/backend-selection.md`, state the reason, and then proceed with the recommended backend.
+Read-only inspection and backend-neutral validation do not require a plotting backend. A vector-only SVG schematic follows `references/vector-schematic-workflow.md` (relative to the skill root) without the plotting gate. For quantitative rendering, resolve explicit choice, language-specific input, an established task choice, then `scripts/ieee_figure_backend.py get`. Ask once only if still unresolved, and pause dependent rendering while continuing independent inspection. Save explicit choices and preserve backend exclusivity for actual plotting.
 
 ## The selected backend is exclusive
 
@@ -26,7 +24,7 @@ After the backend is selected, check the selected runtime early (`Rscript`/R for
 1. **Core conclusion**: write the one-sentence claim the figure must defend.
 2. **Evidence chain**: map each planned panel to one distinct inferential role, and drop, merge, or demote panels that only redraw another panel's evidence.
 3. **Archetype**: classify the figure as `quantitative grid`, `schematic-led system figure`, `experiment snapshot + quant`, or `asymmetric mixed-modality figure`.
-4. **Backend**: use the selected Python or R track exclusively for all figure drawing, previewing, exporting, and visual QA. Do not cross-render with the other language.
+4. **Backend**: quantitative plots use the selected Python or R track exclusively. Read-only audits and vector-only SVG schematics follow their explicit exceptions above. Do not cross-render quantitative content with the other language.
 5. **Journal/export contract**: set final dimensions, editable text, figure/table data, statistics, image-integrity notes, export formats, render-time multi-panel alignment, and final PDF collision QA before styling.
 
 The highest-priority rule is: **the chart serves the scientific logic**. Aesthetic polish, template matching, and complex layout are subordinate to making the core conclusion clear, defensible, and reviewable.

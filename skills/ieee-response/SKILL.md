@@ -38,3 +38,7 @@ Use `manifest.yaml` and load the response core before drafting.
 - Keep outputs source-grounded: do not invent citations, metrics, theorem guarantees, hardware details, or experimental results.
 - A response-letter quote that is absent from the manuscript, a promised change that is not present, or a marked/clean pair with content differences is a blocking package error.
 - Do not turn the manuscript into a pre-emptive response letter or bury its central evidence chain under robustness and reconciliation prose.
+
+## Task scope
+
+Honor the requested deliverable and supplied scope. For a passage, formula, local edit, or bounded audit, load only relevant references and run only checks that affect that output. Use the complete package workflow only when that package is requested. Missing package-level metadata does not block independent local work; keep missing facts explicit and do not infer whole-manuscript readiness from a partial check.

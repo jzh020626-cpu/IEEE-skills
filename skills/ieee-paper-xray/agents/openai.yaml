@@ -1,0 +1,5 @@
+interface:
+  display_name: IEEE Paper X-Ray
+  short_description: Explain engineering paper logic and evidence
+  default_prompt: Use $ieee-paper-xray to explain this paper with worked equations
+    and source-grounded evidence boundaries.

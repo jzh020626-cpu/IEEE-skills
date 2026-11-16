@@ -1,0 +1,10 @@
+name: ieee-paper-xray
+version: 1.0.0
+always_load:
+  - references/deep-reading-protocol.md
+references:
+  on_demand:
+    - condition: checking claim support, baselines, cost or failure boundaries
+      path: references/evidence-boundary.md
+    - condition: paper type is unclear
+      path: ../ieee-shared/core/paper-type-taxonomy.md

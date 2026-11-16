@@ -23,8 +23,9 @@ description: >-
 6. Build a traceable concern ledger with `references/technical-concern-taxonomy.md`; every concern needs a claim pointer, evidence pointer or explicit missing-location state, severity rationale, and resolution test.
 7. Generate Reviewer 1 (technical validity emphasis), Reviewer 2 (evidence/reproducibility emphasis), and Reviewer 3 (novelty/advancement/clarity emphasis) in genuinely separate contexts. Freeze each report before comparison; do not let one reviewer read another review.
 8. Separate `Major Concerns` from `Minor Comments`, mark every major item `Blocking: Yes/No`, and never mark a minor item blocking. Do not impose a concern quota.
-9. Synthesize consensus, weighting differences, blockers, and prioritized revisions only after all reports are frozen.
-10. Run `references/qa-checklist.md`.
+9. After all reports are frozen, run `references/forensic-consistency-audit.md` as a separate editorial pass. Check arithmetic, aggregation, metric bounds, prose/display agreement, provenance and reproducibility. Never feed audit findings back into reviewer contexts or rewrite frozen reports. Distinguish confirmed internal errors from unresolved aggregation or missing provenance.
+10. Synthesize reviewer consensus, weighting differences, blockers and prioritized revisions separately from editorial audit findings.
+11. Run `references/qa-checklist.md`.
 
 ## Red lines
 

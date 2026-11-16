@@ -39,3 +39,5 @@ QUERY:networked control packet loss stability
 - Script failure twice: fall back to manual `.ris`/`.bib` generation from verified metadata.
 - DOI not found in CrossRef: verify DOI spelling and publisher page.
 - arXiv ID not found: check version suffix and whether an archival version exists.
+
+For complete supplied records, local conversion needs no network preflight. For optional publisher/PDF reading, follow [retrieval routing](../../static/core/routing-and-ops.md#publisher-pages-and-pdf-text-optional); report actual text coverage and keep IEEE-first source selection.

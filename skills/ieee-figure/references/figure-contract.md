@@ -50,7 +50,7 @@ role before choosing layout.
   the hero panel or the clearest axis; controls and robustness panels should be
   visually quieter.
 - If the user provides data but no claim, infer a provisional claim from the data
-  request and ask for confirmation before final styling.
+  request; ask only about unresolved interpretations that materially change the figure. Continue independent data and layout checks.
 
 ## Archetype selection
 

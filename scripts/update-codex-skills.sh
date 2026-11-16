@@ -101,6 +101,7 @@ while [ "$#" -gt 0 ]; do
       ;;
     --dest=*)
       DST="${1#*=}"
+      case "$DST" in "~") DST="$HOME" ;; "~/"*) DST="$HOME/${DST#\~/}" ;; esac
       ;;
     --help|-h)
       usage

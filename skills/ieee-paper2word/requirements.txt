@@ -1,0 +1,5 @@
+# Optional paragraph-layout helper; tested with this external engine release.
+# The engine is not installed by the skill installer.
+md-to-word-docx==3.6.0
+python-docx>=1.2,<2
+lxml>=4.9,<7

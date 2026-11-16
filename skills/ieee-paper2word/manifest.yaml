@@ -1,0 +1,12 @@
+name: ieee-paper2word
+version: 1.0.0
+always_load:
+  - ../ieee-shared/core/ieee-transactions-contract.md
+references:
+  on_demand:
+    - condition: explicit formatting requirements from text, PDF or images
+      path: references/format-requirements.md
+    - condition: extract layout from a DOCX template or reference paper
+      path: references/reference-layout.md
+quality_tools:
+  reference_layout: scripts/reference_layout.py

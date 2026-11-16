@@ -25,3 +25,7 @@ description: >-
 - When polishing a full or repeatedly revised manuscript, use `../ieee-shared/core/consistency-sweep.md`; language edits must not desynchronize numbers, symbols, assumptions, scenario names, or claims.
 - For Results or full-main-text compression, load `../ieee-shared/core/main-text-discipline.md`; for Discussion, load `../ieee-shared/core/discussion-argument-language.md`. Preserve conclusion-changing failures and do not turn compression into selective reporting.
 - For multi-section or full-manuscript restructuring, use `../ieee-shared/core/engineering-evidence-chain.md` so the abstract, introduction, evidence, discussion, and conclusion keep the same bounded contribution.
+
+## Task scope
+
+Honor the requested deliverable and supplied scope. For a passage, formula, local edit, or bounded audit, load only relevant references and run only checks that affect that output. Use the complete package workflow only when that package is requested. Missing package-level metadata does not block independent local work; keep missing facts explicit and do not infer whole-manuscript readiness from a partial check.

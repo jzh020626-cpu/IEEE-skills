@@ -23,11 +23,11 @@ preference:
 axes:
   backend:
     detect: |
-      BLOCKING GATE WITH PERSISTED PREFERENCE. Determine the backend from an
-      explicit user choice, a clearly language-specific input, or
+      QUANTITATIVE PLOTTING ONLY. Read-only audits and vector-only SVG schematics bypass this gate. Determine the backend from an
+      explicit user choice, a clearly language-specific input, an established task choice, or
       scripts/ieee_figure_backend.py get. If none exists, ask exactly one
       concise question — "Python or R? I will remember this as your default."
-      Save the answer before proceeding. Recommend a backend only when the user
+      Pause only dependent rendering; continue independent inspection. Save an explicit answer before rendering. Recommend a backend only when the user
       asks you to choose; explain and save it. Once selected, the backend is
       exclusive for drawing, previewing, exporting, and visual QA.
     values:
@@ -37,6 +37,10 @@ axes:
 
 references:
   on_demand:
+    - condition: hand-built editable vector-only system, control, method or network schematic
+      path: references/vector-schematic-workflow.md
+    - condition: vector schematic labels, connectors, grouping and visual hierarchy
+      path: references/vector-schematic-style-rules.md
     - condition: planning or auditing a labelled multi-panel figure, assigning distinct panel evidence roles, or coordinating a manuscript-level figure sequence
       path: references/multipanel-evidence-architecture.md
     - condition: the user explicitly requests an AI-assisted graphical abstract or visual summary and policy/provenance boundaries must be established
@@ -75,6 +79,7 @@ references:
       path: references/demos.md
 
 quality_tools:
+  svg_schematic_auditor: scripts/audit_svg_schematic.py
   source_validator: scripts/validate_figure.py
   pdf_text_auditor: scripts/audit_pdf_text.py
   rendered_collision_auditor: scripts/audit_figure_collisions.py

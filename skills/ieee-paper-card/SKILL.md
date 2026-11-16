@@ -35,3 +35,7 @@ For robotics and automation, inspect physical platform, task scene, sensing/cont
 - `ieee-reviewer`: formal reviewer-style assessment.
 - `ieee-literature-pipeline`: batch discovery and monitoring.
 - `ieee-paper2ppt`: presentation output.
+
+## Task scope
+
+Honor the requested deliverable and supplied scope. For a passage, formula, local edit, or bounded audit, load only relevant references and run only checks that affect that output. Use the complete package workflow only when that package is requested. Missing package-level metadata does not block independent local work; keep missing facts explicit and do not infer whole-manuscript readiness from a partial check.

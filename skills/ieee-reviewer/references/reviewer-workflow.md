@@ -56,3 +56,7 @@
 - When evidence is absent, say the case is not yet established from the supplied material.
 - When advancement is unclear, distinguish potential engineering value from demonstrated contribution.
 - When clarity is weak, identify the evaluation barrier instead of rewriting unless asked.
+
+## Forensic consistency checks
+
+After freezing all individual reports, run the forensic consistency audit in a separate editorial pass using [forensic-consistency-audit.md](forensic-consistency-audit.md). Keep confirmed internal errors, aggregation ambiguities, provenance gaps and reviewer consensus distinct; never modify frozen reports or backfill their contexts.

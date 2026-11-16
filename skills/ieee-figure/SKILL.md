@@ -10,12 +10,13 @@ Use `manifest.yaml` to select one exclusive plotting backend and load only the r
 
 ## Routing protocol
 
-1. Read `manifest.yaml` and all `always_load` paths.
+1. Read `manifest.yaml` and all `always_load` paths. Classify the task first: a read-only audit does not need a plotting-language choice. For an editable vector-only schematic, load `references/vector-schematic-workflow.md` and `references/vector-schematic-style-rules.md`, bypass the Python/R plotting gate, and audit with `scripts/audit_svg_schematic.py`.
 2. Resolve the backend in this order:
    - the user's explicit Python/R choice;
    - a clearly language-specific input script or workflow;
+   - a choice already established in this task or its follow-ups;
    - a saved preference from `scripts/ieee_figure_backend.py get`;
-   - otherwise ask exactly one concise question: “Python or R?”
+   - otherwise ask exactly one concise question: “Python or R?” Pause only dependent plotting work and continue independent inspection.
 3. Once resolved, keep the backend exclusive for drawing, previewing, exporting, and visual QA. Save an explicit user choice with `scripts/ieee_figure_backend.py set`.
 4. Define the figure contract before plotting: claim, target journal/column width, panel map, variables, units, baselines, independent unit, statistics, uncertainty, source data, and export formats.
    For a multi-panel figure or manuscript-level figure sequence, load

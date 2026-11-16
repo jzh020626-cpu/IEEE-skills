@@ -1,6 +1,6 @@
 # Writing workflow
 
-Run these steps for any drafting or restructuring task. Steps 1-3 are planning, step 3b is an alignment gate, 4-6 are drafting, 7-8 are checking, step 9 is the revision loop.
+Use the complete workflow for a new section or full argument. For a local edit, run only the relevant steps, preserve established terminology and framing, and return the requested edit. Step 3b resolves material ambiguity; it is not an approval stage.
 
 ## 1. Build a one-sentence argument
 
@@ -44,24 +44,11 @@ Each paragraph must do exactly one job from: context, gap, approach, result, com
 
 If a paragraph carries two jobs, split it before drafting.
 
-## 3b. Confirmation gate — align before drafting
+## 3b. Scoped alignment check
 
-Drafting a full section on a wrong assumed premise wastes the whole draft and is the main reason output "does not match what I meant". Before writing full prose, show the user a short alignment block and **stop for confirmation**:
+Proceed from supplied evidence and established context. For substantial drafts, briefly state the central argument and consequential assumptions, then continue. Ask only about unresolved choices that materially change the argument, evidence meaning, or requested deliverable. Pause only dependent passages and use visible placeholders for missing facts.
 
-- **One-sentence argument** (from step 1) — the single most important thing to get right. Echo it back in plain language.
-- **Plan**: detected paper type, section(s), journal / word limit, and the paragraph map from step 3 as a short bullet list.
-- **Key terminology**: the canonical forms locked in the Terminology Ledger (step 1b) for the main methods, models, datasets, and metrics. Surface them here so the user can fix a wrong canonical term before it propagates through every section.
-- **Primary reader**: who the draft is optimized for, and which of the five reader questions it leads with (relevance / novelty / trust / reuse / meaning — see `../../../ieee-shared/core/reader-workflow.md`). Getting the lead question wrong is a common silent cause of "this is not what I meant".
-- **Key assumptions**: anything else you inferred rather than were told — especially what the core contribution is and which result to lead with. Mark each clearly as an assumption.
-- **At most 2–3 targeted questions**, only on genuinely ambiguous, high-leverage points (how to frame the core contribution, target audience / journal, which result leads). Do not ask about things the user already made clear, and do not pad the list to reach three.
-
-Then wait for the user to confirm or correct before drafting the full section.
-
-Shortcuts:
-
-- **Skip the gate** when the core claim, evidence, and boundary are all clearly given and there is no real ambiguity in framing. In that case just state the one-sentence argument in a single line (per the router) and proceed.
-- **Depth dial**: for a full section or a major rewrite, offer to deliver the outline first (the paragraph map from step 3) and expand to full prose only after the user approves it. Reacting to an outline is far cheaper than reacting to full prose. Skip this for short or single-paragraph requests.
-- **Style, not substance**: if the user says the voice or style "is not mine", do not keep guessing — ask for one short sample of their own writing, then calibrate to it. From the sample, match: typical sentence length and rhythm, hedging level (`demonstrate` vs `may` / `could`), preferred connectives and transitions, person (first-person `we` vs passive), and terminology / abbreviation choices. Match the voice, not the content — never reuse the sample's claims or facts.
+If the user explicitly requested outline approval, provide the outline and wait. Otherwise complete the authorized draft and relevant checks. A follow-up correction supplies context, not a reason to request the same approval again.
 
 ## 4. Draft from evidence outward
 
@@ -92,7 +79,7 @@ Output the draft together with explicit notes on assumptions, missing inputs, an
 When the user reacts to a draft, "this is not what I meant" is usually local — a wrong claim, a mis-framed paragraph, the wrong result leading. Do not silently re-draft the whole section: a full rewrite breaks the paragraphs that were already right and forces the user to re-check everything.
 
 - Change **only** the paragraphs or claims the user flagged; keep the rest verbatim.
-- If a requested fix genuinely forces a structural change (reordering sections, moving a claim across paragraphs), say so and confirm the new structure before applying it, rather than restructuring silently.
+- If a requested fix genuinely forces a structural change (reordering sections, moving a claim across paragraphs), explain and apply the necessary adjacent edits within the authorized scope; clarify only a material unresolved argument or scope change, rather than restructuring silently.
 - Keep the Terminology Ledger (step 1b) stable across revisions unless the user changes a term; never let a revision reintroduce a variant of a locked term.
 - After revising, re-run only the checks relevant to what changed (steps 5-7), not the whole workflow.
-- If the user's redirection reveals the original premise was wrong, return to the confirmation gate (step 3b) instead of patching prose on a broken premise.
+- If the user's redirection reveals the original premise was wrong, apply the correction and revisit only unresolved choices in step 3b instead of patching prose on a broken premise.

@@ -127,3 +127,7 @@ Missing information / risk flags
 - R1.2: Need test name, replicate unit, sample size, and correction method.
 - R2.1: No line numbers supplied; using section names for now.
 ```
+
+## Scope of the decision gate
+
+An unknown decision blocks only decision-dependent package strategy or complete-package drafting. Continue local edits, visible-draft audits, and comment-level triage. Keep package readiness unassessed until required inputs are available.

@@ -13,3 +13,7 @@ Default output:
 For Chinese-author notes, provide polished English first, then brief Chinese notes explaining major structural choices.
 
 If essential evidence or boundary is missing, do not invent. Write a placeholder such as `[Evidence needed: comparator group accuracy on test set X]` and list it under `Assumptions or missing inputs:`.
+
+## Bounded edit output
+
+For a user-requested sentence, paragraph or local edit, return the edited text and only material factual gaps or reasons needed for that edit. Do not append a full claim–evidence map, manuscript architecture, feedback invitation or package checklist unless requested.

@@ -6,6 +6,10 @@ The skill may receive a pasted decision email; editor/reviewer comments; a previ
 
 If reviewer boundaries or comment segmentation are ambiguous, flag the ambiguity instead of inventing reviewer structure.
 
+## Decision-dependent work
+
+Identify the editorial decision before choosing a package-level Major/Minor Revision strategy or drafting a complete revision package. Extract it from supplied correspondence and context. If it is still unknown, ask only when that strategy depends on it. Continue local wording edits, audits of existing replies, and comment-level triage with the decision marked unknown. These bounded tasks do not establish package readiness.
+
 ## Workflow
 
 1. Identify `draft`, `audit`, `revise`, `triage-only`, `cover-letter`, `revision-package`, `latex-template`, or `appeal-like`.

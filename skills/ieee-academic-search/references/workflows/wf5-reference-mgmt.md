@@ -31,3 +31,5 @@
 1. Identify prior conference versions by title, authors, DOI, and venue.
 2. Compare journal and conference records for new proofs, experiments, figures, datasets, or technical depth.
 3. Mark as manual if the full prior version is unavailable.
+
+For complete supplied records, local conversion needs no network preflight. For optional publisher/PDF reading, follow [retrieval routing](../../static/core/routing-and-ops.md#publisher-pages-and-pdf-text-optional); report actual text coverage and keep IEEE-first source selection.

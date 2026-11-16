@@ -1,0 +1,5 @@
+interface:
+  display_name: IEEE Paper to Word
+  short_description: Format engineering papers as editable Word
+  default_prompt: Use $ieee-paper2word to format this manuscript as editable Word
+    using verified IEEE requirements.

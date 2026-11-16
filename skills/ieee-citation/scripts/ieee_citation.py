@@ -173,7 +173,7 @@ def segment_text(text: str) -> list[Segment]:
         chunks = [text.strip()]
     segments: list[Segment] = []
     for i, chunk in enumerate(chunks, 1):
-        sid = hashlib.sha1(chunk.encode("utf-8")).hexdigest()[:8]
+        sid = hashlib.sha256(chunk.encode("utf-8")).hexdigest()[:12]
         segments.append(Segment(f"S{i:03d}-{sid}", chunk, make_query(chunk), i))
     return segments
 
@@ -186,7 +186,7 @@ def in_scope(journal: str, scope: str) -> bool:
         allowed = IEEE_JOURNALS.get(scope, IEEE_JOURNALS["all"])
     if journal in allowed:
         return True
-    return journal.startswith("IEEE Transactions on ") or journal.startswith("IEEE Journal of ")
+    return scope == "all" and (journal.startswith("IEEE Transactions on ") or journal.startswith("IEEE Journal of "))
 
 
 def candidate_scope(journal: str) -> str:
@@ -225,7 +225,7 @@ def author_name(author: dict[str, Any]) -> str:
 def year_from(item: dict[str, Any]) -> str:
     for key in ["published-print", "published-online", "published", "issued"]:
         parts = item.get(key, {}).get("date-parts") or []
-        if parts and parts[0]:
+        if parts and parts[0] and isinstance(parts[0][0], int) and not isinstance(parts[0][0], bool):
             return str(parts[0][0])
     return ""
 

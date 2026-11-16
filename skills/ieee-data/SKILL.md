@@ -26,3 +26,7 @@ Use `manifest.yaml` to load the core workflow and only the references needed for
 - Keep data availability, code availability, supplementary material, and reproducibility instructions distinct when the venue treats them separately.
 - Do not promise public release, access approval, proprietary logs, identifiers, licences, embargo dates, or hardware records unless supplied.
 - Use `AUTHOR_INPUT_NEEDED` for missing facts and `ieee-experiment-log` when raw runs need normalization before packaging.
+
+## Task scope
+
+Honor the requested deliverable and supplied scope. For a passage, formula, local edit, or bounded audit, load only relevant references and run only checks that affect that output. Use the complete package workflow only when that package is requested. Missing package-level metadata does not block independent local work; keep missing facts explicit and do not infer whole-manuscript readiness from a partial check.

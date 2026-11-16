@@ -46,3 +46,7 @@ python scripts/build_patent_package.py draft.json --output-dir outputs --prefix 
 Resolve all `ERROR` findings and review warnings against the source. For disclosures, run `references/disclosure/disclosure_self_check.md` and the needed tools under `scripts/disclosure/`; deliver timestamped Markdown and matching DOCX.
 
 This output is a drafting aid for inventor and patent-professional review, not a patentability, infringement, or filing opinion.
+
+## Task scope
+
+Honor the requested deliverable and supplied scope. For a passage, formula, local edit, or bounded audit, load only relevant references and run only checks that affect that output. Use the complete package workflow only when that package is requested. Missing package-level metadata does not block independent local work; keep missing facts explicit and do not infer whole-manuscript readiness from a partial check.

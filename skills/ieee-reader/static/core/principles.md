@@ -9,7 +9,7 @@ Use this skill to turn a research paper into a complete Markdown reading artifac
 - preserve stable page and block anchors for traceability
 - write a complete `paper.md` by default, plus `source_map.json`, `translation_notes.md`, and `assets/`
 
-This skill is for papers, preprints, and conference proceedings across disciplines. It is not limited to IEEE Transactions journals. If the user only wants a summary, use a summarization skill instead. If the user only wants citation search, use a citation skill instead.
+This skill is for papers, preprints, and conference proceedings across disciplines. It is not limited to IEEE Transactions journals. Honor an explicit request for a summary, excerpt, or source-linked answer at that scope; no separate summarization skill is required. If the user only wants citation search, use a citation skill instead.
 
 ## Non-negotiable defaults
 

@@ -143,3 +143,7 @@ dev.off()
 ```
 
 Open the SVG/PDF after export and verify that text can be selected, labels do not overlap, and the figure still reads at final printed size.
+
+## Printed-size and vector checks
+
+Verify physical dimensions in the final manuscript as well as the exported figure: embedding may shrink labels after export. For SVG schematics run `scripts/audit_svg_schematic.py` at final size; preserve live text and inspect every edge against the implementation or Methods. Numeric font thresholds and panel tolerances are QA settings, not journal requirements. Check final tick spacing, units, connector-label clearance, aspect ratio and multiline label alignment visually; passing geometry does not prove scientific correctness.

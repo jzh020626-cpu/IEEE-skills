@@ -77,3 +77,13 @@ Scopus / ScienceDirect are opt-in providers: include them only when configured a
 - Google Scholar is not API-backed; results may vary.
 - Chinese literature often requires manual CNKI / 万方 checks.
 - Citation counts can lag behind publisher metadata.
+
+## Local conversion and authenticated discovery
+
+For complete user-supplied records, convert locally and verify record count, author order, identifiers and escaping. Network preflight and metadata retrieval apply only when retrieval or verification is requested or missing fields need resolution. `format-converter.py --input` expects identifier/query lines, not arbitrary citation files. Its runtime requires `requests` and `defusedxml`.
+
+For OpenAlex discovery, configure `OPENALEX_API_KEY` locally or use `--api-key`; the environment variable avoids exposing a key in shell history or process arguments. Keys are sent in authorization headers. Do not assume a fixed quota or a mailto-based access tier.
+
+## Publisher pages and PDF text (optional)
+
+Use official publisher HTML, authorized/open-access PDFs, and available local text extraction first. An already-connected reader such as Firecrawl may help with JavaScript pages or PDFs when the user authorizes that service for the material. It is optional, does not verify citations, and must not upload confidential manuscripts by default. Do not invent availability, pricing or access rights. Retain source URLs/page anchors and report structured text, PDF-as-text, or metadata-only coverage.

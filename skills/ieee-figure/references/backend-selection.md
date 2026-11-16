@@ -1,10 +1,6 @@
 # Backend Selection
 
-At the start of a figure task, ask the user to choose **Python or R** if they have
-not already specified a backend. This is a blocking gate: stop after asking and wait
-for the user's answer. Do not infer Python just because the task involves simulation,
-NumPy-like data, or custom layout, and do not infer R just because the task is an engineering
-audit with tabular statistics.
+For quantitative rendering, resolve an explicit choice, language-specific input, an established task choice, then saved preference. Ask once only when unresolved and pause dependent rendering; continue independent inspection. Read-only review and vector-only schematics do not need a plotting-language choice.
 
 Use the decision table only in either of these cases:
 

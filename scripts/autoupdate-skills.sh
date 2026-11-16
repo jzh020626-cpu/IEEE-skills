@@ -46,7 +46,7 @@ usage() { sed -n '2,32p' "$0"; }
 while [ "$#" -gt 0 ]; do
   case "$1" in
     --dest) DEST="${2:?--dest needs a path}"; shift 2 ;;
-    --dest=*) DEST="${1#*=}"; shift ;;
+    --dest=*) DEST="${1#*=}"; case "$DEST" in "~") DEST="$HOME" ;; "~/"*) DEST="$HOME/${DEST#\~/}" ;; esac; shift ;;
     --throttle) THROTTLE="${2:?--throttle needs seconds}"; shift 2 ;;
     --throttle=*) THROTTLE="${1#*=}"; shift ;;
     --force) FORCE=1; THROTTLE=0; shift ;;
