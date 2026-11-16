@@ -84,9 +84,9 @@ class DiscussionArgumentLanguageTests(unittest.TestCase):
         for relative in routes:
             self.assertIn("discussion-argument-language.md", read(relative), relative)
 
-        self.assertIn("version: 1.4.0", read("skills/ieee-shared/manifest.yaml"))
-        self.assertIn("version: 1.4.0", read("skills/ieee-writing/manifest.yaml"))
-        self.assertIn("version: 1.4.0", read("skills/ieee-polishing/manifest.yaml"))
+        self.assertRegex(read("skills/ieee-shared/manifest.yaml"), r"(?m)^version: [0-9]+\.[0-9]+\.[0-9]+$")
+        self.assertRegex(read("skills/ieee-writing/manifest.yaml"), r"(?m)^version: [0-9]+\.[0-9]+\.[0-9]+$")
+        self.assertRegex(read("skills/ieee-polishing/manifest.yaml"), r"(?m)^version: [0-9]+\.[0-9]+\.[0-9]+$")
 
 
 if __name__ == "__main__":

@@ -73,7 +73,7 @@ IEEE Transactions Skills 是一套面向 Codex 的学术写作与投稿辅助技
 ## 证据校准的学术发布会原则
 
 本套件已融入针对 IEEE 工作流适配的
-[Anti-Defensive Writing skill](https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill/tree/0212d11541f6df5ce8a6f22ae82bc651452abd24)。
+[Anti-Defensive Writing skill](https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill/tree/e65bd9d8bf8ed8b9af809e5aff8237d76370876d)。
 适配后的规则集中维护在
 [`ieee-shared/core/claim-centered-writing.md`](skills/ieee-shared/core/claim-centered-writing.md)，
 不再额外安装一个触发范围重叠的独立 skill。这样可以保持路由确定性，防止作者侧的叙事立场误入独立审稿、论文精读或证据核验流程。
@@ -90,7 +90,16 @@ IEEE Transactions Skills 是一套面向 Codex 的学术写作与投稿辅助技
 |---|---|---|
 | 默认加载 | `ieee-writing`、`ieee-polishing`、`ieee-proposal-writer`、`ieee-response`、`ieee-submission-audit` | 执行学术发布会原则、防御性攻击面审计以及主文—补充材料证据路由。 |
 | 按需加载 | `ieee-statistics`、`ieee-figure` | 在完成诚信/统计检查后，用于结果文字、图注、panel 选择、视觉强调和证据位置决策。 |
-| 不接入 | `ieee-reviewer`、`ieee-reader`、`ieee-paper-card`、引用/搜索/下载 skills | 独立评审、证据提取与来源核验不能继承作者侧叙事立场。 |
+| 不接入 | `ieee-reviewer`、`ieee-reader`、`ieee-paper-card`、`ieee-paper-xray`、引用/搜索/下载 skills | 独立评审、证据提取与来源核验不能继承作者侧叙事立场。 |
+
+0.3.1 版本已刷新至上游 2026-11 快照，并补充其“最小改动、保留作者措辞习惯和段落结构”原则。
+上游中英文 SKILL 正文未变，新增插件包装不会在 IEEE 套件内重复安装。按需加载的
+[反防御润色指南](skills/ieee-shared/core/anti-defensive-editing.md)提供中英文改写示例，
+区分可删除的自我评价与必须保留的不利事实。可直接这样调用：
+
+```text
+使用 ieee-polishing 做反防御性润色：保留我的措辞习惯、段落结构、数值和结论边界，只修改有问题的表达。
+```
 
 原始项目采用 MIT License；本仓库保留的许可证文本见
 [`skills/ieee-shared/licenses/anti-defensive-writing-MIT.txt`](skills/ieee-shared/licenses/anti-defensive-writing-MIT.txt)。

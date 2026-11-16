@@ -163,3 +163,40 @@ suites passed. The local Codex install was backed up and the installer
 `--check` verified the updated destination against source. External-engine
 PDF/Word rendering against a real submission manuscript and live services
 remain outside this offline validation.
+
+## Anti-Defensive Writing integration refresh (2026-11-16)
+
+- Source: `https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill.git`.
+- Previous pin: `0212d11541f6df5ce8a6f22ae82bc651452abd24`.
+- Updated pin: `e65bd9d8bf8ed8b9af809e5aff8237d76370876d`; tracked separately in
+  `scripts/anti-defensive-upstream.lock`. The nature-skills lock is unchanged.
+- The source's Chinese and English SKILL bodies are unchanged over this range;
+  the substantive writing addition is minimal, style-preserving editing in the
+  bilingual quick prompts. Plugin packaging and promotional changes are not
+  copied into the IEEE suite.
+- Keep one shared claim-centered module and an on-demand editing guide rather
+  than adding overlapping English/Chinese standalone skills. Existing writing,
+  polishing, proposal, response and submission workflows continue to load it;
+  statistics/figures retain their conditional use, and independent review,
+  reading and citation workflows do not inherit author-side rhetoric.
+- Default polishing preserves voice, paragraph structure, unaffected wording,
+  numbers and scientific scope. Full story restructuring remains available when
+  requested. An explicit audit returns actual defects and proposed changes;
+  clean text does not need manufactured edits.
+- Literal upstream instructions to never describe a loss or to switch a losing
+  evaluation dimension remain bounded by the IEEE integrity contract. Preserve
+  primary task outcomes, adverse evidence, uncertainty and assumptions; never
+  replace a failed primary objective with a favorable secondary metric or turn
+  non-significance into equivalence. Reviewer questions remain directly answered.
+- Preserve the original MIT license notice unchanged. This release is `0.3.1`
+  and still contains 23 skill packages, not an extra standalone skill.
+
+Validation for the 0.3.1 integration: 26 relevant writing/discussion/evidence-chain,
+reviewer and response regression tests passed. Updated version checks validate
+semantic-version syntax rather than requiring the previous exact patch string.
+All 23 package metadata/resource checks passed, the two changed skill
+entrypoints passed skill-creator validation, and changed Markdown links resolve.
+A backed-up local install passed source/destination comparison. Independent
+forward tests cover minimal mixed-result editing, a theorem's necessary delay
+assumption, clean text with no manufactured defect, and a requested restructure
+with an unfavorable primary endpoint.

@@ -14,6 +14,7 @@ Use this package only as a dependency of another IEEE skill.
   principle: organize the main manuscript around its strongest supported value,
   separate the main argument from the complete supplementary record, and remove
   repeated self-defense without softening independent review or statistical findings.
+- Use `core/anti-defensive-editing.md` for a requested author-facing defensive-language audit or minimal, style-preserving revision; keep factual negative results and claim-defining boundaries.
 - Use `core/main-text-discipline.md` when allocating core results, qualifications,
   robustness checks, failure cases, configuration detail, and statistics across
   the main text, captions, Supplementary Material, and artifact repositories.

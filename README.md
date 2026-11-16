@@ -88,7 +88,7 @@ This repository is intentionally IEEE-first:
 ## Evidence-calibrated press-release writing
 
 The suite incorporates an IEEE-specific adaptation of
-[Adkid-Zephyr's Anti-Defensive Writing skill](https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill/tree/0212d11541f6df5ce8a6f22ae82bc651452abd24).
+[Adkid-Zephyr's Anti-Defensive Writing skill](https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill/tree/e65bd9d8bf8ed8b9af809e5aff8237d76370876d).
 It is implemented once in
 [`ieee-shared/core/claim-centered-writing.md`](skills/ieee-shared/core/claim-centered-writing.md)
 rather than installed as a separate, overlapping skill. This keeps routing
@@ -126,7 +126,18 @@ Routing is deliberately bounded:
 |---|---|---|
 | Always loaded | `ieee-writing`, `ieee-polishing`, `ieee-proposal-writer`, `ieee-response`, `ieee-submission-audit` | Applies the press-release principle, defensive-writing attack-surface audit, and main-versus-supplement evidence routing. |
 | On demand | `ieee-statistics`, `ieee-figure` | Loads when result prose, legends, captions, panel selection, visual emphasis, or evidence placement follows the integrity/statistical gate. |
-| Not applied | `ieee-reviewer`, `ieee-reader`, `ieee-paper-card`, citation/search/retrieval skills | Independent assessment, evidence extraction, and source verification must not inherit the author's rhetorical stance. |
+| Not applied | `ieee-reviewer`, `ieee-reader`, `ieee-paper-card`, `ieee-paper-xray`, citation/search/retrieval skills | Independent assessment, evidence extraction, and source verification must not inherit the author's rhetorical stance. |
+
+Version 0.3.1 refreshes the source pin to the upstream 2026-11 snapshot and
+integrates its minimal, style-preserving prompt rule. The bilingual skill bodies
+are unchanged; upstream plugin packaging is not duplicated here. For an explicit
+audit, the on-demand [editing guide](skills/ieee-shared/core/anti-defensive-editing.md)
+provides bilingual editing examples and separates removable self-judgment from
+negative facts that must remain. Invoke it through the existing workflow:
+
+```text
+Use ieee-polishing for an anti-defensive edit. Preserve my voice, paragraph structure, numbers and claim boundaries; change only defective wording.
+```
 
 The adapted source remains under its MIT terms; the preserved notice is at
 [`skills/ieee-shared/licenses/anti-defensive-writing-MIT.txt`](skills/ieee-shared/licenses/anti-defensive-writing-MIT.txt).

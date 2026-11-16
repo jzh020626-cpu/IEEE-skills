@@ -1,7 +1,7 @@
 ---
 name: ieee-polishing
 description: >-
-  Polish, restructure, or translate academic prose into IEEE Transactions-style English for robotics, automation, control, communications, and industrial informatics papers. Use for abstracts, introductions, related work, methods, experiments, discussions, conclusions, titles, and LaTeX layout fixes.
+  Polish, restructure, or translate academic prose into IEEE Transactions-style English for robotics, automation, control, communications, and industrial informatics papers. Use for abstracts, introductions, related work, methods, experiments, discussions, conclusions, titles, LaTeX layout fixes, and anti-defensive editing (反防御性写作) that preserves author voice and factual boundaries.
 ---
 
 # IEEE Transactions Polishing Router
@@ -9,6 +9,7 @@ description: >-
 ## Workflow
 
 - Preserve technical meaning, equations, variables, and claim strength.
+- Default to minimal, style-preserving edits for polishing. Keep unaffected wording and paragraph structure; use full restructuring only within the requested scope. For an explicit anti-defensive audit, load `../ieee-shared/core/anti-defensive-editing.md` and separate rhetorical self-judgment from factual unfavorable outcomes.
 - Use IEEE style: concise technical prose, numbered-citation awareness, contribution clarity, double-column economy, and evidence-calibrated claims.
 - Route T-ASE/TII/TAC/TCST-specific requests through `manifest.yaml` journal fragments.
 

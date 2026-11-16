@@ -20,6 +20,24 @@ Truthfulness, protocol and preregistration commitments, editor/reviewer
 questions, safety, reproducibility, and venue rules override rhetorical
 advantage.
 
+## Edit at the requested scope
+
+For polishing or a defensive-language audit, default to minimal necessary edits:
+preserve the author's wording habits, paragraph order, technical terms and
+problem-free passages. Identify the specific rhetorical defect, then replace or
+compress only the affected wording. Do not rewrite whole paragraphs merely to
+impose a preferred voice. For an audit-only request, return findings and proposed
+edits without changing files.
+
+Use full story restructuring when the user requests it. If the evidence cannot
+support the current argument, explain that substantive problem; do not disguise
+it as a language fix or silently replace the study's objective. Necessary
+adjacent consistency edits stay within the authorized scope.
+
+For an explicit anti-defensive audit, bilingual before/after examples, or a
+mixed-result passage, load [anti-defensive-editing.md](anti-defensive-editing.md).
+The examples separate removable rhetoric from facts that must survive editing.
+
 ## Build the story around the strongest supported claim
 
 1. Write one central claim with the condition in which it holds and the evidence
@@ -35,7 +53,7 @@ advantage.
 5. Let every main-text experiment perform one job: establish the main effect,
    test the mechanism, demonstrate target-scenario value, quantify a meaningful
    trade-off, or rule out the strongest alternative explanation.
-6. Restructure the title, Abstract, Introduction, contributions, Results,
+6. For requested structural work, restructure the title, Abstract, Introduction, contributions, Results,
    Discussion, figures, and Conclusion when the strongest evidence supports a
    different story from the original plan.
 
@@ -147,7 +165,9 @@ they are necessary and supported.
 ## Provenance
 
 Adapted from Adkid-Zephyr's *Anti-Defensive Writing* skill, commit
-`0212d11541f6df5ce8a6f22ae82bc651452abd24`, under the MIT License. The IEEE
+`e65bd9d8bf8ed8b9af809e5aff8237d76370876d`, under the MIT License. The upstream
+bilingual skill bodies are unchanged from the previous snapshot;
+the latest prompt pack adds minimal, style-preserving edits. The IEEE
 adaptation preserves the press-release principle and adds research-integrity,
 statistical, reporting, and reviewer-response boundaries. See
 `../licenses/anti-defensive-writing-MIT.txt`.

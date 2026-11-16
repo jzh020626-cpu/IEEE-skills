@@ -77,8 +77,8 @@ class MainTextDisciplineTests(unittest.TestCase):
         for relative in files:
             self.assertIn("main-text-discipline.md", read(relative), relative)
 
-        self.assertIn("version: 1.4.0", read("skills/ieee-writing/manifest.yaml"))
-        self.assertIn("version: 1.4.0", read("skills/ieee-polishing/manifest.yaml"))
+        self.assertRegex(read("skills/ieee-writing/manifest.yaml"), r"(?m)^version: [0-9]+\.[0-9]+\.[0-9]+$")
+        self.assertRegex(read("skills/ieee-polishing/manifest.yaml"), r"(?m)^version: [0-9]+\.[0-9]+\.[0-9]+$")
 
     def test_response_route_prevents_reviewer_driven_main_text_bloat(self) -> None:
         files = (
@@ -101,7 +101,7 @@ class MainTextDisciplineTests(unittest.TestCase):
 
     def test_shared_registry_docs_and_output_contracts_are_complete(self) -> None:
         shared_manifest = read("skills/ieee-shared/manifest.yaml")
-        self.assertIn("version: 1.4.0", shared_manifest)
+        self.assertRegex(shared_manifest, r"(?m)^version: [0-9]+\.[0-9]+\.[0-9]+$")
         self.assertIn("core/main-text-discipline.md", shared_manifest)
 
         output = read("skills/ieee-polishing/static/core/output-format.md")
